@@ -37,9 +37,18 @@ const nedenTeminorPoints = [
 ];
 
 const stats = [
-  { label: "Tamamlanan Pilot Proje" },
-  { label: "İl Bazlı Tedarikçi Ağı" },
-  { label: "Ortalama Yanıt Süresi" },
+  {
+    title: "Alıcı Onaylı Süreç",
+    label: "Her sipariş, onayınız olmadan tedarikçiye iletilmez.",
+  },
+  {
+    title: "Çoklu Tedarikçi Karşılaştırması",
+    label: "Her talep için en az 2-3 alternatif tedarikçiden teklif toplanır.",
+  },
+  {
+    title: "Şeffaf Fiyatlandırma",
+    label: "Gizli komisyon yok, ne için ödediğinizi bilirsiniz.",
+  },
 ];
 
 export default function HomePage() {
@@ -187,9 +196,7 @@ export default function HomePage() {
             {stats.map((stat, i) => (
               <Reveal key={stat.label} delay={i * 0.1}>
                 <div className="rounded-sm border border-navy/10 bg-white p-8 text-center">
-                  <p className="font-serif text-2xl text-gold">
-                    [VERİ BEKLENİYOR]
-                  </p>
+                  <p className="font-serif text-xl text-gold">{stat.title}</p>
                   <p className="mt-2 text-sm text-muted">{stat.label}</p>
                 </div>
               </Reveal>
