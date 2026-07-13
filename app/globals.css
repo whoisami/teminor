@@ -1,0 +1,48 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --color-navy: #1b2a41;
+  --color-gold: #9c7a34;
+  --color-muted: #555555;
+  --color-light-bg: #f7f7f5;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--color-light-bg);
+  color: var(--color-navy);
+}
+
+::selection {
+  background: var(--color-gold);
+  color: #ffffff;
+}
+
+.container-content {
+  @apply mx-auto w-full max-w-content px-6 md:px-10;
+}
+
+.btn-primary {
+  @apply inline-flex items-center justify-center rounded-sm bg-navy px-6 py-3 text-sm font-medium tracking-wide text-white transition-colors duration-200 hover:bg-[#243a58];
+}
+
+.btn-outline {
+  @apply inline-flex items-center justify-center rounded-sm border border-navy px-6 py-3 text-sm font-medium tracking-wide text-navy transition-colors duration-200 hover:bg-navy hover:text-white;
+}
+
+.btn-whatsapp {
+  @apply inline-flex items-center justify-center gap-2 rounded-sm bg-[#25D366] px-6 py-3 text-sm font-medium tracking-wide text-white transition-colors duration-200 hover:bg-[#1fb959];
+}
+
+.eyebrow {
+  @apply text-xs font-semibold uppercase tracking-[0.2em] text-gold;
+}
+
+.form-input {
+  @apply w-full rounded-sm border border-navy/20 bg-white px-4 py-2.5 text-sm text-navy placeholder:text-muted/60 focus:border-gold focus:outline-none focus:ring-1 focus:ring-gold;
+}
