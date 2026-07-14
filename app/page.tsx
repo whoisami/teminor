@@ -3,6 +3,8 @@ import Reveal from "@/components/Reveal";
 import BenefitCard from "@/components/BenefitCard";
 import { TimeIcon, CostIcon, RiskIcon } from "@/components/BenefitIcons";
 import HeroTexture from "@/components/HeroTexture";
+import HowItWorks from "@/components/HowItWorks";
+import CategoryGrid from "@/components/CategoryGrid";
 import BlogCard from "@/components/BlogCard";
 import TrackedCta from "@/components/analytics/TrackedCta";
 import TrackedAnchor from "@/components/analytics/TrackedAnchor";
@@ -135,6 +137,8 @@ export default function HomePage() {
         </div>
       </section>
 
+      <HowItWorks />
+
       {/* Benefits */}
       <section className="bg-light-bg py-24">
         <div className="container-content">
@@ -215,9 +219,11 @@ export default function HomePage() {
         </div>
       </section>
 
+      <CategoryGrid />
+
       {/* Blog preview */}
       {latestPosts.length > 0 && (
-        <section className="bg-white py-24">
+        <section className="bg-light-bg py-24">
           <div className="container-content">
             <Reveal>
               <p className="eyebrow">Blog</p>
