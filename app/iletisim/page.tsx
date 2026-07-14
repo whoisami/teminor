@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Reveal from "@/components/Reveal";
 import ContactForm from "@/components/ContactForm";
+import RFQForm from "@/components/RFQForm";
 import TrackedAnchor from "@/components/analytics/TrackedAnchor";
 import PageViewTracker from "@/components/analytics/PageViewTracker";
 import {
@@ -99,6 +100,24 @@ export default function IletisimPage() {
         <Reveal delay={0.1}>
           <div className="rounded-sm border border-navy/10 bg-white p-8">
             <ContactForm />
+          </div>
+        </Reveal>
+      </div>
+
+      <div className="container-content mt-20 max-w-3xl">
+        <Reveal>
+          <p className="eyebrow">RFQ</p>
+          <h2 className="mt-3 font-serif text-3xl text-navy md:text-4xl">
+            RFQ — Satın Alma Talep Formu
+          </h2>
+          <p className="mt-4 leading-relaxed text-muted">
+            Somut bir satın alma ihtiyacınız varsa, aşağıdaki formu doldurarak
+            doğrudan tedarik sürecini başlatabilirsiniz.
+          </p>
+        </Reveal>
+        <Reveal delay={0.1}>
+          <div className="mt-8 rounded-sm border border-navy/10 bg-white p-8">
+            <RFQForm />
           </div>
         </Reveal>
       </div>
