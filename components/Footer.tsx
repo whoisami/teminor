@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import TrackedAnchor from "@/components/analytics/TrackedAnchor";
 import {
   CONTACT_EMAIL,
   CONTACT_PHONE_DISPLAY,
@@ -58,24 +59,36 @@ export default function Footer() {
           </h3>
           <ul className="mt-4 space-y-2 text-sm">
             <li>
-              <a
+              <TrackedAnchor
+                kind="whatsapp"
+                location="footer"
                 href={whatsappLink(DEFAULT_WHATSAPP_MESSAGE)}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="hover:text-gold"
               >
                 WhatsApp&apos;tan Yazın
-              </a>
+              </TrackedAnchor>
             </li>
             <li>
-              <a href={`mailto:${CONTACT_EMAIL}`} className="hover:text-gold">
+              <TrackedAnchor
+                kind="email"
+                location="footer"
+                href={`mailto:${CONTACT_EMAIL}`}
+                className="hover:text-gold"
+              >
                 {CONTACT_EMAIL}
-              </a>
+              </TrackedAnchor>
             </li>
             <li>
-              <a href="tel:+905015350086" className="hover:text-gold">
+              <TrackedAnchor
+                kind="phone"
+                location="footer"
+                href="tel:+905015350086"
+                className="hover:text-gold"
+              >
                 {CONTACT_PHONE_DISPLAY}
-              </a>
+              </TrackedAnchor>
             </li>
           </ul>
         </div>

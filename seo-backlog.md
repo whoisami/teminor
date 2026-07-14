@@ -5,7 +5,7 @@ Her çalışmada güncellenir: tamamlanan maddeler "Durum: Tamamlandı" olarak
 işaretlenir, yeni bulgular ilgili öncelik başlığına eklenir. Öncelik sırası
 iş etkisine göredir, teknik zorluğa göre değil.
 
-**Son güncelleme:** 2026-07-14 (SEO Sprint #1 sonrası)
+**Son güncelleme:** 2026-07-14 (SEO Sprint #2 sonrası)
 
 ---
 
@@ -13,14 +13,23 @@ iş etkisine göredir, teknik zorluğa göre değil.
 
 ## GA4 entegrasyonu
 
-- **Durum:** Açık
+- **Durum:** Altyapı tamamlandı (SEO Sprint #2) — aktivasyon açık
 - **Öncelik:** HIGH
 - **Beklenen SEO etkisi:** Organik trafiğin, davranışın ve dönüşümün
   ölçülmesini sağlar. Ölçüm olmadan hiçbir SEO çalışmasının gerçek etkisi
   doğrulanamaz.
-- **Not:** Yeni bir üçüncü taraf entegrasyonu ve muhtemelen env/consent
-  yönetimi gerektirdiği için HIGH RISK — kullanıcı onayı olmadan
-  uygulanmayacak. KVKK/çerez onayı ile birlikte planlanmalı.
+- **Not:** Kod tarafı bitti: `lib/analytics/` + `components/analytics/`
+  modüler katmanı, `NEXT_PUBLIC_GA_MEASUREMENT_ID` env var'ı, 9 event
+  (`page_view`, `service_view`, `blog_view`, `contact_page_view`,
+  `contact_form_submit`, `phone_click`, `email_click`, `whatsapp_click`,
+  `cta_click`) merkezi dispatcher üzerinden bağlı, env yokken sessizce
+  devre dışı. **Kalan HIGH RISK adımlar (kullanıcı onayı/aksiyonu
+  gerekli):** (1) gerçek bir GA4 property + Measurement ID oluşturulması,
+  (2) bu ID'nin Cloudflare Pages Production/Preview Build Variables'a
+  `NEXT_PUBLIC_GA_MEASUREMENT_ID` olarak eklenmesi, (3) KVKK kapsamında
+  GA4'ün çerez/veri toplama davranışı için bir çerez onay (consent)
+  banner'ı gerekip gerekmediğinin değerlendirilmesi — bu sprintin
+  kapsamında değildi, ayrı bir HIGH RISK madde olarak aşağıya eklendi.
 
 ## Search Console entegrasyonu
 
@@ -46,6 +55,21 @@ iş etkisine göredir, teknik zorluğa göre değil.
   seviyesinde tek taraflı kaldırılmadı çünkü LocalBusiness şemasından adres
   bilgisini tamamen çıkarmak da ayrı bir ticari/SEO karar, kullanıcıya
   danışılmadan verilmedi.
+
+## KVKK çerez onayı (GA4 aktivasyonu için ön koşul olabilir)
+
+- **Durum:** Açık (yeni bulgu — SEO Sprint #2)
+- **Öncelik:** HIGH
+- **Beklenen SEO etkisi:** Doğrudan SEO etkisi yok, ama GA4'ün gerçek bir
+  Measurement ID ile aktive edilmesinin hukuki ön koşulu olabilir —
+  yanlış sırayla yapılırsa (banner olmadan GA4 aktive etmek) KVKK uyum
+  riski doğurur.
+- **Not:** Bu sprint yalnızca analytics *altyapısını* kurdu, hiçbir gerçek
+  kullanıcı verisi toplamıyor (Measurement ID tanımlı değil). GA4
+  aktivasyonundan (yukarıdaki madde) önce, sitede çerez onay banner'ı
+  gerekip gerekmediği ve GA4'ün IP anonimleştirme/consent mode
+  ayarlarının nasıl yapılandırılacağı kullanıcıyla netleştirilmeli — kod
+  seviyesinde tek taraflı karar verilmedi.
 
 ---
 

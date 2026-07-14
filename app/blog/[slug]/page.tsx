@@ -4,6 +4,7 @@ import Link from "next/link";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import Reveal from "@/components/Reveal";
 import BlogCard from "@/components/BlogCard";
+import PageViewTracker from "@/components/analytics/PageViewTracker";
 import {
   formatPostDate,
   getAllSlugs,
@@ -92,6 +93,7 @@ export default async function BlogPostPage({ params }: PageProps) {
 
   return (
     <article className="py-24">
+      <PageViewTracker type="blog" slug={post.slug} title={post.title} />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}

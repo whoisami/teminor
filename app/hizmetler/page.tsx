@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import Reveal from "@/components/Reveal";
+import TrackedCta from "@/components/analytics/TrackedCta";
+import TrackedAnchor from "@/components/analytics/TrackedAnchor";
+import PageViewTracker from "@/components/analytics/PageViewTracker";
 import { DEFAULT_WHATSAPP_MESSAGE, SITE_URL, whatsappLink } from "@/lib/site";
 
 const description =
@@ -58,6 +60,7 @@ const tiers = [
 export default function HizmetlerPage() {
   return (
     <>
+      <PageViewTracker type="service" serviceName="Hizmetler" />
       <section className="bg-navy py-24 text-white">
         <div className="container-content">
           <Reveal>
@@ -94,9 +97,14 @@ export default function HizmetlerPage() {
                     </li>
                   ))}
                 </ul>
-                <Link href="/iletisim" className="btn-primary mt-8 self-start">
+                <TrackedCta
+                  href="/iletisim"
+                  label={`hizmet_teklif_${tier.name.toLowerCase().replace(" ", "_")}`}
+                  location="hizmetler_tier_card"
+                  className="btn-primary mt-8 self-start"
+                >
                   Fiyat Teklifi İçin Bize Ulaşın
-                </Link>
+                </TrackedCta>
               </div>
             </Reveal>
           ))}
@@ -110,17 +118,24 @@ export default function HizmetlerPage() {
               Hangi paketin size uygun olduğunu birlikte belirleyelim.
             </h2>
             <div className="mt-8 flex flex-col gap-4 sm:flex-row">
-              <Link href="/iletisim" className="btn-primary">
+              <TrackedCta
+                href="/iletisim"
+                label="hizmetler_alt_iletisim"
+                location="hizmetler_bottom"
+                className="btn-primary"
+              >
                 İletişime Geç
-              </Link>
-              <a
+              </TrackedCta>
+              <TrackedAnchor
+                kind="whatsapp"
+                location="hizmetler_bottom"
                 href={whatsappLink(DEFAULT_WHATSAPP_MESSAGE)}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="btn-whatsapp"
               >
                 WhatsApp&apos;tan Yaz
-              </a>
+              </TrackedAnchor>
             </div>
           </Reveal>
         </div>

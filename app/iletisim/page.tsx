@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import Reveal from "@/components/Reveal";
 import ContactForm from "@/components/ContactForm";
+import TrackedAnchor from "@/components/analytics/TrackedAnchor";
+import PageViewTracker from "@/components/analytics/PageViewTracker";
 import {
   CONTACT_EMAIL,
   CONTACT_PHONE_DISPLAY,
@@ -40,6 +42,7 @@ export default function IletisimPage() {
 
   return (
     <section className="py-24">
+      <PageViewTracker type="contact" />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
@@ -56,27 +59,39 @@ export default function IletisimPage() {
             yazabilirsiniz.
           </p>
 
-          <a
+          <TrackedAnchor
+            kind="whatsapp"
+            location="iletisim_page"
             href={whatsappLink(DEFAULT_WHATSAPP_MESSAGE)}
             target="_blank"
             rel="noopener noreferrer"
             className="btn-whatsapp mt-6 inline-flex"
           >
             WhatsApp&apos;tan Yaz
-          </a>
+          </TrackedAnchor>
 
           <div className="mt-12 space-y-2 text-sm text-muted">
             <p>
               E-posta:{" "}
-              <a href={`mailto:${CONTACT_EMAIL}`} className="text-navy hover:text-gold">
+              <TrackedAnchor
+                kind="email"
+                location="iletisim_page"
+                href={`mailto:${CONTACT_EMAIL}`}
+                className="text-navy hover:text-gold"
+              >
                 {CONTACT_EMAIL}
-              </a>
+              </TrackedAnchor>
             </p>
             <p>
               Telefon:{" "}
-              <a href="tel:+905015350086" className="text-navy hover:text-gold">
+              <TrackedAnchor
+                kind="phone"
+                location="iletisim_page"
+                href="tel:+905015350086"
+                className="text-navy hover:text-gold"
+              >
                 {CONTACT_PHONE_DISPLAY}
-              </a>
+              </TrackedAnchor>
             </p>
           </div>
         </Reveal>

@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import Reveal from "@/components/Reveal";
 import BenefitCard from "@/components/BenefitCard";
 import { TimeIcon, CostIcon, RiskIcon } from "@/components/BenefitIcons";
 import HeroTexture from "@/components/HeroTexture";
 import BlogCard from "@/components/BlogCard";
+import TrackedCta from "@/components/analytics/TrackedCta";
+import TrackedAnchor from "@/components/analytics/TrackedAnchor";
 import { getAllPosts } from "@/lib/blog";
 import {
   CONTACT_EMAIL,
@@ -110,17 +111,24 @@ export default function HomePage() {
           </Reveal>
           <Reveal delay={0.3}>
             <div className="mt-10 flex flex-col gap-4 sm:flex-row">
-              <Link href="/iletisim" className="btn-primary bg-gold hover:bg-[#8a6b2d]">
+              <TrackedCta
+                href="/iletisim"
+                label="hero_gorusme_talep_et"
+                location="home_hero"
+                className="btn-primary bg-gold hover:bg-[#8a6b2d]"
+              >
                 Ücretsiz Ön Görüşme Talep Et
-              </Link>
-              <a
+              </TrackedCta>
+              <TrackedAnchor
+                kind="whatsapp"
+                location="home_hero"
                 href={whatsappLink(DEFAULT_WHATSAPP_MESSAGE)}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="btn-whatsapp"
               >
                 WhatsApp&apos;tan Yaz
-              </a>
+              </TrackedAnchor>
             </div>
           </Reveal>
         </div>
@@ -165,12 +173,14 @@ export default function HomePage() {
             <h2 className="mt-3 font-serif text-3xl md:text-4xl">
               Satın almayı devretmek, kontrolü kaybetmek değildir.
             </h2>
-            <Link
+            <TrackedCta
               href="/neden-teminor"
+              label="neden_teminor_detay"
+              location="home_neden_teminor"
               className="mt-8 inline-block text-sm font-semibold text-gold underline decoration-2 underline-offset-4 hover:text-white"
             >
               Detaylı bilgi alın
-            </Link>
+            </TrackedCta>
           </Reveal>
           <Reveal delay={0.15}>
             <ul className="space-y-5">

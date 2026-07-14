@@ -2,6 +2,8 @@
 
 import { useState, type FormEvent } from "react";
 import { DEFAULT_WHATSAPP_MESSAGE, whatsappLink } from "@/lib/site";
+import TrackedAnchor from "@/components/analytics/TrackedAnchor";
+import { trackContactFormSubmit } from "@/lib/analytics/events";
 
 const SECTORS = [
   "Catering",
@@ -68,6 +70,7 @@ export default function ContactForm() {
         throw new Error(body?.message || "Bir hata oluştu.");
       }
 
+      trackContactFormSubmit(payload.sector);
       setStatus("success");
       form.reset();
     } catch (err) {
@@ -86,14 +89,16 @@ export default function ContactForm() {
         <p className="font-serif text-xl text-navy">
           Talebiniz alındı, 24 saat içinde dönüş yapılacaktır.
         </p>
-        <a
+        <TrackedAnchor
+          kind="whatsapp"
+          location="contact_form_success"
           href={whatsappLink(DEFAULT_WHATSAPP_MESSAGE)}
           target="_blank"
           rel="noopener noreferrer"
           className="btn-whatsapp mt-6 inline-flex"
         >
           WhatsApp&apos;tan Yaz
-        </a>
+        </TrackedAnchor>
       </div>
     );
   }

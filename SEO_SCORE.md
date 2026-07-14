@@ -5,8 +5,8 @@ puan kartıdır. Puanlar 0-10 arasındadır ve doğrudan repodaki koddan
 doğrulanarak verilir — tahmine dayalı puan verilmez.
 
 **Son güncelleme:** 2026-07-14
-**Değerlendiren:** seo-agent (SEO Sprint #1 — LOW RISK düzeltmeler)
-**Kapsam:** `main` branch, bu sprint'te işlenen commit öncesi taban `bef5ae8`
+**Değerlendiren:** seo-agent (SEO Sprint #2 — Analytics Foundation)
+**Kapsam:** `main` branch, bu sprint'te işlenen commit öncesi taban `b4c81ee`
 
 ---
 
@@ -74,23 +74,43 @@ okuyucu değil ama tarayıcı/İşletim sistemi düzeyinde tutarlılığı artı
 Açık kalan: skip-to-content linki yok, renk kontrastı otomatik araçla
 doğrulanmadı.
 
-## Analytics — 0/10 (değişmedi, HIGH RISK)
+## Analytics — 6/10 (+6)
 
-GA4 ve Search Console entegrasyonu hâlâ yok. Bu sprintin kapsamında değildi
-(HIGH RISK, kullanıcı onayı gerekli) — backlog'da açık.
+Ölçüm altyapısı bu sprintte sıfırdan kuruldu ve doğrulandı: `lib/
+analytics/` (config, types, GA4 provider, merkezi `trackEvent`/
+`trackPageview` dispatcher) + `components/analytics/` (script enjeksiyonu,
+route-change page_view takibi, sayfa-view ve tıklama tracker'ları).
+Measurement ID hardcoded değil, yalnızca `NEXT_PUBLIC_GA_MEASUREMENT_ID`
+env var'ından okunuyor; env var'sız `npm run build` hatasız geçti ve hiçbir
+script enjekte edilmediği doğrulandı; env var'lı build'de ID'nin ve
+`gtag('config', ...)` çağrısının client bundle'ına doğru şekilde
+gömüldüğü doğrulandı. Analytics Health kontrolü: **GA4 aktif mi** →
+Hayır, henüz production'da gerçek bir Measurement ID tanımlı değil (kod
+hazır, aktivasyon HIGH RISK — kullanıcı onayı bekliyor). **Measurement ID
+okunuyor mu** → Evet, doğrulandı. **Event sistemi çalışıyor mu** → Evet,
+merkezi dispatcher + `safeCall` ile korumalı. **Eksik event var mı** →
+Hayır, 9 event'in (`page_view`, `service_view`, `blog_view`,
+`contact_page_view`, `contact_form_submit`, `phone_click`, `email_click`,
+`whatsapp_click`, `cta_click`) hepsi gerçek çağrı noktalarına bağlandı
+(grep ile doğrulandı). Search Console hâlâ bağlı değil. Puan 6/10:
+altyapı kurumsal seviyede ve eksiksiz, ama gerçek veri akışı henüz
+başlamadı — Measurement ID + Search Console bağlandığında bu kategori
+yeniden değerlendirilecek.
 
 ## Content — 7/10 (değişmedi)
 
-İçerik hacmi ve kalitesi bu sprintte değişmedi; yalnızca mevcut cümlelere
-link eklendi, yeni iddia/istatistik yazılmadı.
+Bu sprintte içerik/hizmet metinlerine dokunulmadı (talimat gereği).
 
 ---
 
-## Overall — 6.5/10 (+0.75)
+## Overall — 7.25/10 (+0.75)
 
-Bu sprintte 3 kategoride somut ilerleme kaydedildi: Internal Linking
-(4→7), Structured Data (6→7), Metadata (8→9), Accessibility (7→8). En
-büyük açık hâlâ Analytics (0/10) — HIGH RISK olduğu için kullanıcı onayı
-bekliyor. İkinci öncelik: Search Console verisi bağlandığında Technical
-SEO ve Content kategorilerinin gerçek arama verisiyle yeniden
-değerlendirilmesi.
+Bu sprintte en büyük ilerleme Analytics kategorisinde oldu (0→6):
+kurumsal seviyede, genişletilebilir, hatasız-bozulan (fail-safe) bir
+ölçüm altyapısı kuruldu ve doğrulandı. Diğer kategoriler Sprint #1'deki
+seviyelerinde sabit kaldı (bu sprintin kapsamı yalnızca analyticsti).
+Açık kalan en büyük iki madde: (1) gerçek bir GA4 Measurement ID'nin
+üretilip Cloudflare Pages'e tanımlanması — HIGH RISK, kullanıcı onayı
+gerekli; (2) Search Console entegrasyonu — HIGH RISK, kullanıcı onayı
+gerekli. Bu ikisi tamamlanmadan Analytics kategorisi 6/10'un üzerine
+çıkamaz çünkü altyapı ne kadar sağlam olursa olsun gerçek veri akışı yok.

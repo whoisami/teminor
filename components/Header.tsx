@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
+import TrackedCta from "@/components/analytics/TrackedCta";
 import { NAV_LINKS } from "@/lib/site";
 
 export default function Header() {
@@ -42,9 +43,14 @@ export default function Header() {
         </nav>
 
         <div className="hidden md:block">
-          <Link href="/iletisim" className="btn-primary">
+          <TrackedCta
+            href="/iletisim"
+            label="iletisime_gec"
+            location="header"
+            className="btn-primary"
+          >
             İletişime Geç
-          </Link>
+          </TrackedCta>
         </div>
 
         <button
@@ -87,13 +93,15 @@ export default function Header() {
                 {link.label}
               </Link>
             ))}
-            <Link
+            <TrackedCta
               href="/iletisim"
+              label="iletisime_gec_mobile"
+              location="header"
               onClick={() => setOpen(false)}
               className="btn-primary mt-2 w-full"
             >
               İletişime Geç
-            </Link>
+            </TrackedCta>
           </nav>
         </div>
       )}

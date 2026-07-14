@@ -24,8 +24,21 @@ web sitesinin kaynak kodunu içerir.
 - **Deploy:** GitHub reposu (`whoisami/teminor`, `main` branch) → Cloudflare
   Pages'e bağlı, her `main` push'unda otomatik build/deploy. GitHub Actions
   workflow yok — CI/CD tamamen Cloudflare Pages tarafında.
-- **Analytics / Search Console:** Şu an repoda hiçbir analytics entegrasyonu
-  (GA4, GTM) veya Search Console doğrulama etiketi/dosyası yok.
+- **Analytics:** `lib/analytics/` ve `components/analytics/` altında modüler
+  bir katman var. GA4 tek aktif provider'dır (`lib/analytics/providers/
+  ga4.ts`), `NEXT_PUBLIC_GA_MEASUREMENT_ID` environment variable'ından
+  okunur (`lib/analytics/config.ts`) — kodda hiçbir yerde hardcoded ID
+  yoktur. Değişken tanımlı değilse analytics tamamen devre dışı kalır,
+  hiçbir script enjekte edilmez, uygulama hata vermez (bkz. `.env.example`).
+  Merkezi event kataloğu `lib/analytics/events.ts`'te (`page_view`,
+  `service_view`, `blog_view`, `contact_page_view`, `contact_form_submit`,
+  `phone_click`, `email_click`, `whatsapp_click`, `cta_click`), tek giriş
+  noktası `lib/analytics/index.ts`'teki `trackEvent`/`trackPageview`
+  dispatcher'ıdır — her çağrı `try/catch` ile sarılıdır, analytics hatası
+  siteyi asla kıramaz. Yeni provider (Google Ads, Meta Pixel, LinkedIn
+  Insight, Microsoft Clarity) eklemek `AnalyticsProvider` arayüzünü
+  uygulayan bir dosya + `providers` dizisine kayıt demektir.
+- **Search Console:** Henüz bağlı değil, doğrulama etiketi/dosyası yok.
 
 ## Asla
 
@@ -67,6 +80,9 @@ uygulanmaz:
 - `sitemap.ts` mantığının değişmesi (hangi route'ların dahil edildiği,
   frekans/öncelik mantığı vb.)
 - Route/sayfa silme
+- Yeni bir analytics/pazarlama provider'ı ekleme (Google Ads, Meta Pixel,
+  LinkedIn Insight, Microsoft Clarity, vb.) veya GA4 kurulumunun temel
+  davranışını (consent, veri paylaşımı) değiştirme
 
 ## Git Kuralları
 
@@ -104,6 +120,9 @@ güncellenir:
 
 seo-agent her çalıştığında şu döngüyü uygular: Repository Scan → SEO
 Audit → Risk Analizi → LOW RISK düzeltmeleri uygula → `npm run lint` →
-`npm run build` → `SEO_SCORE.md` güncelle → `seo-backlog.md` güncelle →
-Git Commit hazırla → Push için kullanıcı onayı bekle. Detaylar için
-`.claude/agents/seo-agent.md` dosyasına bakılmalıdır.
+`npm run build` → Analytics Health kontrolü → `SEO_SCORE.md` güncelle →
+`seo-backlog.md` güncelle → Git Commit hazırla → Push için kullanıcı
+onayı bekle. Analytics Health kontrolü, GA4'ün aktif olup olmadığını,
+Measurement ID'nin okunduğunu, event sisteminin çalıştığını ve eksik
+event olup olmadığını doğrular — sonucu her sprint raporunda görünür.
+Detaylar için `.claude/agents/seo-agent.md` dosyasına bakılmalıdır.
