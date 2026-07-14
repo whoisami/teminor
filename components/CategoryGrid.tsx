@@ -1,5 +1,6 @@
 import { Boxes, FileText, HardHat, Package, SprayCan } from "lucide-react";
 import Reveal from "@/components/Reveal";
+import TrackedCta from "@/components/analytics/TrackedCta";
 
 const categories = [
   {
@@ -70,6 +71,23 @@ export default function CategoryGrid() {
             );
           })}
         </div>
+
+        <Reveal delay={categories.length * 0.06 + 0.1}>
+          <p className="mx-auto mt-10 max-w-2xl text-center text-sm leading-relaxed text-muted">
+            Yukarıdaki kategoriler şu an en yoğun çalıştığımız alanlar. Farklı
+            bir sektörden veya farklı bir ürün grubundan geliyorsanız da,
+            satın alma ihtiyacınızı değerlendirmekten memnuniyet duyarız —{" "}
+            <TrackedCta
+              href="/iletisim"
+              label="kategori_disi_iletisim"
+              location="home_category_grid"
+              className="font-semibold text-navy underline decoration-gold decoration-2 underline-offset-4 hover:text-gold"
+            >
+              bize ulaşın, birlikte konuşalım
+            </TrackedCta>
+            .
+          </p>
+        </Reveal>
       </div>
     </section>
   );
