@@ -11,6 +11,11 @@ export function whatsappLink(message: string): string {
 export const DEFAULT_WHATSAPP_MESSAGE =
   "Merhaba, Teminor hizmetleri hakkında bilgi almak istiyorum.";
 
+// Minimum number of supplier quotes gathered per request. Single source of
+// truth — referenced from the home page stats strip and the /neden-teminor
+// comparison table so the figure only ever needs to change in one place.
+export const MIN_SUPPLIER_COMPARISON = 3;
+
 export const NAV_LINKS = [
   { href: "/", label: "Ana Sayfa" },
   { href: "/neden-teminor", label: "Neden Teminor" },

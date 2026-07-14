@@ -11,6 +11,7 @@ import {
   CONTACT_EMAIL,
   CONTACT_PHONE_INTL,
   DEFAULT_WHATSAPP_MESSAGE,
+  MIN_SUPPLIER_COMPARISON,
   SITE_URL,
   whatsappLink,
 } from "@/lib/site";
@@ -39,16 +40,16 @@ const nedenTeminorPoints = [
 
 const stats = [
   {
-    title: "Alıcı Onaylı Süreç",
-    label: "Her sipariş, onayınız olmadan tedarikçiye iletilmez.",
+    title: "Türkiye Genelinde Tedarikçi Araştırması",
+    label: "Bölgesel sınır olmadan, ihtiyacınıza uygun tedarikçi araştırılır.",
   },
   {
-    title: "Çoklu Tedarikçi Karşılaştırması",
-    label: "Her talep için en az 2-3 alternatif tedarikçiden teklif toplanır.",
+    title: "Standart Taleplerde 1-2 İş Günü Yanıt",
+    label: "Talebiniz standart süreçte 1-2 iş günü içinde değerlendirilir.",
   },
   {
-    title: "Şeffaf Fiyatlandırma",
-    label: "Gizli komisyon yok, ne için ödediğinizi bilirsiniz.",
+    title: `Her Talepte ${MIN_SUPPLIER_COMPARISON}+ Tedarikçi Karşılaştırması`,
+    label: "Tek kaynağa bağımlı kalmadan, karşılaştırmalı teklif toplanır.",
   },
 ];
 
