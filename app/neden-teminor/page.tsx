@@ -61,7 +61,7 @@ const description =
   "Teminor'un dış kaynaklı satın alma modelinin temel ilkeleri: ortaklık yaklaşımı, onay mekanizması, esnek operasyon modeli ve şeffaf ücretlendirme.";
 
 export const metadata: Metadata = {
-  title: "Neden Teminor",
+  title: { absolute: "Neden Teminor | Dış Kaynaklı Satın Alma Ortağınız" },
   description,
   alternates: { canonical: "/neden-teminor" },
   openGraph: {

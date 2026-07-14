@@ -224,6 +224,14 @@ export default function HomePage() {
               <h2 className="mt-3 font-serif text-3xl text-navy md:text-4xl">
                 Satın Alma Üzerine Yazılar
               </h2>
+              <TrackedCta
+                href="/blog"
+                label="tum_yazilari_goruntule"
+                location="home_blog_preview"
+                className="mt-4 inline-block text-sm font-semibold text-gold underline decoration-2 underline-offset-4 hover:text-navy"
+              >
+                Tüm Yazıları Görüntüle
+              </TrackedCta>
             </Reveal>
             <div className="mt-12 grid gap-6 md:grid-cols-3">
               {latestPosts.map((post, i) => (

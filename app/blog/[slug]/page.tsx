@@ -84,14 +84,35 @@ export default async function BlogPostPage({ params }: PageProps) {
 
   const relatedPosts = getRelatedPosts(slug);
 
+  const postUrl = `${SITE_URL}/blog/${post.slug}`;
+
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
     headline: post.title,
     datePublished: post.date,
     author: { "@type": "Organization", name: "Teminor" },
+    publisher: {
+      "@type": "Organization",
+      name: "Teminor",
+      logo: {
+        "@type": "ImageObject",
+        url: `${SITE_URL}/logo/teminor_lockup.png`,
+      },
+    },
+    mainEntityOfPage: { "@type": "WebPage", "@id": postUrl },
     ...(post.ogImage ? { image: post.ogImage } : {}),
     description: post.metaDescription,
+  };
+
+  const breadcrumbJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Ana Sayfa", item: SITE_URL },
+      { "@type": "ListItem", position: 2, name: "Blog", item: `${SITE_URL}/blog` },
+      { "@type": "ListItem", position: 3, name: post.title, item: postUrl },
+    ],
   };
 
   return (
@@ -101,14 +122,21 @@ export default async function BlogPostPage({ params }: PageProps) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+      />
       <div className="container-content max-w-3xl">
         <Reveal>
-          <Link
-            href="/blog"
-            className="text-sm font-medium text-gold hover:text-navy"
-          >
-            &larr; Tüm Yazılar
-          </Link>
+          <nav aria-label="Breadcrumb" className="text-sm text-muted">
+            <Link href="/" className="font-medium text-gold hover:text-navy">
+              Ana Sayfa
+            </Link>
+            <span className="mx-2">/</span>
+            <Link href="/blog" className="font-medium text-gold hover:text-navy">
+              Blog
+            </Link>
+          </nav>
           <p className="mt-6 text-xs font-medium uppercase tracking-wide text-gold">
             {formatPostDate(post.date)}
           </p>

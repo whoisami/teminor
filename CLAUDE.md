@@ -38,7 +38,12 @@ web sitesinin kaynak kodunu içerir.
   siteyi asla kıramaz. Yeni provider (Google Ads, Meta Pixel, LinkedIn
   Insight, Microsoft Clarity) eklemek `AnalyticsProvider` arayüzünü
   uygulayan bir dosya + `providers` dizisine kayıt demektir.
-- **Search Console:** Henüz bağlı değil, doğrulama etiketi/dosyası yok.
+- **Search Console:** DNS TXT kaydıyla zaten doğrulanmış
+  (`google-site-verification=...`) — kodda ayrıca bir doğrulama
+  etiketi/dosyası **eklenmemeli**, zaten gereksiz ve yanlış izlenim
+  yaratır. API erişimi yok; performans verisi (query/page/clicks/
+  impressions/CTR/position) yalnızca kullanıcı tarafından sağlandığında
+  analiz edilir, asla uydurulmaz.
 
 ## Asla
 
@@ -117,6 +122,10 @@ güncellenir:
 - **`seo-backlog.md`** — HIGH / MEDIUM / LOW önceliğine göre sınıflanmış,
   her madde için Durum / Öncelik / Beklenen SEO etkisi / Not içeren açık
   bulgu listesi.
+- **`SEO_SEARCH_MAP.md`** — her indekslenebilir route için arama niyeti,
+  mevcut title/description/H1, internal linking durumu ve
+  cannibalization riski envanteri. Search Console verisi sağlandığında
+  bu envanterle çapraz doğrulanır.
 
 seo-agent her çalıştığında şu döngüyü uygular: Repository Scan → SEO
 Audit → Risk Analizi → LOW RISK düzeltmeleri uygula → `npm run lint` →

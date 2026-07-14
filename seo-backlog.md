@@ -5,7 +5,7 @@ Her çalışmada güncellenir: tamamlanan maddeler "Durum: Tamamlandı" olarak
 işaretlenir, yeni bulgular ilgili öncelik başlığına eklenir. Öncelik sırası
 iş etkisine göredir, teknik zorluğa göre değil.
 
-**Son güncelleme:** 2026-07-14 (SEO Sprint #2 sonrası)
+**Son güncelleme:** 2026-07-14 (SEO Sprint #3 sonrası)
 
 ---
 
@@ -33,14 +33,20 @@ iş etkisine göredir, teknik zorluğa göre değil.
 
 ## Search Console entegrasyonu
 
-- **Durum:** Açık
+- **Durum:** Doğrulama tamamlanmış, veri erişimi açık (SEO Sprint #3'te tespit edildi)
 - **Öncelik:** HIGH
 - **Beklenen SEO etkisi:** İndeksleme durumu, arama sorguları, tıklama
   oranları ve teknik hata (coverage) verisine erişim sağlar; sitemap
   gönderimi buradan yapılır.
-- **Not:** Doğrulama (DNS TXT veya HTML dosya/meta etiketi) kullanıcının
-  Search Console hesabı üzerinden yapılmalı — HIGH RISK, kullanıcı onayı
-  gerekli.
+- **Not:** DNS TXT taraması, Search Console'un `google-site-
+  verification=ONUI1Kr8PutxNOFUrC8whJmBOCCpsbD8xDhK8pzrRk0` kaydıyla
+  **zaten doğrulanmış** olduğunu gösterdi — kod tarafında ek bir
+  doğrulama etiketi/dosyası eklenmedi (gereksiz ve talimata aykırı
+  olurdu). Sitemap (`https://teminor.com/sitemap.xml`, 13 URL) ve
+  robots.txt erişilebilir ve doğru. **Kalan adım tamamen kullanıcı
+  tarafında:** Search Console hesabından mülkü açıp sitemap'i
+  göndermek ve performans verisini seo-agent'a sağlamak — kod
+  değişikliği gerektirmiyor.
 
 ## LocalBusiness adresinin doğrulanması
 
@@ -85,9 +91,11 @@ iş etkisine göredir, teknik zorluğa göre değil.
 - **Not:** `lib/blog.ts`'e küratörlü `getRelatedPosts` eklendi, her blog
   yazısının sonuna "İlgili Yazılar" bloğu (2 ilgili yazı) eklendi. Ayrıca
   4 yazının gövdesinde mevcut cümlelere `/neden-teminor` ve `/hizmetler`
-  linkleri eklendi. Orphan sayfa yok. Devam eden fırsat: `/hizmetler` ve
-  `/neden-teminor` sayfalarından blog'a geri link yok — sonraki sprint'te
-  değerlendirilebilir.
+  linkleri eklendi. Orphan sayfa yok. **Sprint #3 güncellemesi:** ana
+  sayfanın blog önizleme bölümünden `/blog` indeksine doğrudan link
+  eklendi ("Tüm Yazıları Görüntüle"); blog yazılarına breadcrumb
+  navigasyonu eklendi. Devam eden fırsat: `/hizmetler` ve
+  `/neden-teminor` sayfalarından blog'a geri link hâlâ yok.
 
 ## Image alt audit
 
@@ -112,6 +120,25 @@ iş etkisine göredir, teknik zorluğa göre değil.
   değişiklik önerileri (ör. font ağırlığı azaltma) ayrıca risk
   sınıflandırılacak. Bu sprintte ölçüm altyapısı (gerçek tarayıcı/Lighthouse
   erişimi) yoktu, yalnızca statik kod incelemesi yapıldı.
+
+## Blog cannibalization riski: "dış kaynak satın alma" ikilisi
+
+- **Durum:** Açık (yeni bulgu — SEO Sprint #3, `SEO_SEARCH_MAP.md` denetiminde)
+- **Öncelik:** MEDIUM
+- **Beklenen SEO etkisi:** İki yazı aynı sorgu için yarışırsa Google
+  ikisi arasında sinyali böler, hiçbiri güçlü sıralanamaz
+  (cannibalization). Netleştirilirse her iki yazının da kendi hedef
+  sorgusunda daha güçlü sıralanma potansiyeli var.
+- **Not:** `dis-kaynak-satin-alma-departmani-nedir` ve
+  `kobiler-icin-dis-kaynak-satin-alma` başlık ve `keywords` alanlarında
+  ciddi örtüşüyor ("dış kaynak satın alma departmanı" / "dış kaynak
+  satın alma"). Ayrıca `dis-kaynak-satin-alma-departmani-nedir` ile
+  `satin-alma-surecinin-ticari-degeri` arasında da "satın alma maliyet
+  tasarrufu" keyword'ü ortak. İki yazı hâlâ birbirine "İlgili Yazılar"
+  ile bağlı (kısmi mitigasyon). Çözüm — başlık/keyword yeniden odaklama
+  veya iki yazıyı birleştirme — "büyük içerik değişikliği" sayılır, bu
+  sprintin kapsamı dışında bırakıldı. Search Console verisi bağlandığında
+  (aynı query için iki page görünüyor mu) bu bulgu doğrulanacak.
 
 ## Kullanılmayan `@mdx-js/react` bağımlılığı
 
@@ -143,13 +170,39 @@ iş etkisine göredir, teknik zorluğa göre değil.
 
 ## Metadata ince ayarları
 
-- **Durum:** Kısmen tamamlandı (SEO Sprint #1)
+- **Durum:** Kısmen tamamlandı (SEO Sprint #1, #3)
 - **Öncelik:** LOW
 - **Beklenen SEO etkisi:** Sayfa bazlı OG image eksikliği ve blog
   frontmatter'daki `ogImage` alanının kullanılmıyor olması, sosyal
   paylaşım görünürlüğünü küçük ölçüde etkiler.
-- **Not:** Bu sprintte `/hizmetler` sayfasındaki güncel içerikle
-  uyuşmayan meta description/hero metni düzeltildi ve root layout'a eksik
-  `icons` (favicon/apple-touch-icon) metadata alanı eklendi. Açık kalan:
-  sayfa bazlı OG image hâlâ yok, blog `ogImage` frontmatter alanı hâlâ
-  boş/kullanılmıyor.
+- **Not:** Sprint #1'de `/hizmetler` meta description/hero metni
+  düzeltildi, `icons` metadata eklendi. **Sprint #3'te:** `/neden-
+  teminor`'un `<title>`'ındaki "Neden Teminor | Teminor" tekrarı
+  düzeltildi (`title: { absolute: ... }`). Açık kalan: sayfa bazlı OG
+  image hâlâ yok, blog `ogImage` frontmatter alanı hâlâ boş/kullanılmıyor.
+
+## Eksik BlogPosting schema alanları ve breadcrumb
+
+- **Durum:** Tamamlandı (SEO Sprint #3)
+- **Öncelik:** LOW
+- **Beklenen SEO etkisi:** `mainEntityOfPage`/`publisher` Google'ın
+  Article/BlogPosting rich result uygunluğu için önerdiği alanlardır;
+  `BreadcrumbList` arama sonuçlarında breadcrumb rich snippet'i
+  mümkün kılar.
+- **Not:** `app/blog/[slug]/page.tsx`'teki `BlogPosting` JSON-LD'ye
+  `mainEntityOfPage` (post URL'i) ve `publisher` (ana sayfadaki
+  `Organization` ile aynı `name`/`logo`) eklendi — ikisi de zaten
+  doğrulanmış veriden türetildi, yeni bir iddia yok. Ayrıca görünür
+  breadcrumb navigasyonu ("Ana Sayfa / Blog") + eşleşen `BreadcrumbList`
+  JSON-LD eklendi.
+
+## Ana sayfa blog önizlemesinden /blog indeksine link eksikliği
+
+- **Durum:** Tamamlandı (SEO Sprint #3)
+- **Öncelik:** LOW
+- **Beklenen SEO etkisi:** `/blog` arşiv sayfasına giden ek bir internal
+  link, crawl derinliğini ve kullanıcı keşfini artırır.
+- **Not:** Ana sayfadaki "Satın Alma Üzerine Yazılar" bölümü yalnızca 3
+  tekil yazı kartı içeriyordu, `/blog` indeksinin kendisine link yoktu.
+  "Tüm Yazıları Görüntüle" linki eklendi (`cta_click` event'iyle
+  izleniyor, mevcut event kataloğu genişletilmeden).
