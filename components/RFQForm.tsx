@@ -320,12 +320,20 @@ export default function RFQForm() {
         </button>
       </form>
 
-      <p className="mt-6 text-xs leading-relaxed text-muted">
-        Bu form fiyat araştırması ve tedarik çalışmasının başlatılması
-        içindir; sipariş veya satın alma taahhüdü oluşturmaz. Teminor,
-        müşteri adına yalnızca yürürlükteki hizmet sözleşmesi ve yetki
-        matrisi kapsamında işlem yapar.
-      </p>
+      <div className="mt-6 flex gap-3">
+        <span
+          aria-hidden="true"
+          className="mt-0.5 flex h-5 w-5 shrink-0 rotate-12 items-center justify-center rounded-full border border-stamp-gold text-[10px] font-bold text-stamp-gold"
+        >
+          ✓
+        </span>
+        <p className="text-xs leading-relaxed text-muted">
+          Bu form fiyat araştırması ve tedarik çalışmasının başlatılması
+          içindir; sipariş veya satın alma taahhüdü oluşturmaz. Teminor,
+          müşteri adına yalnızca yürürlükteki hizmet sözleşmesi ve yetki
+          matrisi kapsamında işlem yapar.
+        </p>
+      </div>
     </div>
   );
 }

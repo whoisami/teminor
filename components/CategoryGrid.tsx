@@ -50,13 +50,13 @@ export default function CategoryGrid() {
             const Icon = category.icon;
             return (
               <Reveal key={category.title} delay={i * 0.06}>
-                <div className="flex h-full flex-col rounded-sm border border-navy/10 bg-light-bg p-6">
+                <div className="card-interactive group flex h-full flex-col rounded-sm border border-navy/10 bg-light-bg p-6">
                   <Icon
-                    className="h-8 w-8 text-gold"
+                    className="h-8 w-8 text-gold transition-transform duration-300 group-hover:scale-110"
                     strokeWidth={1.75}
                     aria-hidden="true"
                   />
-                  <h3 className="mt-4 font-serif text-base text-navy">
+                  <h3 className="link-draw mt-4 self-start font-serif text-base text-navy">
                     {category.title}
                   </h3>
                   <p className="mt-1 text-xs text-muted">

@@ -67,12 +67,11 @@ export default function HizmetlerPage() {
           <Reveal>
             <p className="eyebrow">Hizmetler</p>
             <h1 className="mt-4 max-w-2xl font-serif text-4xl md:text-5xl">
-              İhtiyacınıza göre kurulan satın alma hizmet paketleri.
+              Ne kadar ihtiyacınız varsa, o kadar destek.
             </h1>
             <p className="mt-6 max-w-2xl text-lg text-white/75">
-              Talep hacminize uygun modeli — Başlangıç&apos;tan
-              Yoğun/Kurumsal&apos;a, proje bazlı tedarik desteğine kadar —
-              birlikte belirleriz.
+              Ayda 1-2 talebiniz de olsun, sürekli akan bir hacim de — size
+              uygun bir model var. Birlikte bulalım.
             </p>
           </Reveal>
         </div>
@@ -82,7 +81,7 @@ export default function HizmetlerPage() {
         <div className="container-content grid gap-6 md:grid-cols-2">
           {tiers.map((tier, i) => (
             <Reveal key={tier.name} delay={i * 0.08}>
-              <div className="flex h-full flex-col rounded-sm border border-navy/10 bg-white p-8">
+              <div className="card-interactive flex h-full flex-col rounded-sm border border-navy/10 bg-white p-8">
                 <p className="eyebrow">{tier.name}</p>
                 <h2 className="mt-2 font-serif text-2xl text-navy">
                   {tier.tagline}

@@ -2,27 +2,25 @@ import type { Metadata } from "next";
 import Reveal from "@/components/Reveal";
 import BenefitCard from "@/components/BenefitCard";
 import { TimeIcon, CostIcon, RiskIcon } from "@/components/BenefitIcons";
-import HeroTexture from "@/components/HeroTexture";
+import Hero from "@/components/Hero";
 import HowItWorks from "@/components/HowItWorks";
 import CategoryGrid from "@/components/CategoryGrid";
 import BlogCard from "@/components/BlogCard";
+import CountUpStat from "@/components/CountUpStat";
 import TrackedCta from "@/components/analytics/TrackedCta";
-import TrackedAnchor from "@/components/analytics/TrackedAnchor";
 import { getAllPosts } from "@/lib/blog";
 import {
   CONTACT_EMAIL,
   CONTACT_PHONE_INTL,
-  DEFAULT_WHATSAPP_MESSAGE,
   MIN_SUPPLIER_COMPARISON,
   SITE_URL,
-  whatsappLink,
 } from "@/lib/site";
 
 const description =
   "Teminor, KOBİ'ler için dış kaynaklı satın alma departmanıdır. Talep alımından raporlamaya, tedarikçi araştırmasına kadar satın alma sürecinizi yönetir.";
 
 export const metadata: Metadata = {
-  title: "Satın Alma Departmanınızı Biz Yönetelim",
+  title: "Satın Alma Departmanınız Yoksa, Biz Oluruz",
   description,
   alternates: { canonical: "/" },
   openGraph: {
@@ -50,7 +48,7 @@ const stats = [
     label: "Talebiniz standart süreçte 1-2 iş günü içinde değerlendirilir.",
   },
   {
-    title: `Her Talepte ${MIN_SUPPLIER_COMPARISON}+ Tedarikçi Karşılaştırması`,
+    title: null,
     label: "Tek kaynağa bağımlı kalmadan, karşılaştırmalı teklif toplanır.",
   },
 ];
@@ -94,48 +92,7 @@ export default function HomePage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
 
-      {/* Hero */}
-      <section className="relative overflow-hidden bg-navy text-white">
-        <HeroTexture />
-        <div className="container-content relative py-28 md:py-36">
-          <Reveal>
-            <p className="eyebrow">Dış Kaynaklı Satın Alma Departmanı</p>
-          </Reveal>
-          <Reveal delay={0.1}>
-            <h1 className="mt-6 max-w-3xl font-serif text-4xl leading-tight md:text-6xl">
-              Satın Alma Departmanınızı Biz Yönetelim.
-            </h1>
-          </Reveal>
-          <Reveal delay={0.2}>
-            <p className="mt-6 max-w-2xl text-lg leading-relaxed text-white/75">
-              Teminor, tedarikçi bulmakla kalmaz — talep alımından
-              raporlamaya kadar satın alma sürecinizi uçtan uca yönetir.
-            </p>
-          </Reveal>
-          <Reveal delay={0.3}>
-            <div className="mt-10 flex flex-col gap-4 sm:flex-row">
-              <TrackedCta
-                href="/iletisim"
-                label="hero_gorusme_talep_et"
-                location="home_hero"
-                className="btn-primary bg-gold hover:bg-[#8a6b2d]"
-              >
-                Ücretsiz Ön Görüşme Talep Et
-              </TrackedCta>
-              <TrackedAnchor
-                kind="whatsapp"
-                location="home_hero"
-                href={whatsappLink(DEFAULT_WHATSAPP_MESSAGE)}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn-whatsapp"
-              >
-                WhatsApp&apos;tan Yaz
-              </TrackedAnchor>
-            </div>
-          </Reveal>
-        </div>
-      </section>
+      <Hero />
 
       <HowItWorks />
 
@@ -145,7 +102,7 @@ export default function HomePage() {
           <Reveal>
             <p className="eyebrow">Neden Bizimle Çalışmalısınız</p>
             <h2 className="mt-3 max-w-xl font-serif text-3xl text-navy md:text-4xl">
-              Operasyonel yükü azaltan, kararı sizde bırakan bir model.
+              İşi biz yürütürüz, kararı siz verirsiniz.
             </h2>
           </Reveal>
           <div className="mt-14 grid gap-6 md:grid-cols-3">
@@ -209,8 +166,19 @@ export default function HomePage() {
           <div className="mt-10 grid gap-6 sm:grid-cols-3">
             {stats.map((stat, i) => (
               <Reveal key={stat.label} delay={i * 0.1}>
-                <div className="rounded-sm border border-navy/10 bg-white p-8 text-center">
-                  <p className="font-serif text-xl text-gold">{stat.title}</p>
+                <div className="card-interactive rounded-sm border border-navy/10 bg-white p-8 text-center">
+                  {stat.title ? (
+                    <p className="font-serif text-xl text-gold">
+                      {stat.title}
+                    </p>
+                  ) : (
+                    <CountUpStat
+                      value={MIN_SUPPLIER_COMPARISON}
+                      prefix="Her Talepte "
+                      suffix="+ Tedarikçi Karşılaştırması"
+                      className="font-serif text-xl text-gold"
+                    />
+                  )}
                   <p className="mt-2 text-sm text-muted">{stat.label}</p>
                 </div>
               </Reveal>

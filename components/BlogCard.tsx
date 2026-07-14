@@ -3,7 +3,7 @@ import { formatPostDate, type PostSummary } from "@/lib/blog";
 
 export default function BlogCard({ post }: { post: PostSummary }) {
   return (
-    <article className="flex h-full flex-col justify-between rounded-sm border border-navy/10 bg-white p-8 transition-colors duration-300 hover:border-gold/60">
+    <article className="card-interactive flex h-full flex-col justify-between rounded-sm border border-navy/10 bg-white p-8">
       <div>
         <p className="text-xs font-medium uppercase tracking-wide text-gold">
           {formatPostDate(post.date)}

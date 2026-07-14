@@ -4,9 +4,11 @@
 
 :root {
   --color-navy: #1b2a41;
+  --color-ink: #0e1622;
   --color-gold: #9c7a34;
-  --color-muted: #555555;
-  --color-light-bg: #f7f7f5;
+  --color-stamp-gold: #c9a227;
+  --color-muted: #5b5650;
+  --color-light-bg: #f6f1e7;
 }
 
 html {
@@ -45,4 +47,37 @@ body {
 
 .form-input {
   @apply w-full rounded-sm border border-navy/20 bg-white px-4 py-2.5 text-sm text-navy placeholder:text-muted/60 focus:border-gold focus:outline-none focus:ring-1 focus:ring-gold;
+}
+
+/* Shared hover language for clickable cards site-wide (category tiles,
+   blog cards, service tier cards) — one consistent interaction, not a
+   one-off per component. */
+.card-interactive {
+  @apply transition-all duration-300 ease-out hover:-translate-y-1 hover:border-gold/50 hover:shadow-[0_12px_30px_-12px_rgba(27,42,65,0.25)];
+}
+
+/* Underline that draws in on hover instead of just appearing. */
+.link-draw {
+  @apply bg-[linear-gradient(currentColor,currentColor)] bg-[length:0%_1px] bg-left-bottom bg-no-repeat transition-[background-size] duration-300 ease-out hover:bg-[length:100%_1px];
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  @keyframes stamp-down {
+    0% {
+      opacity: 0;
+      transform: scale(1.6) rotate(-8deg);
+    }
+    60% {
+      opacity: 1;
+      transform: scale(0.94) rotate(-8deg);
+    }
+    100% {
+      opacity: 1;
+      transform: scale(1) rotate(-8deg);
+    }
+  }
+
+  .animate-stamp {
+    animation: stamp-down 0.4s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+  }
 }

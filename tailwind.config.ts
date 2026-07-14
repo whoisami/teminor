@@ -10,14 +10,17 @@ const config: Config = {
     extend: {
       colors: {
         navy: "#1B2A41",
+        ink: "#0E1622",
         gold: "#9C7A34",
-        muted: "#555555",
+        "stamp-gold": "#C9A227",
+        muted: "#5B5650",
         offwhite: "#FFFFFF",
-        "light-bg": "#F7F7F5",
+        "light-bg": "#F6F1E7",
       },
       fontFamily: {
         serif: ["var(--font-heading)", "Georgia", "serif"],
         sans: ["var(--font-body)", "Helvetica", "Arial", "sans-serif"],
+        mono: ["var(--font-mono)", "ui-monospace", "monospace"],
       },
       maxWidth: {
         content: "1200px",

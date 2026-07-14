@@ -1,3 +1,6 @@
+"use client";
+
+import { motion } from "framer-motion";
 import Reveal from "@/components/Reveal";
 import { MIN_SUPPLIER_COMPARISON } from "@/lib/site";
 
@@ -13,6 +16,7 @@ const steps = [
   {
     title: "Müşteri Onayı",
     description: "Yazılı onayınız olmadan hiçbir sipariş verilmez.",
+    stamped: true,
   },
   {
     title: "Sipariş ve Teslimat Takibi",
@@ -20,19 +24,19 @@ const steps = [
   },
 ];
 
-export default function HowItWorks() {
-  const jsonLd = {
-    "@context": "https://schema.org",
-    "@type": "HowTo",
-    name: "Teminor ile Satın Alma Süreci Nasıl İşler?",
-    step: steps.map((step, i) => ({
-      "@type": "HowToStep",
-      position: i + 1,
-      name: step.title,
-      text: step.description,
-    })),
-  };
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  name: "Teminor ile Satın Alma Süreci Nasıl İşler?",
+  step: steps.map((step, i) => ({
+    "@type": "HowToStep",
+    position: i + 1,
+    name: step.title,
+    text: step.description,
+  })),
+};
 
+export default function HowItWorks() {
   return (
     <section className="bg-white py-24">
       <script
@@ -52,13 +56,25 @@ export default function HowItWorks() {
             <Reveal key={step.title} delay={i * 0.08} className="flex-1">
               <li className="flex flex-col items-center text-center lg:items-start lg:text-left">
                 <div className="flex w-full items-center">
-                  <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-gold font-serif text-lg font-semibold text-white">
+                  <span className="relative flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-gold font-serif text-lg font-semibold text-white">
                     {i + 1}
+                    {step.stamped && (
+                      <span
+                        aria-hidden="true"
+                        className="absolute -right-1 -top-1 flex h-5 w-5 rotate-12 items-center justify-center rounded-full border-2 border-stamp-gold bg-white text-[10px] font-bold text-stamp-gold"
+                      >
+                        ✓
+                      </span>
+                    )}
                   </span>
                   {i < steps.length - 1 && (
-                    <span
+                    <motion.span
                       aria-hidden="true"
-                      className="ml-2 hidden h-px flex-1 bg-navy/15 lg:block"
+                      className="ml-2 hidden h-px flex-1 origin-left bg-navy/15 lg:block"
+                      initial={{ scaleX: 0 }}
+                      whileInView={{ scaleX: 1 }}
+                      viewport={{ once: true, margin: "-80px" }}
+                      transition={{ duration: 0.6, delay: i * 0.08 + 0.3 }}
                     />
                   )}
                 </div>
