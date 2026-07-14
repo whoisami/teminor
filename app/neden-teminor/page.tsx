@@ -234,6 +234,19 @@ export default function NedenTeminorPage() {
               </Reveal>
             ))}
           </div>
+          <Reveal delay={0.24}>
+            <p className="mt-10 text-center text-sm text-muted">
+              Tedarikçi kaynaklı riskleri nasıl yönettiğimizi merak
+              ediyorsanız{" "}
+              <Link
+                href="/blog/tedarikci-dolandiriciligindan-korunma-yontemleri"
+                className="font-semibold text-navy underline decoration-gold decoration-2 underline-offset-4 hover:text-gold"
+              >
+                Tedarikçi Dolandırıcılığından Korunma Yöntemleri
+              </Link>{" "}
+              yazımızı inceleyebilirsiniz.
+            </p>
+          </Reveal>
         </div>
       </section>
 

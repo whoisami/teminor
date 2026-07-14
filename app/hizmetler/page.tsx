@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import Reveal from "@/components/Reveal";
 import TrackedCta from "@/components/analytics/TrackedCta";
 import TrackedAnchor from "@/components/analytics/TrackedAnchor";
@@ -108,6 +109,21 @@ export default function HizmetlerPage() {
               </div>
             </Reveal>
           ))}
+        </div>
+        <div className="container-content">
+          <Reveal delay={0.32}>
+            <p className="mt-10 text-center text-sm text-muted">
+              Dış kaynaklı satın alma modelinin nasıl işlediğini merak
+              ediyorsanız{" "}
+              <Link
+                href="/blog/dis-kaynak-satin-alma-departmani-nedir"
+                className="font-semibold text-navy underline decoration-gold decoration-2 underline-offset-4 hover:text-gold"
+              >
+                Dış Kaynak Satın Alma Departmanı Nedir?
+              </Link>{" "}
+              yazımızı inceleyebilirsiniz.
+            </p>
+          </Reveal>
         </div>
       </section>
 

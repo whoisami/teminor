@@ -5,7 +5,7 @@ Her çalışmada güncellenir: tamamlanan maddeler "Durum: Tamamlandı" olarak
 işaretlenir, yeni bulgular ilgili öncelik başlığına eklenir. Öncelik sırası
 iş etkisine göredir, teknik zorluğa göre değil.
 
-**Son güncelleme:** 2026-07-15 (SEO Sprint #5 — Growth Intelligence, ICE skorları eklendi)
+**Son güncelleme:** 2026-07-15 (Continuous Optimization Mode — haftalık döngü #1)
 
 ## Ticari Önceliklendirme (SEO Sprint #4)
 
@@ -44,11 +44,13 @@ yalnızca skor ve referans var. seo-agent bundan sonra her sprint'te önce
   ölçülmesini sağlar. Ölçüm olmadan hiçbir SEO çalışmasının gerçek etkisi
   doğrulanamaz.
 - **Not:** Kod tarafı bitti: `lib/analytics/` + `components/analytics/`
-  modüler katmanı, `NEXT_PUBLIC_GA_MEASUREMENT_ID` env var'ı, 9 event
+  modüler katmanı, `NEXT_PUBLIC_GA_MEASUREMENT_ID` env var'ı, 10 event
   (`page_view`, `service_view`, `blog_view`, `contact_page_view`,
-  `contact_form_submit`, `phone_click`, `email_click`, `whatsapp_click`,
-  `cta_click`) merkezi dispatcher üzerinden bağlı, env yokken sessizce
-  devre dışı. **Kalan HIGH RISK adımlar (kullanıcı onayı/aksiyonu
+  `contact_form_submit`, `rfq_form_submit`, `phone_click`,
+  `email_click`, `whatsapp_click`, `cta_click` — `rfq_form_submit` bu
+  haftaki döngüde eklendi, bkz. MEDIUM bölümü) merkezi dispatcher
+  üzerinden bağlı, env yokken sessizce devre dışı. **Kalan HIGH RISK
+  adımlar (kullanıcı onayı/aksiyonu
   gerekli):** (1) gerçek bir GA4 property + Measurement ID oluşturulması,
   (2) bu ID'nin Cloudflare Pages Production/Preview Build Variables'a
   `NEXT_PUBLIC_GA_MEASUREMENT_ID` olarak eklenmesi, (3) KVKK kapsamında
@@ -123,20 +125,19 @@ yalnızca skor ve referans var. seo-agent bundan sonra her sprint'te önce
 
 ## RFQ gönderimini ayrı bir GA4 event'i yapmak
 
-- **Durum:** Açık (yeni bulgu — SEO Sprint #5, GA4 event gap analizi)
-- **Öncelik:** MEDIUM
+- **Durum:** Tamamlandı (Continuous Optimization Mode — haftalık döngü #1)
+- **Öncelik:** MEDIUM (ICE 28.0 ile bu döngünün en yüksek skorlu LOW RISK maddesiydi)
 - **ICE Skoru:** 28.0 (Impact 7 × Confidence 8 ÷ Effort 2) — bkz. `SEO_GROWTH_PLAN.md` §4
 - **Ticari Etki:** RFQ (#2), Contact Form'dan (#3) daha yüksek Success
-  Metric — ama şu an ikisi de aynı `contact_form_submit` event'i altında
-  toplanıyor, GA4'te RFQ'yu ayrı bir Key Event olarak işaretlemek mümkün
-  değil.
+  Metric — artık GA4'te ayrı bir event olarak izlenebiliyor, Key Event
+  olarak işaretlenebilir.
 - **Beklenen SEO etkisi:** Doğrudan SEO etkisi yok; ölçüm netliği.
-- **Not:** `RFQForm.tsx:89`, genel `contact_form_submit` event'ini
-  `sector: "rfq_form"` parametresiyle çağırıyor. Öneri: `AnalyticsEvents`'e
-  `RfqFormSubmit: "rfq_form_submit"` eklenip `RFQForm.tsx`'in kendi
-  event'ini çağırması. LOW RISK (mevcut kataloğu genişletme, yeni
-  provider yok) ama bu sprintte **uygulanmadı** — Sprint #5 yalnızca
-  analiz üretti, kod değiştirmedi.
+- **Not:** `AnalyticsEvents.RfqFormSubmit` ("rfq_form_submit") ve
+  `trackRfqFormSubmit()` yardımcı fonksiyonu `lib/analytics/events.ts`'e
+  eklendi; `components/RFQForm.tsx`, artık genel `contact_form_submit`
+  yerine kendi event'ini çağırıyor. Build çıktısında (`rfq_form_submit`
+  client bundle'da) doğrulandı. GA4 canlıda aktif olmadığı için henüz
+  gerçek veri akışı yok — bkz. yukarıdaki "GA4 entegrasyonu" maddesi.
 
 ## RFQ formuna form-start/terk izleme eklemek
 
@@ -182,9 +183,13 @@ yalnızca skor ve referans var. seo-agent bundan sonra her sprint'te önce
   linkleri eklendi. Orphan sayfa yok. **Sprint #3 güncellemesi:** ana
   sayfanın blog önizleme bölümünden `/blog` indeksine doğrudan link
   eklendi ("Tüm Yazıları Görüntüle"); blog yazılarına breadcrumb
-  navigasyonu eklendi. Devam eden fırsat: `/hizmetler` ve
-  `/neden-teminor` sayfalarından blog'a geri link hâlâ yok — **ICE Skoru:
-  16.0** (Impact 4 × Confidence 8 ÷ Effort 2), bkz. `SEO_GROWTH_PLAN.md` §2.
+  navigasyonu eklendi. **Continuous Optimization Mode haftalık döngü
+  #1'de tamamlandı:** `/hizmetler` artık `dis-kaynak-satin-alma-
+  departmani-nedir` yazısına, `/neden-teminor` artık `tedarikci-
+  dolandiriciligindan-korunma-yontemleri` yazısına bağlamsal bir cümle
+  linkiyle bağlanıyor (ICE Skoru: 16.0 — Impact 4 × Confidence 8 ÷
+  Effort 2, bkz. `SEO_GROWTH_PLAN.md` §2 — bu döngünün en yüksek skorlu
+  ikinci LOW RISK maddesiydi). Build çıktısında doğrulandı.
 
 ## Image alt audit
 

@@ -1,13 +1,15 @@
 # Teminor — SEO Growth Plan
 
-Bu dosya canlı bir çalışma planıdır. **seo-agent, bundan sonraki her
-sprint'te önce bu dosyayı okur, sonra öneri üretir** (bkz.
-`.claude/agents/seo-agent.md`). Amaç trafik değil, ticari dönüşümdür
-(bkz. `/CLAUDE.md` → "Ticari Hedef"). Bu sprintte **hiçbir kod
-değişikliği yapılmadı** — bu, saf bir analiz/fırsat tespiti dosyasıdır.
+Bu dosya canlı bir çalışma planıdır. **seo-agent, Continuous
+Optimization Mode'un her haftalık döngüsünde önce bu dosyayı okur,
+sonra öneri üretir** (bkz. `.claude/agents/seo-agent.md`). Amaç trafik
+değil, ticari dönüşümdür (bkz. `/CLAUDE.md` → "Ticari Hedef").
 
 **Oluşturulma tarihi:** 2026-07-15 (SEO Sprint #5 — Growth Intelligence)
-**Kapsam:** `main` branch, taban commit `fc17630`
+**Son güncelleme:** 2026-07-15 (Continuous Optimization Mode — haftalık
+döngü #1 — bu döngüde en yüksek ICE'li 2 LOW RISK madde uygulandı,
+aşağıda işaretli)
+**Kapsam:** `main` branch, taban commit `5eb5c67`
 **Veri durumu:** Search Console verisi hâlâ bağlı değil — bu dosyadaki
 hiçbir madde gerçek query/impression/click verisi varsaymıyor. Veri
 gerektiren her yer açıkça **"Data Required"** olarak işaretlendi.
@@ -59,15 +61,15 @@ açıkça belirtildi ve **Data Required** etiketlendi.
 | GA4 Measurement ID oluşturup Cloudflare'e tanımlamak | 10 — tüm Success Metrics'in ölçümü buna bağlı | 10 — kod hazır, tek eksik gerçek ID | 2 — kullanıcı aksiyonu, kod yok | HIGH RISK (üçüncü taraf entegrasyon aktivasyonu) | **50.0** | 1 |
 | Search Console mülkünü açıp sitemap göndermek | 8 — query-level optimizasyonun ön koşulu | 10 — DNS doğrulaması zaten aktif, sıfır ek iş | 1 — tamamen kullanıcı tarafında | HIGH RISK (kullanıcı hesabı aksiyonu) | **80.0** | 2 |
 | KVKK çerez onayı ihtiyacının netleştirilmesi | 6 — GA4 aktivasyonunun yasal ön koşulu olabilir | 5 — hukuki belirsizlik var | 3 — banner tasarımı + entegrasyon gerektirebilir | HIGH RISK | **10.0** | 3 |
-| RFQ formunu ayrı bir GA4 event'i olarak izlemek (`contact_form_submit` parametresinden ayırmak) | 7 — RFQ, Contact Form'un üzerinde bir Success Metric (#2 vs #3) | 8 — sorun net, çözüm net | 2 — küçük, izole kod değişikliği | LOW RISK | **28.0** | 4 |
-| RFQ formuna `form_start`/abandonment izleme eklemek | 7 — Bölüm 6'daki en büyük şüpheli huni sızıntısını doğrudan ölçer | 6 — huni sızıntısı bir varsayım, bu onu doğrulayacak | 3 | LOW RISK | **14.0** | 5 |
-| `LocalBusiness.address.addressLocality` doğrulaması | 5 — yerel arama/GBP eşleşmesi, ICP'nin bir kısmı yerel | 9 — tek eksik gerçek adres bilgisi | 1 — kullanıcıdan bilgi almak yeterli | HIGH RISK (iş verisi kararı) | **45.0** | 6 |
-| `/hizmetler` ve `/neden-teminor`'dan blog'a dönüş linki eklemek | 4 — internal linking derinliği, dolaylı SEO | 8 | 2 | LOW RISK | **16.0** | 7 |
-| Blog cannibalization çifti (dis-kaynak-satin-alma-departmani-nedir / kobiler-icin-dis-kaynak-satin-alma) — başlık/keyword yeniden odaklama | 5 — ikisi de RFQ/hizmetler'e yönlendiriyor, çözülürse organik trafik daha isabetli akar | 3 — **Data Required**, Search Console olmadan gerçek query çakışması doğrulanamıyor | 5 — içerik yeniden yazımı, büyük değişiklik | HIGH RISK (büyük içerik değişikliği) | **3.0** | 11 |
-| `/iletisim` sayfasına RFQ öncesi sık sorulan sorular (FAQ) eklemek | 8 — en yüksek değerli sayfada itiraz karşılama | 6 — mantıklı varsayım ama davranış verisiyle doğrulanmadı | 4 — içerik yazımı + tasarım | MEDIUM (içerik eklemesi, mevcut sayfa yapısını genişletiyor) | **12.0** | 8 |
-| Core Web Vitals ölçümü (özellikle `/iletisim`) | 6 — dönüşüm sayfası hızı = dönüşüm oranı | 4 — ölçülmedi, tahmine dayalı | 2 — yalnızca ölçüm, düzeltme değil | LOW RISK | **12.0** | 9 |
-| Kullanılmayan `@mdx-js/react` bağımlılığının kaldırılması | 1 — hiçbir Success Metric'e ölçülebilir katkısı yok | 10 | 1 | LOW RISK | **10.0** | 10 |
-| Sayfa bazlı OG image + blog `ogImage` alanının doldurulması | 3 — sosyal paylaşım CTR'ı, dolaylı | 6 | 3 | LOW RISK | **6.0** | 12 |
+| ~~RFQ formunu ayrı bir GA4 event'i olarak izlemek~~ **(Tamamlandı — haftalık döngü #1)** | 7 — RFQ, Contact Form'un üzerinde bir Success Metric (#2 vs #3) | 8 — sorun net, çözüm net | 2 — küçük, izole kod değişikliği | LOW RISK | **28.0** | ~~4~~ ✅ |
+| RFQ formuna `form_start`/abandonment izleme eklemek | 7 — Bölüm 6'daki en büyük şüpheli huni sızıntısını doğrudan ölçer | 6 — huni sızıntısı bir varsayım, bu onu doğrulayacak | 3 | LOW RISK | **14.0** | 4 |
+| `LocalBusiness.address.addressLocality` doğrulaması | 5 — yerel arama/GBP eşleşmesi, ICP'nin bir kısmı yerel | 9 — tek eksik gerçek adres bilgisi | 1 — kullanıcıdan bilgi almak yeterli | HIGH RISK (iş verisi kararı) | **45.0** | 5 |
+| ~~`/hizmetler` ve `/neden-teminor`'dan blog'a dönüş linki eklemek~~ **(Tamamlandı — haftalık döngü #1)** | 4 — internal linking derinliği, dolaylı SEO | 8 | 2 | LOW RISK | **16.0** | ~~6~~ ✅ |
+| `/iletisim` sayfasına RFQ öncesi sık sorulan sorular (FAQ) eklemek | 8 — en yüksek değerli sayfada itiraz karşılama | 6 — mantıklı varsayım ama davranış verisiyle doğrulanmadı | 4 — içerik yazımı + tasarım | MEDIUM (içerik eklemesi, mevcut sayfa yapısını genişletiyor) | **12.0** | 6 |
+| Core Web Vitals ölçümü (özellikle `/iletisim`) | 6 — dönüşüm sayfası hızı = dönüşüm oranı | 4 — ölçülmedi, tahmine dayalı | 2 — yalnızca ölçüm, düzeltme değil | LOW RISK | **12.0** | 7 |
+| Kullanılmayan `@mdx-js/react` bağımlılığının kaldırılması | 1 — hiçbir Success Metric'e ölçülebilir katkısı yok | 10 | 1 | LOW RISK | **10.0** | 8 |
+| Sayfa bazlı OG image + blog `ogImage` alanının doldurulması | 3 — sosyal paylaşım CTR'ı, dolaylı | 6 | 3 | LOW RISK | **6.0** | 9 |
+| Blog cannibalization çifti (dis-kaynak-satin-alma-departmani-nedir / kobiler-icin-dis-kaynak-satin-alma) — başlık/keyword yeniden odaklama | 5 — ikisi de RFQ/hizmetler'e yönlendiriyor, çözülürse organik trafik daha isabetli akar | 3 — **Data Required**, Search Console olmadan gerçek query çakışması doğrulanamıyor | 5 — içerik yeniden yazımı, büyük değişiklik | HIGH RISK (büyük içerik değişikliği) | **3.0** | 10 |
 
 *Not: "Öncelik" sütunu ICE skoruna göre sıralanmıştır; HIGH RISK
 maddeler skoru yüksek olsa da kullanıcı onayı olmadan uygulanmaz —
@@ -98,35 +100,26 @@ değerleri yeniden hesaplanacak.
 
 ---
 
-## 4. GA4 Event Gap Analizi (öneri, kod değiştirilmedi)
+## 4. GA4 Event Gap Analizi
 
-Mevcut 9 event (`page_view`, `service_view`, `blog_view`,
-`contact_page_view`, `contact_form_submit`, `phone_click`,
-`email_click`, `whatsapp_click`, `cta_click`) `lib/analytics/events.ts`'te
-tanımlı ve hepsinin çağrı noktası var (Sprint #2/#3'te doğrulandı).
-İncelemede 2 eksik **conversion event** tespit edildi:
+Mevcut 10 event (`page_view`, `service_view`, `blog_view`,
+`contact_page_view`, `contact_form_submit`, `rfq_form_submit`,
+`phone_click`, `email_click`, `whatsapp_click`, `cta_click`)
+`lib/analytics/events.ts`'te tanımlı ve hepsinin çağrı noktası var.
 
-1. **RFQ gönderimi ayrı bir event değil.** `RFQForm.tsx`, genel
-   `contact_form_submit` event'ini `sector: "rfq_form"` parametresiyle
-   çağırıyor (`components/RFQForm.tsx:89`). Success Metrics
-   sıralamasında RFQ (#2), Contact Form'dan (#3) daha yüksek öncelikli
-   — ama GA4'te ikisi aynı event adı altında toplanıyor, GA4'te RFQ'yu
-   ayrı bir "Key Event" (conversion) olarak işaretlemek şu an mümkün
-   değil. **Öneri:** `AnalyticsEvents`'e `RfqFormSubmit: "rfq_form_submit"`
-   eklenip `RFQForm.tsx`'in kendi event'ini çağırması (generic
-   `contact_form_submit`'i genel iletişim formuna bırakarak).
-2. **Form başlangıcı/terk edilmesi izlenmiyor.** Ne `ContactForm.tsx`
-   ne `RFQForm.tsx`, kullanıcı forma başladığında (ilk alan
-   doldurulduğunda) bir event göndermiyor — yalnızca başarılı gönderim
-   izleniyor. Bu, Bölüm 6'daki "Lead → RFQ" huni sızıntısı hipotezini
-   gerçek veriyle test etmenin tek yolu olurdu. **Öneri:** `AnalyticsEvents`'e
-   `RfqFormStart: "rfq_form_start"` eklenip formun ilk `onFocus`/`onChange`
-   olayında bir kez tetiklenmesi (submit oranı / start oranı = terk oranı).
-
-Her iki öneri de LOW RISK sınıfında (mevcut event kataloğunu genişletme,
-yeni provider yok) ama bu sprintte **uygulanmadı** — talimat gereği bu
-sprint yalnızca analiz/öneri üretiyor, kod değiştirmiyor. Kullanıcı
-onayıyla bir sonraki sprintte uygulanabilir.
+1. **✅ Tamamlandı (haftalık döngü #1):** RFQ gönderimi artık ayrı bir
+   event. `AnalyticsEvents.RfqFormSubmit` ("rfq_form_submit") eklendi,
+   `RFQForm.tsx` artık genel `contact_form_submit`'i değil kendi
+   event'ini çağırıyor. Build çıktısında doğrulandı.
+2. **Açık: Form başlangıcı/terk edilmesi izlenmiyor.** Ne
+   `ContactForm.tsx` ne `RFQForm.tsx`, kullanıcı forma başladığında
+   (ilk alan doldurulduğunda) bir event göndermiyor — yalnızca başarılı
+   gönderim izleniyor. Bu, Bölüm 6'daki "Lead → RFQ" huni sızıntısı
+   hipotezini gerçek veriyle test etmenin tek yolu olurdu. **Öneri:**
+   `AnalyticsEvents`'e `RfqFormStart: "rfq_form_start"` eklenip formun
+   ilk `onFocus`/`onChange` olayında bir kez tetiklenmesi (submit oranı
+   / start oranı = terk oranı). LOW RISK, ICE 14.0 — bkz. §2, bir
+   sonraki döngüde en yüksek öncelikli LOW RISK adaylardan biri.
 
 ---
 
@@ -168,7 +161,7 @@ sayfa önerisi değildir — mevcut sayfalara (özellikle `/iletisim` ve
 Bu 7 soru, `SEO_SEARCH_MAP.md`'deki mevcut "ana arama niyeti"
 analiziyle örtüşüyor — hepsi işlem-niyetli, RFQ öncesi son tereddüt
 noktaları. Önceliklendirme için Bölüm 2'deki ICE tablosuna "iletişim
-FAQ" maddesi olarak eklendi (ICE: 12.0, öncelik #8).
+FAQ" maddesi olarak eklendi (ICE: 12.0, öncelik #6).
 
 ---
 
@@ -222,12 +215,18 @@ sözleşme) — repoda veya içerikte bu aşamayı ölçecek hiçbir sinyal yok.
 
 ---
 
-## 7. Sonraki Sprint İçin Not
+## 7. Sonraki Döngü İçin Not
 
-seo-agent, bu dosyayı her sprint başında okuyacak (bkz.
-`.claude/agents/seo-agent.md`). Search Console verisi sağlandığında:
-(a) Bölüm 3'teki "Data Required" maddeleri doldurulacak, (b) Bölüm
-2'deki ICE tablosundaki ilgili Confidence değerleri yeniden hesaplanacak,
-(c) Bölüm 6'daki funnel varsayımları GA4 gerçek verisiyle (özellikle
-önerilen `rfq_form_start`/`rfq_form_submit` event'leri aktifse)
+seo-agent, bu dosyayı her haftalık döngü başında okuyacak (bkz.
+`.claude/agents/seo-agent.md`, Continuous Optimization Mode). Bir
+sonraki döngüde en yüksek öncelikli açık LOW RISK adaylar: `rfq_form_start`
+event'i (ICE 14.0) ve `/iletisim` FAQ içeriği (ICE 12.0, MEDIUM —
+Continuous Optimization Mode'da "en fazla 2 öneri" kuralına tabi, içerik
+eklemesi olduğu için LOW RISK'ten biraz daha dikkatli değerlendirilmeli).
+
+Search Console verisi sağlandığında: (a) Bölüm 3'teki "Data Required"
+maddeleri doldurulacak, (b) Bölüm 2'deki ICE tablosundaki ilgili
+Confidence değerleri yeniden hesaplanacak, (c) Bölüm 6'daki funnel
+varsayımları GA4 gerçek verisiyle (özellikle artık aktif olan
+`rfq_form_submit` ve önerilen `rfq_form_start` event'leri üzerinden)
 doğrulanacak veya çürütülecek.

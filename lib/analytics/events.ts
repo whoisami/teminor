@@ -10,6 +10,7 @@ export const AnalyticsEvents = {
   BlogView: "blog_view",
   ContactPageView: "contact_page_view",
   ContactFormSubmit: "contact_form_submit",
+  RfqFormSubmit: "rfq_form_submit",
   PhoneClick: "phone_click",
   EmailClick: "email_click",
   WhatsAppClick: "whatsapp_click",
@@ -33,6 +34,10 @@ export function trackContactPageView() {
 
 export function trackContactFormSubmit(sector: string) {
   trackEvent(AnalyticsEvents.ContactFormSubmit, { sector });
+}
+
+export function trackRfqFormSubmit() {
+  trackEvent(AnalyticsEvents.RfqFormSubmit);
 }
 
 export function trackPhoneClick(location: string) {

@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, type FormEvent, type ReactNode } from "react";
-import { trackContactFormSubmit } from "@/lib/analytics/events";
+import { trackRfqFormSubmit } from "@/lib/analytics/events";
 
 const CURRENCIES = ["TRY", "USD", "EUR"];
 const PAYMENT_PREFERENCES = ["Peşin", "30 Gün Vade", "60 Gün Vade", "Diğer"];
@@ -86,7 +86,7 @@ export default function RFQForm() {
         throw new Error(body?.message || "Bir hata oluştu.");
       }
 
-      trackContactFormSubmit("rfq_form");
+      trackRfqFormSubmit();
       setStatus("success");
       form.reset();
     } catch (err) {

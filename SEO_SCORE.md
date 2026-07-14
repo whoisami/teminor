@@ -22,12 +22,14 @@ değildir. Aşağıdaki Sprint #1-3 puanları ve gerekçeleri, eski (trafik
 ağırlıklı) lensle yazıldığı için olduğu gibi bırakıldı — geriye dönük
 olarak yeniden yorumlanmadı.
 
-**Son güncelleme:** 2026-07-14
-**Değerlendiren:** seo-agent (SEO Sprint #3 — Search Console ve Organik Görünürlük; puanlar Sprint #4'te değişmedi)
-**Kapsam:** `main` branch, bu sprint'te işlenen commit öncesi taban `8f3f901`
-(Sprint #2'den bu yana RFQ formu, 3 yeni blog yazısı ve `/neden-teminor`
-karşılaştırma tablosu SEO sprint döngüsü dışında eklendi — bu sprint bu
-değişikliklerin SEO etkisini de değerlendirmeye dahil etti.)
+**Son güncelleme:** 2026-07-15
+**Değerlendiren:** seo-agent (Continuous Optimization Mode — haftalık döngü #1)
+**Kapsam:** `main` branch, taban commit `5eb5c67`. Bu, Continuous
+Optimization Mode'a geçildikten sonraki ilk haftalık çalıştırma — Sprint
+#4/#5 yalnızca politika/analiz güncellemesiydi, kod değişikliği
+içermiyordu, bu yüzden puanlar o iki turda değişmedi. Bu haftaki
+döngüde `SEO_GROWTH_PLAN.md`'deki ICE tablosundan en yüksek skorlu 2 LOW
+RISK madde uygulandı (aşağıda işaretli).
 
 ---
 
@@ -67,18 +69,19 @@ eklendi (Ana Sayfa / Blog / [Başlık]). Açık kalan:
 `LocalBusiness.address.addressLocality: "İzmir"` hâlâ doğrulanmamış —
 HIGH RISK, kullanıcı kararı bekliyor (bkz. rapor).
 
-## Internal Linking — 8/10 (+1)
+## Internal Linking — 9/10 (+1)
 
-Ana sayfadaki blog önizleme bölümünden `/blog` indeksine doğrudan link
-yoktu (yalnızca tekil yazı kartları vardı) — "Tüm Yazıları Görüntüle"
-linki eklendi. Blog yazılarına breadcrumb navigasyonu eklenmesi de
-internal linking derinliğini artırdı. `SEO_SEARCH_MAP.md` denetiminde
-tüm 13 sayfanın inbound/outbound linkleri tek tek çıkarıldı, orphan
-sayfa yok. Açık kalan: 2 blog yazısı çifti (`dis-kaynak-satin-alma-
-departmani-nedir` / `kobiler-icin-dis-kaynak-satin-alma`) arasında
-keyword/başlık düzeyinde ciddi örtüşme tespit edildi — "İlgili Yazılar"
-ile karşılıklı bağlı olsalar da net bir açı farkı sinyali zayıf; içerik
-seviyesinde çözüm (yeniden odaklama) backlog'a MEDIUM olarak eklendi.
+`SEO_GROWTH_PLAN.md`'deki en yüksek ICE'li LOW RISK madde (16.0)
+uygulandı: `/hizmetler` artık `dis-kaynak-satin-alma-departmani-nedir`
+yazısına, `/neden-teminor` artık `tedarikci-dolandiriciligindan-korunma-
+yontemleri` yazısına bağlamsal bir cümle linkiyle bağlanıyor (canlı
+build çıktısında doğrulandı). Bu, Sprint #3'ten beri açık olan
+"hizmetler/neden-teminor'dan blog'a geri link yok" bulgusunu kapatıyor.
+Açık kalan: 2 blog yazısı çifti (`dis-kaynak-satin-alma-departmani-nedir`
+/ `kobiler-icin-dis-kaynak-satin-alma`) arasındaki keyword/başlık
+örtüşmesi hâlâ çözülmedi — içerik yeniden odaklama gerektirdiği için
+HIGH RISK/büyük içerik değişikliği sayılıyor, Continuous Optimization
+Mode'un "büyük içerik üretme/refactor yapma" yasağı kapsamında.
 
 ## Performance — 6/10 (değişmedi)
 
@@ -91,19 +94,23 @@ Blog yazılarındaki yeni breadcrumb `nav`'ı `aria-label="Breadcrumb"`
 içeriyor — küçük bir semantik iyileştirme, puanı değiştirecek ölçekte
 değil. Skip-to-content linki ve otomatik kontrast testi hâlâ açık.
 
-## Analytics — 6/10 (değişmedi, yeniden doğrulandı)
+## Analytics — 7/10 (+1)
 
-Sprint #2 altyapısı bu sprintte yeniden denetlendi, hiçbir regresyon
-bulunmadı: env var'sız build hatasız ve script'siz, env var'lı test
-build'de Measurement ID ve `send_page_view: false` (duplicate page_view
-riskine karşı) doğru şekilde bundle'a gömülü, 9 event'in tamamının
-gerçek çağrı noktası var (grep ile yeniden sayıldı: `PageViewTracker` 3
-yerde, `TrackedAnchor kind=` 10 yerde, `TrackedCta` 3 dosyada,
-`trackContactFormSubmit` 2 yerde — RFQ formu dahil), hiçbir event
-parametresinde kişisel veri (e-posta/telefon/isim) gönderilmiyor —
-yalnızca kategori/etiket/slug gibi kişisel olmayan değerler. Puan hâlâ
-6/10: altyapı sağlam ama production'da gerçek bir Measurement ID yok,
-gerçek veri akışı başlamadı.
+`SEO_GROWTH_PLAN.md` §4'te tespit edilen en yüksek ICE'li (28.0) GA4
+boşluğu kapatıldı: RFQ gönderimi artık genel `contact_form_submit`
+event'ini paylaşmıyor, kendi `rfq_form_submit` event'i var
+(`AnalyticsEvents.RfqFormSubmit`, `lib/analytics/events.ts` +
+`components/RFQForm.tsx`) — Success Metrics'te RFQ (#2), Contact
+Form'dan (#3) daha öncelikli olduğu için bu ayrım, GA4'te RFQ'yu ayrı
+bir Key Event olarak işaretlemeyi mümkün kılıyor (build çıktısında
+`rfq_form_submit` string'i bundle'da doğrulandı). Event kataloğu artık
+10 event (9 değil). Analytics Health yeniden çalıştırıldı: env var'sız
+build hatasız ve script'siz, hiçbir event parametresinde kişisel veri
+yok. Puan 7'ye sınırlı kalıyor çünkü asıl darboğaz değişmedi:
+production'da hâlâ gerçek bir `NEXT_PUBLIC_GA_MEASUREMENT_ID` yok
+(canlı sitede `googletagmanager` script'i bulunamadı), yani bu yeni
+event de dahil hiçbir event'in gerçek veri akışı yok — bu HIGH RISK,
+kullanıcı aksiyonu bekliyor (bkz. backlog).
 
 ## Content — 8/10 (+1)
 
@@ -116,18 +123,16 @@ açısından olumlu ama doğrudan "content" kategorisini etkilemiyor.
 
 ---
 
-## Overall — 7.75/10 (+0.50)
+## Overall — 8.0/10 (+0.25)
 
-Bu sprintte en büyük katkı Search Console hazırlığının uçtan uca
-doğrulanması oldu (Technical SEO 8→9) ve DNS doğrulamasının zaten aktif
-olduğu teyit edildi — kod tarafında ekstra bir şey yapılmasına gerek
-yok. İkinci önemli katkı: `SEO_SEARCH_MAP.md` ile ilk kez tüm sitenin
-sistematik arama envanteri çıkarıldı ve bu süreçte 4 somut, doğrulanabilir
-LOW RISK defekt bulunup düzeltildi (title tekrarı, eksik blog→index
-linki, eksik BlogPosting alanları, eksik breadcrumb). Açık kalan en
-büyük iki madde: (1) LocalBusiness adresinin doğrulanması — HIGH RISK;
-(2) GA4 Measurement ID + Search Console entegrasyonunun canlıya
-alınması — HIGH RISK. Bu sprint ayrıca gelecekteki Search Console
-verisi için veri modelini ve fırsat puanlama rubriğini (Impact/
-Confidence/Effort/Risk) `.claude/agents/seo-agent.md`'ye kalıcı olarak
-tanımladı.
+Continuous Optimization Mode'un ilk haftalık döngüsü, `SEO_GROWTH_PLAN.md`
+ICE tablosundaki en yüksek skorlu 2 LOW RISK maddeyi uyguladı: (1)
+`/hizmetler`/`/neden-teminor` → blog dönüş linkleri (Internal Linking
+8→9), (2) RFQ'nun ayrı GA4 event'i olması (Analytics 6→7). Search
+Console verisi bu döngüde de sağlanmadı — ilgili "Data Required"
+maddeleri hâlâ açık, varsayımla doldurulmadı. Açık kalan en büyük iki
+madde değişmedi: (1) LocalBusiness adresinin doğrulanması — HIGH RISK;
+(2) GA4 Measurement ID + Search Console'un canlıya alınması — HIGH
+RISK; bunlar olmadan Analytics/Search Console kategorileri belirli bir
+tavanın üzerine çıkamaz, çünkü altyapı ne kadar sağlam olursa olsun
+gerçek veri akışı yok.
