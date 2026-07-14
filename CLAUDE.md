@@ -99,7 +99,7 @@ uygulanmaz:
 - Force push yapma.
 - `--no-verify` veya benzeri hook atlama bayrakları kullanma.
 
-## Ticari Hedef (Business Objective) — SEO Sprint #4
+## Ticari Hedef (Business Objective)
 
 Teminor'un amacı **trafik artırmak değildir.** Teminor'un amacı şunları
 üretmektir:
@@ -158,44 +158,52 @@ Her değişiklik önerisinden önce şu 3 soru sorulur:
 SEO/keyword stuffing/doorway page yasağıyla aynı bağlayıcılıkta —
 CLAUDE.md'nin "Asla" listesindeki maddelerle birlikte okunmalıdır.
 
-## SEO Agent — Sürekli Ölçüm ve İyileştirme
+## SEO Agent — Continuous Optimization Mode
 
 Bu repo, `.claude/agents/seo-agent.md` içinde tanımlı kalıcı bir SEO
-ajanı tarafından takip edilir. seo-agent'ın görevi yalnızca hata bulmak
-değildir — repository'nin SEO durumunu **sürekli ölçmek ve geliştirmektir**.
-Bunun için iki dosya kalıcı olarak tutulur ve her seo-agent çalışmasında
-güncellenir:
+ajanı tarafından takip edilir. **SEO Sprint #5'ten (Growth Intelligence)
+itibaren seo-agent artık "sprint" modunda çalışmıyor — kalıcı olarak
+Continuous Optimization Mode'a geçti.** Bu, bir geliştirme akışı değil,
+bir ölçüm/önceliklendirme döngüsüdür.
 
-- **`SEO_SCORE.md`** — Technical SEO, Metadata, Structured Data, Internal
-  Linking, Performance, Accessibility, Analytics, Content ve Overall
-  başlıkları altında, kanıta dayalı (koddan doğrulanmış), gerekçeli puan
-  kartı.
-- **`seo-backlog.md`** — HIGH / MEDIUM / LOW önceliğine göre sınıflanmış,
-  her madde için Durum / Öncelik / Beklenen SEO etkisi / Not içeren açık
-  bulgu listesi.
-- **`SEO_SEARCH_MAP.md`** — her indekslenebilir route için arama niyeti,
-  mevcut title/description/H1, internal linking durumu ve
-  cannibalization riski envanteri. Search Console verisi sağlandığında
-  bu envanterle çapraz doğrulanır.
-- **`SEO_GROWTH_PLAN.md`** — ICE (Impact × Confidence ÷ Effort)
-  skorlanmış büyüme fırsatı planı: sayfa değeri sıralaması (Business/
-  SEO/Conversion Value + Maintenance Cost), fırsat backlog'u, Search
-  Console olmadan yapılamayan analizler için "Data Required"
-  işaretlemesi, GA4 event boşluk analizi, cevaplanmayan ticari sorular
-  ve Visitor→Interested→Lead→RFQ→Customer huni analizi (varsayım
-  olarak işaretli). **seo-agent her sprint'e bu dosyayı okuyarak
-  başlar** — döngünün 0. adımı.
+### Bu modda asla yapılmaz
 
-seo-agent her çalıştığında şu döngüyü uygular: **`SEO_GROWTH_PLAN.md`
-oku** → **Ticari Etki Değerlendirmesi (SEO Decision Rule)** →
-Repository Scan → SEO Audit → Risk Analizi → LOW RISK düzeltmeleri
-uygula → `npm run lint` → `npm run build` → Analytics Health kontrolü →
-`SEO_SCORE.md` güncelle → `seo-backlog.md` güncelle →
-`SEO_GROWTH_PLAN.md` güncelle → Git Commit hazırla → Push için kullanıcı
-onayı bekle. Ticari Etki Değerlendirmesi, her bulgu/öneri uygulanmadan
-önce yukarıdaki "Ticari Hedef" bölümündeki 3 soruyla test edilir.
-Analytics Health kontrolü, GA4'ün aktif olup olmadığını, Measurement
-ID'nin okunduğunu, event sisteminin çalıştığını ve eksik event olup
-olmadığını doğrular — sonucu her sprint raporunda
-görünür. Detaylar için `.claude/agents/seo-agent.md` dosyasına
-bakılmalıdır.
+- Yeni "SEO Sprint #N" başlığıyla büyük bir çalışma paketi açmak
+- Yeni bir yönetim dosyası oluşturmak (mevcut 4 dosya — `SEO_SCORE.md`,
+  `seo-backlog.md`, `SEO_SEARCH_MAP.md`, `SEO_GROWTH_PLAN.md` — yeterli,
+  bunlara güncelleme dışında yenisi eklenmez)
+- Büyük refactor yapmak
+- Büyük içerik üretmek (yeni blog yazısı, sayfa metni yeniden yazımı vb.)
+- Gerekmedikçe yeni sayfa önermek
+
+### Haftalık döngü
+
+1. Search Console verilerini analiz et (erişim/veri varsa — yoksa
+   "Data Required" olarak bırak, varsayım yapma)
+2. GA4 dönüşümlerini analiz et
+3. `SEO_SCORE.md` güncelle
+4. `seo-backlog.md` güncelle
+5. ICE skorlarını yeniden hesapla (`SEO_GROWTH_PLAN.md`)
+6. En yüksek etkili **en fazla 2** LOW RISK öneriyi sun ve uygula
+7. `npm run build`
+8. `npm run lint`
+9. Commit oluştur
+10. Push için kullanıcı onayı iste
+
+### Çalışma prensibi
+
+- Trafik değil **dönüşüm** odaklı çalış (bkz. "Ticari Hedef" → Success
+  Metrics).
+- Önce mevcut sayfaları geliştir — yeni sayfa/içerik gerekmedikçe
+  önerilmez.
+- Veri olmadan tahmin yapma; veri yoksa "Data Required" işaretle.
+- Her öneriyi gerçek metriklerle destekle (GA4 event verisi, Search
+  Console verisi varsa; yoksa kod/içerik kanıtına dayalı, açıkça
+  "varsayım" olarak işaretlenmiş çıkarım).
+
+Bu döngü, kullanıcı tarafından manuel olarak tetiklenir (otomatik/cron
+tetikleme yoktur). Detaylar için `.claude/agents/seo-agent.md` dosyasına
+bakılmalıdır — 4 yönetim dosyasının (`SEO_SCORE.md`, `seo-backlog.md`,
+`SEO_SEARCH_MAP.md`, `SEO_GROWTH_PLAN.md`) içeriği ve amacı önceki
+sprint'lerde tanımlandığı gibi değişmeden kalıyor, yalnızca güncelleme
+döngüsü değişti.
