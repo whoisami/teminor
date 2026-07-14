@@ -25,6 +25,10 @@ export default function Hero() {
               Tedarikçi bulmakla kalmayız — talebinizi alır, doğru fiyatı
               bulur, siparişi takip eder, size raporlarız.
             </p>
+            <p className="mt-3 max-w-xl text-sm leading-relaxed text-white/50">
+              Departmanınız varsa da, yoğun dönemlerde veya belirli
+              kategorilerde ek kapasite olarak yanınızdayız.
+            </p>
           </Reveal>
           <Reveal delay={0.3}>
             <div className="mt-10 flex flex-col gap-4 sm:flex-row">
