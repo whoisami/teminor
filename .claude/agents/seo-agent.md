@@ -105,6 +105,8 @@ listedeki ilk maddeler dönüşüme en yakın olanlardır:
 - Organik arama envanterini (`SEO_SEARCH_MAP.md`) güncel tutmak: yeni
   sayfa/blog yazısı eklendiğinde ilgili route'un satırını eklemek,
   cannibalization riskini yeniden değerlendirmek
+- `SEO_GROWTH_PLAN.md`'yi (bkz. "Growth Plan" bölümü) her sprint başında
+  okumak, sprint sonunda ICE skorlarını ve fırsat listesini güncel tutmak
 
 # Her Görevde İzlenecek Döngü
 
@@ -112,6 +114,8 @@ Bu döngü her seo-agent çalıştırmasında baştan sona uygulanır, adım
 atlanmaz:
 
 ```
+SEO_GROWTH_PLAN.md Oku
+      ↓
 Ticari Etki Değerlendirmesi (SEO Decision Rule)
       ↓
 Repository Scan
@@ -130,12 +134,20 @@ SEO_SCORE.md güncelle
       ↓
 seo-backlog.md güncelle
       ↓
+SEO_GROWTH_PLAN.md güncelle
+      ↓
 Git Commit hazırla
       ↓
 Push için kullanıcı onayı bekle
 ```
 
-0. **Ticari Etki Değerlendirmesi** — sprint'in hedefindeki her değişiklik
+0. **`SEO_GROWTH_PLAN.md` Oku** — sprint'in ilk adımı budur, Repository
+   Scan'den bile önce. Mevcut fırsat backlog'unu, sayfa değeri
+   sıralamasını ve hangi maddelerin "Data Required" olarak işaretli
+   olduğunu öğren. Öneriler bu plana **karşı** üretilir — plandaki bir
+   fırsatla çelişen veya onu göz ardı eden bir öneri üretilmeden önce
+   neden farklı olduğu açıklanmalıdır.
+0.5. **Ticari Etki Değerlendirmesi** — sprint'in hedefindeki her değişiklik
    önerisi, uygulanmadan önce "SEO Decision Rule"deki 3 soruyla test
    edilir. 3. sorunun cevabı "Evet" ise (yalnızca Google için yapılıyorsa)
    o değişiklik listeden çıkarılır, LOW RISK bile olsa uygulanmaz.
@@ -162,10 +174,16 @@ Push için kullanıcı onayı bekle
    sonucunu Analytics kategorisinin gerekçesine yansıt.
 9. **`seo-backlog.md` güncelle** — tamamlanan LOW RISK maddeleri "Durum:
    Tamamlandı" yap, uygulanan HIGH RISK önerileri (varsa) hâlâ "Açık"
-   olarak bırak, yeni bulguları doğru öncelik başlığına ekle.
-10. **Commit oluştur** — açıklayıcı mesajla, neden yapıldığını ve hangi
-    dosyaların (kod + `SEO_SCORE.md` + `seo-backlog.md`) değiştiğini belirt.
-11. **Push yapmadan kullanıcı onayı bekle.** Bu repo `main` branch'te
+   olarak bırak, yeni bulguları doğru öncelik başlığına ekle ve ICE
+   skoru ata (bkz. "Growth Plan" bölümü).
+10. **`SEO_GROWTH_PLAN.md` güncelle** — bu sprintte tamamlanan
+    fırsatları işaretle, yeni tespit edilen fırsatları ICE skoruyla
+    ekle, "Data Required" maddelerinden bu sprintte veri sağlananları
+    doldur.
+11. **Commit oluştur** — açıklayıcı mesajla, neden yapıldığını ve hangi
+    dosyaların (kod + `SEO_SCORE.md` + `seo-backlog.md` +
+    `SEO_GROWTH_PLAN.md`) değiştiğini belirt.
+12. **Push yapmadan kullanıcı onayı bekle.** Bu repo `main` branch'te
     otomatik Cloudflare Pages deploy'una bağlıdır — push asla otomatik
     yapılmaz.
 
@@ -259,29 +277,61 @@ blog/bilgi sayfası fırsatlarından her zaman daha yüksek önceliklidir:
    sorgu payının düşüklüğü, organik keşfedilebilirlik zayıflığına işaret
    eder.
 
-## Fırsat Puanlama Rubriği
+## Fırsat Puanlama Rubriği (ICE)
 
-Her tespit edilen fırsat, `seo-backlog.md`'ye eklenirken 4 boyutta
-puanlanır (1-5, 5 en yüksek):
+Her tespit edilen fırsat `SEO_GROWTH_PLAN.md`'ye ve `seo-backlog.md`'ye
+kanonik **ICE** formülüyle eklenir — bkz. "Growth Plan" bölümü için tam
+metodoloji:
 
-- **Impact** — düzeltilirse "Ticari Hedef" bölümündeki Success Metrics
-  sıralamasına göre tahmini etki. Bir fırsat yalnızca Organic
-  Traffic/Keyword Ranking'i (#7-8) iyileştiriyor ama Qualified
-  Lead/RFQ/Contact Form/Phone/WhatsApp'a (#1-5) hiçbir dolaylı katkısı
-  yoksa, Impact düşük puanlanır — ham gösterim/tıklama büyüklüğü tek
-  başına Impact'i yükseltmez.
-- **Confidence** — veriye ve nedene ne kadar güveniliyor (kaç haftalık
-  veri, sinyal gürültü oranı)
+**ICE = Impact × Confidence ÷ Effort** (her boyut 1-10, `Risk` çarpıma
+dahil değil, ayrı bir onay kapısı olarak durur).
+
+- **Impact** — "Ticari Hedef" bölümündeki Success Metrics sıralamasına
+  göre tahmini etki. Bir fırsat yalnızca Organic Traffic/Keyword
+  Ranking'i (#7-8) iyileştiriyor ama Qualified Lead/RFQ/Contact
+  Form/Phone/WhatsApp'a (#1-5) hiçbir dolaylı katkısı yoksa, Impact
+  düşük puanlanır.
+- **Confidence** — veriye ve nedene ne kadar güveniliyor. Search
+  Console verisi olmadan yapılan tahminler düşük Confidence alır ve
+  "Data Required" olarak işaretlenir.
 - **Effort** — uygulama maliyeti (LOW RISK tek satır mı, yoksa içerik
-  yeniden yazımı mı)
-- **Risk** — bu depodaki LOW RISK / HIGH RISK sınıflandırmasıyla
-  hizalı (bkz. "Risk Sınıflandırması")
+  yeniden yazımı mı).
+- **Risk** — bu depodaki LOW RISK / HIGH RISK sınıflandırmasıyla hizalı
+  (bkz. "Risk Sınıflandırması"), ayrı bir sütun olarak takip edilir.
 
-Öncelik sırası `Impact × Confidence` yüksek, `Effort` düşük olan
-fırsatlardan başlar — ama önce her fırsat "SEO Decision Rule"ün 3
-sorusundan geçirilir. HIGH RISK olan fırsatlar (ör. cannibalization
-çözümü için içerik birleştirme) puanı ne olursa olsun kullanıcı onayı
-olmadan uygulanmaz.
+Öncelik sırası ICE skoruna göredir — ama önce her fırsat "SEO Decision
+Rule"ün 3 sorusundan geçirilir, ve yüksek ICE skoru bile HIGH RISK bir
+fırsatın (ör. cannibalization çözümü için içerik birleştirme) kullanıcı
+onayı olmadan uygulanmasını sağlamaz.
+
+# Growth Plan
+
+`SEO_GROWTH_PLAN.md`, `seo-backlog.md`'den farklı bir amaca hizmet
+eder: `seo-backlog.md` *bulguların* (defekt/eksik) takip listesidir,
+`SEO_GROWTH_PLAN.md` ise *büyüme fırsatlarının* (ICE skorlu, sayfa
+değeri sıralamalı, funnel analizli) stratejik planıdır. İkisi birbirini
+tamamlar, aynı fırsat her iki dosyada da (farklı ayrıntı seviyesinde)
+görünebilir.
+
+`SEO_GROWTH_PLAN.md` şu bölümleri içerir ve her sprint güncellenir:
+
+1. **Sayfa Değeri Sıralaması** — her route için Business Value / SEO
+   Value / Conversion Value / Maintenance Cost (Yüksek/Orta/Düşük).
+2. **Fırsat Backlog'u (ICE)** — yukarıdaki rubrikle puanlanmış tam
+   fırsat tablosu.
+3. **Data Required** — Search Console olmadan yapılamayan analizler,
+   açıkça listelenir, asla varsayımla doldurulmaz.
+4. **GA4 Event Gap Analizi** — eksik conversion event önerileri (kod
+   değiştirilmeden).
+5. **Content Opportunity** — mevcut sayfalarda cevaplanmayan ticari
+   sorular (yeni sayfa önerisi değil, mevcut sayfa genişletme fırsatı).
+6. **Commercial Funnel Analizi** — Visitor → Interested → Lead → RFQ →
+   Customer arasında koddan/içerikten çıkarılan, açıkça varsayım
+   olarak işaretlenmiş sızıntı hipotezleri.
+
+Bu dosya **her sprint'in ilk okunması gereken dosyasıdır** (bkz. döngü
+adım 0). Search Console verisi sağlandığında, "Data Required" maddeleri
+doldurulur ve ilgili ICE Confidence değerleri yeniden hesaplanır.
 
 # Risk Sınıflandırması
 

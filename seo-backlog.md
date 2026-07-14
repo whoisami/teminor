@@ -5,7 +5,7 @@ Her çalışmada güncellenir: tamamlanan maddeler "Durum: Tamamlandı" olarak
 işaretlenir, yeni bulgular ilgili öncelik başlığına eklenir. Öncelik sırası
 iş etkisine göredir, teknik zorluğa göre değil.
 
-**Son güncelleme:** 2026-07-14 (SEO Sprint #4 — ticari önceliklendirme politikası eklendi)
+**Son güncelleme:** 2026-07-15 (SEO Sprint #5 — Growth Intelligence, ICE skorları eklendi)
 
 ## Ticari Önceliklendirme (SEO Sprint #4)
 
@@ -19,6 +19,14 @@ etiketleme/politika eklendi — HIGH/MEDIUM/LOW öncelik seviyeleri, yeni
 bir audit yapılmadığı için değiştirilmedi; bir sonraki teknik sprintte
 bu etiketlerle yeniden değerlendirilecek.
 
+## ICE Skorlaması (SEO Sprint #5)
+
+Her açık maddeye artık `SEO_GROWTH_PLAN.md`'deki metodolojiyle bir
+**ICE Skoru** (Impact × Confidence ÷ Effort, her boyut 1-10) eklendi.
+Detaylı gerekçe ve tam fırsat tablosu `SEO_GROWTH_PLAN.md`'de — burada
+yalnızca skor ve referans var. seo-agent bundan sonra her sprint'te önce
+`SEO_GROWTH_PLAN.md`'yi okur, sonra bu dosyayı günceller.
+
 ---
 
 # HIGH
@@ -27,6 +35,7 @@ bu etiketlerle yeniden değerlendirilecek.
 
 - **Durum:** Altyapı tamamlandı (SEO Sprint #2) — aktivasyon açık
 - **Öncelik:** HIGH
+- **ICE Skoru:** 50.0 (Impact 10 × Confidence 10 ÷ Effort 2) — bkz. `SEO_GROWTH_PLAN.md` §2
 - **Ticari Etki:** Tüm Success Metrics'in (#1-8) ölçümü buna bağlı —
   GA4 olmadan Qualified Lead/RFQ/Contact Form/Phone/WhatsApp
   dönüşümlerinin hiçbiri doğrulanamaz. Listedeki en yüksek ticari
@@ -51,6 +60,7 @@ bu etiketlerle yeniden değerlendirilecek.
 
 - **Durum:** Doğrulama tamamlanmış, veri erişimi açık (SEO Sprint #3'te tespit edildi)
 - **Öncelik:** HIGH
+- **ICE Skoru:** 80.0 (Impact 8 × Confidence 10 ÷ Effort 1) — bkz. `SEO_GROWTH_PLAN.md` §2. En yüksek ICE skorlu madde; sıfır kod maliyetiyle en yüksek bilgi değeri.
 - **Ticari Etki:** Doğrudan Organic Traffic/Keyword Ranking'e (#7-8,
   ladder'ın en altı) hizmet eder; Qualified Lead/RFQ'ye katkısı
   dolaylıdır (hangi query'lerin/sayfaların dönüşüm sağladığını görmeyi
@@ -73,6 +83,7 @@ bu etiketlerle yeniden değerlendirilecek.
 
 - **Durum:** Açık
 - **Öncelik:** HIGH
+- **ICE Skoru:** 45.0 (Impact 5 × Confidence 9 ÷ Effort 1) — bkz. `SEO_GROWTH_PLAN.md` §2
 - **Ticari Etki:** ICP'deki yerel karar vericilerin (fabrika/tesis/
   catering sahipleri) Google Business Profile ve yerel arama
   sonuçlarında Teminor'u bulabilmesi — dolaylı olarak Qualified
@@ -91,6 +102,7 @@ bu etiketlerle yeniden değerlendirilecek.
 
 - **Durum:** Açık (yeni bulgu — SEO Sprint #2)
 - **Öncelik:** HIGH
+- **ICE Skoru:** 10.0 (Impact 6 × Confidence 5 ÷ Effort 3) — bkz. `SEO_GROWTH_PLAN.md` §2. Confidence düşük çünkü hukuki belirsizlik var (Data Required değil ama uzman görüşü gerektirir).
 - **Ticari Etki:** GA4 entegrasyonunun (en yüksek ticari öncelikli madde)
   yasal ön koşulu olabilir — bu çözülmeden GA4 aktive edilirse tüm
   Success Metrics ölçümü riske girer.
@@ -109,6 +121,54 @@ bu etiketlerle yeniden değerlendirilecek.
 
 # MEDIUM
 
+## RFQ gönderimini ayrı bir GA4 event'i yapmak
+
+- **Durum:** Açık (yeni bulgu — SEO Sprint #5, GA4 event gap analizi)
+- **Öncelik:** MEDIUM
+- **ICE Skoru:** 28.0 (Impact 7 × Confidence 8 ÷ Effort 2) — bkz. `SEO_GROWTH_PLAN.md` §4
+- **Ticari Etki:** RFQ (#2), Contact Form'dan (#3) daha yüksek Success
+  Metric — ama şu an ikisi de aynı `contact_form_submit` event'i altında
+  toplanıyor, GA4'te RFQ'yu ayrı bir Key Event olarak işaretlemek mümkün
+  değil.
+- **Beklenen SEO etkisi:** Doğrudan SEO etkisi yok; ölçüm netliği.
+- **Not:** `RFQForm.tsx:89`, genel `contact_form_submit` event'ini
+  `sector: "rfq_form"` parametresiyle çağırıyor. Öneri: `AnalyticsEvents`'e
+  `RfqFormSubmit: "rfq_form_submit"` eklenip `RFQForm.tsx`'in kendi
+  event'ini çağırması. LOW RISK (mevcut kataloğu genişletme, yeni
+  provider yok) ama bu sprintte **uygulanmadı** — Sprint #5 yalnızca
+  analiz üretti, kod değiştirmedi.
+
+## RFQ formuna form-start/terk izleme eklemek
+
+- **Durum:** Açık (yeni bulgu — SEO Sprint #5, Commercial Funnel analizi)
+- **Öncelik:** MEDIUM
+- **ICE Skoru:** 14.0 (Impact 7 × Confidence 6 ÷ Effort 3) — bkz. `SEO_GROWTH_PLAN.md` §4, §6
+- **Ticari Etki:** `SEO_GROWTH_PLAN.md`'deki funnel analizinde Lead→RFQ
+  arası (Contact Form 6 alan vs. RFQ Form 14 alan, 11 zorunlu) en güçlü
+  sızıntı hipotezi olarak tespit edildi — bu event, hipotezi gerçek
+  veriyle test etmenin tek yolu.
+- **Beklenen SEO etkisi:** Yok — bu tamamen dönüşüm huni ölçümü.
+- **Not:** Öneri: formun ilk alan etkileşiminde (`onFocus`/`onChange`)
+  bir kez tetiklenen `rfq_form_start` event'i eklemek; start/submit oranı
+  = terk oranı. LOW RISK, bu sprintte **uygulanmadı**.
+
+## /iletisim sayfasına RFQ öncesi FAQ eklemek
+
+- **Durum:** Açık (yeni bulgu — SEO Sprint #5, Content Opportunity)
+- **Öncelik:** MEDIUM
+- **ICE Skoru:** 12.0 (Impact 8 × Confidence 6 ÷ Effort 4) — bkz. `SEO_GROWTH_PLAN.md` §2, §5
+- **Ticari Etki:** En yüksek Business Value'lu sayfada (`/iletisim`)
+  RFQ öncesi 7 cevapsız ticari soru tespit edildi (fiyatlandırma modeli,
+  pilot süresi, hizmet bölgesi, taahhüt, ödeme akışı, mevcut tedarikçi
+  ilişkileri, atanan ekip büyüklüğü) — bkz. `SEO_GROWTH_PLAN.md` §5 için
+  tam liste.
+- **Beklenen SEO etkisi:** Dolaylı — FAQ içeriği uzun-kuyruk sorguları da
+  yakalayabilir, ama asıl amaç dönüşüm sürtünmesini azaltmak.
+- **Not:** Bu, yeni sayfa değil, mevcut `/iletisim` sayfasına eklenecek
+  içerik. Confidence orta çünkü bu sorular davranışsal veriyle değil,
+  içerik/form alanı analiziyle çıkarıldı (varsayım). Bu sprintte
+  **uygulanmadı** — talimat gereği yalnızca fırsat listesi oluşturuldu.
+
 ## Blog internal linking
 
 - **Durum:** Tamamlandı (SEO Sprint #1)
@@ -123,7 +183,8 @@ bu etiketlerle yeniden değerlendirilecek.
   sayfanın blog önizleme bölümünden `/blog` indeksine doğrudan link
   eklendi ("Tüm Yazıları Görüntüle"); blog yazılarına breadcrumb
   navigasyonu eklendi. Devam eden fırsat: `/hizmetler` ve
-  `/neden-teminor` sayfalarından blog'a geri link hâlâ yok.
+  `/neden-teminor` sayfalarından blog'a geri link hâlâ yok — **ICE Skoru:
+  16.0** (Impact 4 × Confidence 8 ÷ Effort 2), bkz. `SEO_GROWTH_PLAN.md` §2.
 
 ## Image alt audit
 
@@ -141,6 +202,7 @@ bu etiketlerle yeniden değerlendirilecek.
 
 - **Durum:** Açık
 - **Öncelik:** MEDIUM
+- **ICE Skoru:** 12.0 (Impact 6 × Confidence 4 ÷ Effort 2) — bkz. `SEO_GROWTH_PLAN.md` §2
 - **Ticari Etki:** `/iletisim` (RFQ + Contact Form) sayfasının yükleme
   hızı doğrudan Contact Form/RFQ dönüşüm oranını etkiler — bu ölçüm
   yalnızca genel Keyword Ranking için değil, dönüşüm sayfası UX'i için
@@ -157,6 +219,7 @@ bu etiketlerle yeniden değerlendirilecek.
 
 - **Durum:** Açık (yeni bulgu — SEO Sprint #3, `SEO_SEARCH_MAP.md` denetiminde)
 - **Öncelik:** MEDIUM
+- **ICE Skoru:** 3.0 (Impact 5 × Confidence 3 ÷ Effort 5) — bkz. `SEO_GROWTH_PLAN.md` §2. Confidence düşük çünkü **Data Required** (Search Console query çakışması doğrulanmadı); Effort yüksek çünkü çözüm içerik yeniden yazımı gerektiriyor.
 - **Ticari Etki:** Her iki yazı da `/hizmetler`'e (dönüşüm sayfası) CTA
   veriyor — cannibalization çözülürse organik trafik artışının
   büyük kısmı zaten RFQ/Contact Form yoluna akar. Yine de bu etki
@@ -180,6 +243,7 @@ bu etiketlerle yeniden değerlendirilecek.
 
 - **Durum:** Açık (yeni bulgu — SEO Sprint #1)
 - **Öncelik:** MEDIUM
+- **ICE Skoru:** 10.0 (Impact 1 × Confidence 10 ÷ Effort 1) — bkz. `SEO_GROWTH_PLAN.md` §2. Düşük Impact yüzünden düşük öncelikte kalıyor, skorun yüksek görünmesi yalnızca çok düşük Effort'tan kaynaklanıyor.
 - **Ticari Etki:** Yok/ihmal edilebilir — hiçbir Success Metric'e
   ölçülebilir katkısı yok, saf teknik temizlik. SEO Decision Rule'ün
   3. sorusuna ("yalnızca Google için mi?") cevabı da "Hayır" (Google'ı
@@ -212,6 +276,7 @@ bu etiketlerle yeniden değerlendirilecek.
 
 - **Durum:** Kısmen tamamlandı (SEO Sprint #1, #3)
 - **Öncelik:** LOW
+- **ICE Skoru:** 6.0 (Impact 3 × Confidence 6 ÷ Effort 3) — bkz. `SEO_GROWTH_PLAN.md` §2
 - **Beklenen SEO etkisi:** Sayfa bazlı OG image eksikliği ve blog
   frontmatter'daki `ogImage` alanının kullanılmıyor olması, sosyal
   paylaşım görünürlüğünü küçük ölçüde etkiler.

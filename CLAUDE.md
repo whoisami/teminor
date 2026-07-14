@@ -177,16 +177,25 @@ güncellenir:
   mevcut title/description/H1, internal linking durumu ve
   cannibalization riski envanteri. Search Console verisi sağlandığında
   bu envanterle çapraz doğrulanır.
+- **`SEO_GROWTH_PLAN.md`** — ICE (Impact × Confidence ÷ Effort)
+  skorlanmış büyüme fırsatı planı: sayfa değeri sıralaması (Business/
+  SEO/Conversion Value + Maintenance Cost), fırsat backlog'u, Search
+  Console olmadan yapılamayan analizler için "Data Required"
+  işaretlemesi, GA4 event boşluk analizi, cevaplanmayan ticari sorular
+  ve Visitor→Interested→Lead→RFQ→Customer huni analizi (varsayım
+  olarak işaretli). **seo-agent her sprint'e bu dosyayı okuyarak
+  başlar** — döngünün 0. adımı.
 
-seo-agent her çalıştığında şu döngüyü uygular: **Ticari Etki
-Değerlendirmesi (SEO Decision Rule)** → Repository Scan → SEO Audit →
-Risk Analizi → LOW RISK düzeltmeleri uygula → `npm run lint` →
-`npm run build` → Analytics Health kontrolü → `SEO_SCORE.md` güncelle →
-`seo-backlog.md` güncelle → Git Commit hazırla → Push için kullanıcı
-onayı bekle. Ticari Etki Değerlendirmesi, döngünün artık ilk adımıdır:
-her bulgu/öneri, uygulanmadan önce yukarıdaki "Ticari Hedef" bölümündeki
-3 soruyla test edilir. Analytics Health kontrolü, GA4'ün aktif olup
-olmadığını, Measurement ID'nin okunduğunu, event sisteminin çalıştığını
-ve eksik event olup olmadığını doğrular — sonucu her sprint raporunda
+seo-agent her çalıştığında şu döngüyü uygular: **`SEO_GROWTH_PLAN.md`
+oku** → **Ticari Etki Değerlendirmesi (SEO Decision Rule)** →
+Repository Scan → SEO Audit → Risk Analizi → LOW RISK düzeltmeleri
+uygula → `npm run lint` → `npm run build` → Analytics Health kontrolü →
+`SEO_SCORE.md` güncelle → `seo-backlog.md` güncelle →
+`SEO_GROWTH_PLAN.md` güncelle → Git Commit hazırla → Push için kullanıcı
+onayı bekle. Ticari Etki Değerlendirmesi, her bulgu/öneri uygulanmadan
+önce yukarıdaki "Ticari Hedef" bölümündeki 3 soruyla test edilir.
+Analytics Health kontrolü, GA4'ün aktif olup olmadığını, Measurement
+ID'nin okunduğunu, event sisteminin çalıştığını ve eksik event olup
+olmadığını doğrular — sonucu her sprint raporunda
 görünür. Detaylar için `.claude/agents/seo-agent.md` dosyasına
 bakılmalıdır.
