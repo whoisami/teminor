@@ -1,7 +1,61 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import Reveal from "@/components/Reveal";
-import { DEFAULT_WHATSAPP_MESSAGE, SITE_URL, whatsappLink } from "@/lib/site";
+import {
+  DEFAULT_WHATSAPP_MESSAGE,
+  MIN_SUPPLIER_COMPARISON,
+  SITE_URL,
+  whatsappLink,
+} from "@/lib/site";
+
+const comparisonRows = [
+  {
+    criterion: "Zaman",
+    yourself: "Araştırma, teklif toplama ve takip ekibinizin zamanını alır",
+    withTeminor: "Süreç dış kaynağa devredilir, ekibiniz operasyona odaklanır",
+  },
+  {
+    criterion: "Tedarikçi Erişimi",
+    yourself: "Bilinen/mevcut tedarikçilerle sınırlı kalınabilir",
+    withTeminor: "Alternatif ve karşılaştırmalı tedarikçi araştırması yapılır",
+  },
+  {
+    criterion: "Fiyat Karşılaştırması",
+    yourself: "Tek kaynaktan fiyat alınabilir",
+    withTeminor: `Her talepte ${MIN_SUPPLIER_COMPARISON}+ tedarikçiden teklif toplanır`,
+  },
+  {
+    criterion: "Risk Yönetimi",
+    yourself: "Tedarikçi doğrulaması manuel ve düzensiz olabilir",
+    withTeminor: "Çok kaynaklı doğrulama ve güven derecelendirmesi uygulanır",
+  },
+  {
+    criterion: "Süreklilik",
+    yourself: "Ana tedarikçide sorun çıkarsa yedek plan olmayabilir",
+    withTeminor: "Ana/yedek tedarikçi önerisi standart süreçtir",
+  },
+];
+
+// Hypothetical, illustrative scenarios — not real customer references.
+// Each card is labeled "Örnek Senaryo" in the UI so this is never
+// presented as a testimonial or case study.
+const scenarioCards = [
+  {
+    title: "Catering / Toplu Yemek",
+    description:
+      "Bir catering işletmesi ambalaj ve tek kullanımlık ürün kategorisinde aylık 6'ya kadar RFQ ile çalışır; süreç talep girişinden karşılaştırmalı teklife kadar birkaç iş günü içinde ilerler.",
+  },
+  {
+    title: "Temizlik / Tesis Yönetimi",
+    description:
+      "Temizlik ve hijyen ürünleri kategorisinde çalışan bir tesis yönetim şirketi, konsantrasyon ve kullanım maliyeti karşılaştırmasıyla birim maliyetlerini netleştirir.",
+  },
+  {
+    title: "Otel / Restoran",
+    description:
+      "Kurumsal mutfak işletmesi, kâğıt ürünleri kategorisinde kalite/gramaj eşitlemesiyle farklı tedarikçilerin tekliflerini karşılaştırılabilir hale getirir.",
+  },
+];
 
 const description =
   "Teminor'un dış kaynaklı satın alma modelinin temel ilkeleri: ortaklık yaklaşımı, onay mekanizması, esnek operasyon modeli ve şeffaf ücretlendirme.";
@@ -104,6 +158,82 @@ export default function NedenTeminorPage() {
               bir güven ilişkisi kurmamızın temelini oluşturur.
             </p>
           </Reveal>
+        </div>
+      </section>
+
+      <section className="bg-light-bg py-20">
+        <div className="container-content">
+          <Reveal>
+            <p className="eyebrow text-center">Karşılaştırma</p>
+            <h2 className="mt-3 text-center font-serif text-3xl text-navy md:text-4xl">
+              Kendiniz Yaparsanız vs. Teminor ile Çalışırsanız
+            </h2>
+          </Reveal>
+          <Reveal delay={0.1}>
+            <div className="mt-10 overflow-x-auto rounded-sm border border-navy/10 bg-white">
+              <table className="w-full min-w-[640px] border-collapse text-left text-sm">
+                <thead>
+                  <tr className="border-b border-navy/10 bg-navy text-white">
+                    <th className="px-6 py-4 font-serif text-base font-medium">
+                      Kriter
+                    </th>
+                    <th className="px-6 py-4 font-serif text-base font-medium">
+                      Kendiniz Yaparsanız
+                    </th>
+                    <th className="px-6 py-4 font-serif text-base font-medium">
+                      Teminor ile
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {comparisonRows.map((row, i) => (
+                    <tr
+                      key={row.criterion}
+                      className={i % 2 === 1 ? "bg-light-bg" : undefined}
+                    >
+                      <td className="px-6 py-4 align-top font-semibold text-navy">
+                        {row.criterion}
+                      </td>
+                      <td className="px-6 py-4 align-top text-muted">
+                        {row.yourself}
+                      </td>
+                      <td className="px-6 py-4 align-top text-navy">
+                        {row.withTeminor}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
+      <section className="bg-white py-20">
+        <div className="container-content">
+          <Reveal>
+            <p className="eyebrow text-center">Örnek Senaryolar</p>
+            <h2 className="mt-3 text-center font-serif text-3xl text-navy md:text-4xl">
+              Sektörünüzde nasıl çalışır?
+            </h2>
+          </Reveal>
+          <div className="mt-10 grid gap-6 md:grid-cols-3">
+            {scenarioCards.map((card, i) => (
+              <Reveal key={card.title} delay={i * 0.08}>
+                <div className="flex h-full flex-col rounded-sm border border-navy/10 bg-light-bg p-8">
+                  <p className="text-xs font-medium uppercase tracking-wide text-gold">
+                    Örnek Senaryo
+                  </p>
+                  <h3 className="mt-3 font-serif text-lg text-navy">
+                    {card.title}
+                  </h3>
+                  <p className="mt-3 text-sm leading-relaxed text-muted">
+                    {card.description}
+                  </p>
+                </div>
+              </Reveal>
+            ))}
+          </div>
         </div>
       </section>
 
