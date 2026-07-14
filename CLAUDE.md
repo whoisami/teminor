@@ -85,3 +85,25 @@ Google'da daha iyi sıralama, daha fazla organik trafik, daha yüksek
 dönüşüm, daha iyi kullanıcı deneyimi veya daha iyi teknik SEO. Sadece
 "SEO puanı" yükseltmek için yapılan, kullanıcıya veya işe gerçek değer
 katmayan değişiklik yapılmaz.
+
+## SEO Agent — Sürekli Ölçüm ve İyileştirme
+
+Bu repo, `.claude/agents/seo-agent.md` içinde tanımlı kalıcı bir SEO
+ajanı tarafından takip edilir. seo-agent'ın görevi yalnızca hata bulmak
+değildir — repository'nin SEO durumunu **sürekli ölçmek ve geliştirmektir**.
+Bunun için iki dosya kalıcı olarak tutulur ve her seo-agent çalışmasında
+güncellenir:
+
+- **`SEO_SCORE.md`** — Technical SEO, Metadata, Structured Data, Internal
+  Linking, Performance, Accessibility, Analytics, Content ve Overall
+  başlıkları altında, kanıta dayalı (koddan doğrulanmış), gerekçeli puan
+  kartı.
+- **`seo-backlog.md`** — HIGH / MEDIUM / LOW önceliğine göre sınıflanmış,
+  her madde için Durum / Öncelik / Beklenen SEO etkisi / Not içeren açık
+  bulgu listesi.
+
+seo-agent her çalıştığında şu döngüyü uygular: Repository Scan → SEO
+Audit → Risk Analizi → LOW RISK düzeltmeleri uygula → `npm run lint` →
+`npm run build` → `SEO_SCORE.md` güncelle → `seo-backlog.md` güncelle →
+Git Commit hazırla → Push için kullanıcı onayı bekle. Detaylar için
+`.claude/agents/seo-agent.md` dosyasına bakılmalıdır.
