@@ -74,7 +74,6 @@ export default function HomePage() {
         url: SITE_URL,
         telephone: `+${CONTACT_PHONE_INTL}`,
         email: CONTACT_EMAIL,
-        priceRange: "$$",
         address: {
           "@type": "PostalAddress",
           addressLocality: "İzmir",

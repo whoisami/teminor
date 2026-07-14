@@ -3,7 +3,13 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import Reveal from "@/components/Reveal";
-import { formatPostDate, getAllSlugs, getPostBySlug } from "@/lib/blog";
+import BlogCard from "@/components/BlogCard";
+import {
+  formatPostDate,
+  getAllSlugs,
+  getPostBySlug,
+  getRelatedPosts,
+} from "@/lib/blog";
 import { SITE_URL } from "@/lib/site";
 
 export async function generateStaticParams() {
@@ -72,6 +78,8 @@ export default async function BlogPostPage({ params }: PageProps) {
   const post = getPostBySlug(slug);
   if (!post) notFound();
 
+  const relatedPosts = getRelatedPosts(slug);
+
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
@@ -109,6 +117,19 @@ export default async function BlogPostPage({ params }: PageProps) {
             <MDXRemote source={post.content} components={mdxComponents} />
           </div>
         </Reveal>
+
+        {relatedPosts.length > 0 && (
+          <Reveal delay={0.15}>
+            <div className="mt-16 border-t border-navy/10 pt-10">
+              <p className="eyebrow">İlgili Yazılar</p>
+              <div className="mt-6 grid gap-6 sm:grid-cols-2">
+                {relatedPosts.map((relatedPost) => (
+                  <BlogCard key={relatedPost.slug} post={relatedPost} />
+                ))}
+              </div>
+            </div>
+          </Reveal>
+        )}
       </div>
     </article>
   );

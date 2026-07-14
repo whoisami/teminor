@@ -5,95 +5,92 @@ puan kartıdır. Puanlar 0-10 arasındadır ve doğrudan repodaki koddan
 doğrulanarak verilir — tahmine dayalı puan verilmez.
 
 **Son güncelleme:** 2026-07-14
-**Değerlendiren:** seo-agent (ilk baseline değerlendirmesi)
-**Kapsam:** `main` branch, commit `16f066f` sonrası durum
+**Değerlendiren:** seo-agent (SEO Sprint #1 — LOW RISK düzeltmeler)
+**Kapsam:** `main` branch, bu sprint'te işlenen commit öncesi taban `bef5ae8`
 
 ---
 
-## Technical SEO — 8/10
+## Technical SEO — 8/10 (değişmedi)
 
-Next.js 16 App Router, statik export (`output: "export"`). Route yapısı
-temiz, küçük harf, tire ayrımlı, query param yok (`/`, `/neden-teminor`,
-`/hizmetler`, `/blog`, `/blog/[slug]`, `/iletisim`, `/gizlilik`).
-`app/sitemap.ts` ve `app/robots.ts` Next.js metadata route konvansiyonuyla
-üretiliyor, `robots.txt` yalnızca `/api/`'yi disallow ediyor ve sitemap'e
-doğru referans veriyor. Eksik: build sonrası gerçek bir Lighthouse/PSI
-taraması hiç çalıştırılmamış; GitHub Actions üzerinden otomatik SEO/CI
-kontrolü yok (deploy tamamen Cloudflare Pages'in otomatik build'ine bağlı).
+Next.js 16 App Router, statik export. Route yapısı temiz. `app/sitemap.ts`
+ve `app/robots.ts` doğru üretiliyor. Bu sprintte "Sadece raporla, değiştirme"
+talimatı gereği bu kategoride kod değişikliği yapılmadı — sitemap, robots,
+canonical ve indexability doğrulandı, sorun bulunmadı. Eksik: gerçek
+Lighthouse/PSI taraması hâlâ hiç çalıştırılmadı; CI'da otomatik SEO
+kontrolü yok.
 
-## Metadata — 8/10
+## Metadata — 9/10 (+1)
 
-Her sayfada `metadata`/`generateMetadata` export'u, `alternates.canonical`,
-Open Graph (title/description/url/type) tutarlı şekilde tanımlı. Root
-layout'ta `metadataBase`, title template (`%s | Teminor`), Twitter Card
-(`summary_large_image`) mevcut. Eksik: sayfa bazlı OG image yok (tüm
-sayfalar layout'taki tek lockup görselini miras alıyor), blog yazılarının
-kendi `ogImage`'i frontmatter'da tanımlı olsa da kullanılmıyor mu
+`app/hizmetler/page.tsx`'teki meta description ve hero alt metni, sayfanın
+artık gerçek Hizmet 1-4 (Başlangıç/Aktif/Yoğun-Kurumsal/Proje Bazlı)
+içeriğiyle **tutarsızdı** (eski "tekil kategori desteğinden uçtan uca
+departman yönetimine" ifadesini taşıyordu) — güncel içerikle eşleşecek
+şekilde düzeltildi. Root layout'a eksik olan `icons` metadata alanı
+(favicon.ico, icon-32.png, apple-touch-icon.png) eklendi; önceden bu
+dosyalar yalnızca tarayıcı varsayılan konvansiyonuna güveniyordu, artık
+`<head>`'de açık `<link rel="icon">`/`<link rel="apple-touch-icon">`
+etiketleri var. Diğer sayfalarda duplicate title/description veya eksik
+Open Graph bulunmadı.
+
+## Structured Data — 7/10 (+1)
+
+`LocalBusiness.priceRange: "$$"` — doğrulanamayan/uydurma bir alandı,
+CLAUDE.md kuralına aykırıydı, **kaldırıldı**. Diğer JSON-LD yapıları
+(`Organization`, `BlogPosting`, `ContactPage`) doğrulandı, geçersiz alan
+bulunmadı. Açık kalan: `address.addressLocality: "İzmir"` hâlâ
+doğrulanmamış — bu bir iş verisi sorusu olduğu için (kod düzeltmesi değil)
+kaldırılmadı, kullanıcı onayı gereken bir madde olarak backlog'a taşındı.
+
+## Internal Linking — 7/10 (+3)
+
+4 blog yazısına, sonunda ilgili 2 yazıya link veren "İlgili Yazılar" bloğu
+eklendi (`lib/blog.ts`'te küratörlü `getRelatedPosts`, `app/blog/[slug]/
+page.tsx`'te render). Ayrıca 4 yazının gövde metnine, doğal cümle akışı
+içinde `/neden-teminor` ve `/hizmetler`'e bağlamsal linkler eklendi (yeni
+iddia/cümle uydurulmadı, sadece mevcut ifadeler linklendi). Orphan sayfa
+kontrolü yapıldı: tüm sayfalar header/footer/sitemap üzerinden erişilebilir,
+orphan yok. Açık kalan: blog hacmi düşük olduğu için (4 yazı) internal
+linking potansiyeli sınırlı; `/hizmetler` ve `/neden-teminor` sayfalarından
+blog'a geri link yok.
+
+## Performance — 6/10 (değişmedi)
+
+Bu sprintte yalnızca "güvenli fırsatları belirle" talimatı vardı, kod
+değişikliği yapılmadı. Tespit: `package.json`'daki `@mdx-js/react`
+bağımlılığı kodda hiçbir yerde import edilmiyor (`next-mdx-remote` bunu
+peer dependency olarak da gerektirmiyor) — kullanılmayan bir paket,
+bundle/dependency ağacını gereksiz büyütüyor. Kaldırılması bir bağımlılık
+değişikliği olduğu için LOW RISK sayılsa da bu sprintin kapsamı dışında
+bırakıldı, backlog'a eklendi. `next/font` ve Framer Motion kullanımı
+incelendi, sorun bulunmadı.
+
+## Accessibility — 8/10 (+1)
+
+Tüm sayfalarda `h1` → `h2` → `h3` hiyerarşisi doğrulandı: her sayfada tam
+olarak bir `h1` var, seviye atlaması yok (`BenefitCard` içindeki kart
+başlıkları doğru şekilde `h3` olarak ana bölüm `h2`'sinin altında).
+Favicon/apple-touch-icon için açık `<link>` etiketleri eklenmesi ekran
+okuyucu değil ama tarayıcı/İşletim sistemi düzeyinde tutarlılığı artırdı.
+Açık kalan: skip-to-content linki yok, renk kontrastı otomatik araçla
 doğrulanmadı.
 
-## Structured Data — 6/10
+## Analytics — 0/10 (değişmedi, HIGH RISK)
 
-Ana sayfada `Organization` + `LocalBusiness` (`@graph` ile), blog
-detayında `BlogPosting`, iletişimde `ContactPage` JSON-LD mevcut ve
-doğru `@id`/`@type` yapısı kullanılmış. Bulgu: `LocalBusiness.priceRange:
-"$$"` doğrulanmamış/uydurma bir ticari iddiadır — CLAUDE.md kuralına
-aykırı, düzeltilmesi gerekiyor (bkz. `seo-backlog.md`, LOW). Ayrıca
-`address.addressLocality: "İzmir"` gerçek bir ofis adresini yansıtmıyor
-olabilir, doğrulanmalı.
+GA4 ve Search Console entegrasyonu hâlâ yok. Bu sprintin kapsamında değildi
+(HIGH RISK, kullanıcı onayı gerekli) — backlog'da açık.
 
-## Internal Linking — 4/10
+## Content — 7/10 (değişmedi)
 
-4 blog yazısının hiçbiri birbirine link vermiyor; her biri yalnızca
-`/iletisim` veya `/hizmetler`'e link veriyor. Hiçbir blog yazısından
-`/neden-teminor`'a link yok. Ana sayfa blog preview'u ve nav/footer
-linkleri dışında sayfalar arası anlamlı, bağlamsal internal link neredeyse
-yok. Bu, topical authority ve crawl derinliği açısından en zayıf alan.
-
-## Performance — 6/10 (kısmen doğrulanmamış)
-
-`next/font` ile Fraunces + Inter self-hosted/optimize ediliyor,
-`font-display` varsayılan Next.js davranışına bağlı. `images.unoptimized:
-true` (statik export zorunluluğu) — mevcut görseller (logo, favicon)
-küçük olduğu için düşük risk. Framer Motion scroll-reveal kullanılıyor,
-ağır değil. Eksik: hiç gerçek Lighthouse/Core Web Vitals ölçümü
-yapılmadı, bu puan kod incelemesine dayalı bir tahmindir, ölçülmüş bir
-veri değildir.
-
-## Accessibility — 7/10
-
-Dekoratif SVG'ler (`BenefitIcons`, `HeroTexture`) doğru şekilde
-`aria-hidden="true"` ile işaretlenmiş. WhatsApp butonu ve mobil menü
-butonu `aria-label` içeriyor. İletişim formunda her alan için `<label
-htmlFor>` var, honeypot alanı `aria-hidden` + `tabIndex={-1}` ile ekran
-okuyuculardan doğru şekilde gizlenmiş. `lang="tr"` root'ta tanımlı. Eksik:
-skip-to-content linki yok, başlık hiyerarşisi (`h1`→`h2`→`h3`) ve renk
-kontrastı (navy `#1B2A41` / gold `#9C7A34` kombinasyonları) manuel/otomatik
-araçla doğrulanmadı.
-
-## Analytics — 0/10
-
-Repoda hiçbir analytics veya arama konsolu entegrasyonu yok: GA4 yok, GTM
-yok, Search Console doğrulama etiketi veya dosyası yok. Şu an organik
-trafik, sorgu veya dönüşüm verisi hiçbir şekilde ölçülemiyor — SEO
-çalışmalarının etkisi görünür değil.
-
-## Content — 7/10
-
-4 blog yazısı orijinal, tutarlı tonda, uydurma istatistik içermiyor,
-her biri net bir arama niyetine (stratejik önem, ticari değer, KOBİ
-outsourcing, kurumsal ekip desteği) hitap ediyor. Hizmetler sayfası
-gerçek, kullanıcı onaylı paket bilgileriyle güncel. Eksik: blog hacmi
-düşük (4 yazı), yayın sıklığı/takvimi belli değil, uzun kuyruk anahtar
-kelime kapsamı sınırlı.
+İçerik hacmi ve kalitesi bu sprintte değişmedi; yalnızca mevcut cümlelere
+link eklendi, yeni iddia/istatistik yazılmadı.
 
 ---
 
-## Overall — 5.75/10
+## Overall — 6.5/10 (+0.75)
 
-Teknik temel (routing, metadata, sitemap/robots, structured data,
-erişilebilirlik) sağlam ve Google Search Essentials'a uyumlu. En büyük
-açık, ölçüm katmanının tamamen eksik olması (Analytics 0/10) — bu, diğer
-tüm iyileştirmelerin etkisinin görünmez kalmasına neden oluyor. İkinci
-büyük açık internal linking zayıflığı. Performance ve Accessibility
-puanları kod incelemesine dayalıdır, gerçek ölçüm (Lighthouse, PSI,
-Search Console) yapıldıkça bu dosya güncellenecektir.
+Bu sprintte 3 kategoride somut ilerleme kaydedildi: Internal Linking
+(4→7), Structured Data (6→7), Metadata (8→9), Accessibility (7→8). En
+büyük açık hâlâ Analytics (0/10) — HIGH RISK olduğu için kullanıcı onayı
+bekliyor. İkinci öncelik: Search Console verisi bağlandığında Technical
+SEO ve Content kategorilerinin gerçek arama verisiyle yeniden
+değerlendirilmesi.

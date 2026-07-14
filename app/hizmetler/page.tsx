@@ -4,7 +4,7 @@ import Reveal from "@/components/Reveal";
 import { DEFAULT_WHATSAPP_MESSAGE, SITE_URL, whatsappLink } from "@/lib/site";
 
 const description =
-  "Teminor'un satın alma hizmet paketlerini inceleyin: tekil kategori desteğinden uçtan uca satın alma departmanı yönetimine kadar ihtiyacınıza uygun modeli seçin.";
+  "Teminor'un satın alma hizmet paketlerini inceleyin: talep hacminize uygun Başlangıç, Aktif, Yoğun/Kurumsal modelleri veya proje bazlı tedarik desteğini seçin.";
 
 export const metadata: Metadata = {
   title: "Hizmetler",
@@ -66,9 +66,9 @@ export default function HizmetlerPage() {
               İhtiyacınıza göre kurulan satın alma hizmet paketleri.
             </h1>
             <p className="mt-6 max-w-2xl text-lg text-white/75">
-              Tekil kategori desteğinden uçtan uca satın alma departmanı
-              yönetimine kadar, işletmenizin ölçeğine uygun modeli birlikte
-              belirleriz.
+              Talep hacminize uygun modeli — Başlangıç&apos;tan
+              Yoğun/Kurumsal&apos;a, proje bazlı tedarik desteğine kadar —
+              birlikte belirleriz.
             </p>
           </Reveal>
         </div>

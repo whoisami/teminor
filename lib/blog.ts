@@ -52,6 +52,33 @@ export function getPostBySlug(slug: string): PostSummary | null {
   }
 }
 
+const RELATED_SLUGS: Record<string, string[]> = {
+  "satin-almanin-sirketler-icin-stratejik-onemi": [
+    "satin-alma-surecinin-ticari-degeri",
+    "kobiler-icin-dis-kaynak-satin-alma",
+  ],
+  "satin-alma-surecinin-ticari-degeri": [
+    "satin-almanin-sirketler-icin-stratejik-onemi",
+    "kobiler-icin-dis-kaynak-satin-alma",
+  ],
+  "kobiler-icin-dis-kaynak-satin-alma": [
+    "satin-alma-departmani-olan-sirketlere-teminor-faydasi",
+    "satin-almanin-sirketler-icin-stratejik-onemi",
+  ],
+  "satin-alma-departmani-olan-sirketlere-teminor-faydasi": [
+    "kobiler-icin-dis-kaynak-satin-alma",
+    "satin-alma-surecinin-ticari-degeri",
+  ],
+};
+
+export function getRelatedPosts(slug: string): PostSummary[] {
+  const relatedSlugs = RELATED_SLUGS[slug] ?? [];
+  const allPosts = getAllPosts();
+  return relatedSlugs
+    .map((relatedSlug) => allPosts.find((post) => post.slug === relatedSlug))
+    .filter((post): post is PostSummary => Boolean(post));
+}
+
 export function formatPostDate(date: string): string {
   return new Date(date).toLocaleDateString("tr-TR", {
     year: "numeric",

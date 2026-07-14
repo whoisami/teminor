@@ -27,6 +27,13 @@ export const metadata: Metadata = {
   },
   description:
     "Teminor, KOBİ'ler için satın alma danışmanlığı, dış kaynak satın alma ve uçtan uca tedarik yönetimi hizmeti sunar.",
+  icons: {
+    icon: [
+      { url: "/favicon.ico" },
+      { url: "/icon-32.png", sizes: "32x32", type: "image/png" },
+    ],
+    apple: [{ url: "/apple-touch-icon.png" }],
+  },
   openGraph: {
     type: "website",
     locale: "tr_TR",
