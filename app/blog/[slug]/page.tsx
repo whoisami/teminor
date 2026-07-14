@@ -59,6 +59,9 @@ const mdxComponents = {
   ul: (props: React.ComponentProps<"ul">) => (
     <ul className="mt-4 list-disc space-y-2 pl-6 text-muted" {...props} />
   ),
+  ol: (props: React.ComponentProps<"ol">) => (
+    <ol className="mt-4 list-decimal space-y-2 pl-6 text-muted" {...props} />
+  ),
   li: (props: React.ComponentProps<"li">) => <li {...props} />,
   strong: (props: React.ComponentProps<"strong">) => (
     <strong className="font-semibold text-navy" {...props} />

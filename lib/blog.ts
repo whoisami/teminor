@@ -55,18 +55,30 @@ export function getPostBySlug(slug: string): PostSummary | null {
 const RELATED_SLUGS: Record<string, string[]> = {
   "satin-almanin-sirketler-icin-stratejik-onemi": [
     "satin-alma-surecinin-ticari-degeri",
-    "kobiler-icin-dis-kaynak-satin-alma",
+    "dis-kaynak-satin-alma-departmani-nedir",
   ],
   "satin-alma-surecinin-ticari-degeri": [
+    "kobiler-icin-gizli-maliyet-analizi",
     "satin-almanin-sirketler-icin-stratejik-onemi",
-    "kobiler-icin-dis-kaynak-satin-alma",
   ],
   "kobiler-icin-dis-kaynak-satin-alma": [
+    "dis-kaynak-satin-alma-departmani-nedir",
     "satin-alma-departmani-olan-sirketlere-teminor-faydasi",
-    "satin-almanin-sirketler-icin-stratejik-onemi",
   ],
   "satin-alma-departmani-olan-sirketlere-teminor-faydasi": [
+    "tedarikci-dolandiriciligindan-korunma-yontemleri",
     "kobiler-icin-dis-kaynak-satin-alma",
+  ],
+  "dis-kaynak-satin-alma-departmani-nedir": [
+    "kobiler-icin-dis-kaynak-satin-alma",
+    "satin-almanin-sirketler-icin-stratejik-onemi",
+  ],
+  "tedarikci-dolandiriciligindan-korunma-yontemleri": [
+    "kobiler-icin-gizli-maliyet-analizi",
+    "satin-alma-departmani-olan-sirketlere-teminor-faydasi",
+  ],
+  "kobiler-icin-gizli-maliyet-analizi": [
+    "tedarikci-dolandiriciligindan-korunma-yontemleri",
     "satin-alma-surecinin-ticari-degeri",
   ],
 };
