@@ -4,8 +4,26 @@ Bu dosya, `seo-agent`'in her çalışmasında otomatik güncellediği canlı bir
 puan kartıdır. Puanlar 0-10 arasındadır ve doğrudan repodaki koddan
 doğrulanarak verilir — tahmine dayalı puan verilmez.
 
+## Ticari Öncelik Notu (SEO Sprint #4 — politika güncellemesi)
+
+SEO Sprint #4, yalnızca seo-agent'ın kalıcı davranış kurallarını
+güncelledi (bkz. `/CLAUDE.md` ve `.claude/agents/seo-agent.md` — "Ticari
+Hedef", ICP, Success Metrics, SEO Decision Rule). **Bu sprintte yeni bir
+kod denetimi yapılmadı, bu yüzden aşağıdaki kategori puanları yeniden
+hesaplanmadı** — puanları uydurmadan güncellemek, ancak yeni bir audit
+ile mümkündür.
+
+Bundan sonraki her puan güncellemesinde şu ek kural geçerlidir: bir
+kategorinin puanı yükseliyorsa, gerekçesi Success Metrics'ten en az
+birine (Qualified Lead, RFQ, Contact Form, Phone Click, WhatsApp Click,
+Organic Conversion Rate, Organic Traffic, Keyword Ranking) açıkça
+bağlanmalıdır. "Daha iyi teknik SEO" gerekçesi tek başına yeterli
+değildir. Aşağıdaki Sprint #1-3 puanları ve gerekçeleri, eski (trafik
+ağırlıklı) lensle yazıldığı için olduğu gibi bırakıldı — geriye dönük
+olarak yeniden yorumlanmadı.
+
 **Son güncelleme:** 2026-07-14
-**Değerlendiren:** seo-agent (SEO Sprint #3 — Search Console ve Organik Görünürlük)
+**Değerlendiren:** seo-agent (SEO Sprint #3 — Search Console ve Organik Görünürlük; puanlar Sprint #4'te değişmedi)
 **Kapsam:** `main` branch, bu sprint'te işlenen commit öncesi taban `8f3f901`
 (Sprint #2'den bu yana RFQ formu, 3 yeni blog yazısı ve `/neden-teminor`
 karşılaştırma tablosu SEO sprint döngüsü dışında eklendi — bu sprint bu

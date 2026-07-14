@@ -99,13 +99,64 @@ uygulanmaz:
 - Force push yapma.
 - `--no-verify` veya benzeri hook atlama bayrakları kullanma.
 
-## Ticari Bağlam
+## Ticari Hedef (Business Objective) — SEO Sprint #4
 
-Her SEO/içerik önerisi şu hedeflerden en az birine hizmet etmelidir:
-Google'da daha iyi sıralama, daha fazla organik trafik, daha yüksek
-dönüşüm, daha iyi kullanıcı deneyimi veya daha iyi teknik SEO. Sadece
-"SEO puanı" yükseltmek için yapılan, kullanıcıya veya işe gerçek değer
-katmayan değişiklik yapılmaz.
+Teminor'un amacı **trafik artırmak değildir.** Teminor'un amacı şunları
+üretmektir:
+
+- Nitelikli iletişim formu doldurma (qualified lead)
+- WhatsApp görüşmesi başlatma
+- Telefon görüşmesi başlatma
+- RFQ (satın alma talep formu) gönderimi
+- Satın alma danışmanlığı talebi
+
+SEO, yalnızca bu hedeflere hizmet ettiği ölçüde değerlidir. Sıralama,
+trafik veya "SEO puanı" artışı — dönüşüme katkısı olmadan — kendi
+başına bir amaç değildir.
+
+### Ideal Customer Profile (ICP)
+
+seo-agent, içerik/metadata/internal-linking kararlarını verirken şu
+karar vericileri hedef alır — bir değişikliğin "kime hizmet ettiği"
+sorusu her zaman bu listeyle karşılaştırılır:
+
+- Genel Müdür
+- Satın Alma Müdürü
+- Operasyon Müdürü
+- Üretim Müdürü
+- Fabrika Sahibi
+- Catering Firması Sahibi
+- Temizlik Firması Sahibi
+- Tesis Yönetim Firması
+
+### Success Metrics (öncelik sırası)
+
+1. Qualified Lead
+2. RFQ
+3. Contact Form
+4. Phone Click
+5. WhatsApp Click
+6. Organic Conversion Rate
+7. Organic Traffic
+8. Keyword Ranking
+
+Bu sıralama bağlayıcıdır: bir değişiklik yalnızca #7 (Organic Traffic)
+veya #8 (Keyword Ranking)'i iyileştirip #1-6'ya hiçbir katkısı yoksa,
+düşük öncelikli sayılır — HIGH RISK/HIGH öncelik olarak sınıflandırılmaz.
+
+### SEO Decision Rule
+
+Her değişiklik önerisinden önce şu 3 soru sorulur:
+
+1. Bu değişiklik gerçek satın alma karar vericisine (yukarıdaki ICP'ye)
+   değer katıyor mu?
+2. Bu değişiklik dönüşüm ihtimalini (Success Metrics'ten birini)
+   artırıyor mu?
+3. Bu değişiklik yalnızca Google için mi yapılıyor?
+
+**3. sorunun cevabı "Evet" ise değişiklik uygulanmaz.** Bu kural, spam
+SEO/keyword stuffing/doorway page yasağıyla aynı bağlayıcılıkta —
+CLAUDE.md'nin "Asla" listesindeki maddelerle birlikte okunmalıdır.
 
 ## SEO Agent — Sürekli Ölçüm ve İyileştirme
 
@@ -127,11 +178,15 @@ güncellenir:
   cannibalization riski envanteri. Search Console verisi sağlandığında
   bu envanterle çapraz doğrulanır.
 
-seo-agent her çalıştığında şu döngüyü uygular: Repository Scan → SEO
-Audit → Risk Analizi → LOW RISK düzeltmeleri uygula → `npm run lint` →
+seo-agent her çalıştığında şu döngüyü uygular: **Ticari Etki
+Değerlendirmesi (SEO Decision Rule)** → Repository Scan → SEO Audit →
+Risk Analizi → LOW RISK düzeltmeleri uygula → `npm run lint` →
 `npm run build` → Analytics Health kontrolü → `SEO_SCORE.md` güncelle →
 `seo-backlog.md` güncelle → Git Commit hazırla → Push için kullanıcı
-onayı bekle. Analytics Health kontrolü, GA4'ün aktif olup olmadığını,
-Measurement ID'nin okunduğunu, event sisteminin çalıştığını ve eksik
-event olup olmadığını doğrular — sonucu her sprint raporunda görünür.
-Detaylar için `.claude/agents/seo-agent.md` dosyasına bakılmalıdır.
+onayı bekle. Ticari Etki Değerlendirmesi, döngünün artık ilk adımıdır:
+her bulgu/öneri, uygulanmadan önce yukarıdaki "Ticari Hedef" bölümündeki
+3 soruyla test edilir. Analytics Health kontrolü, GA4'ün aktif olup
+olmadığını, Measurement ID'nin okunduğunu, event sisteminin çalıştığını
+ve eksik event olup olmadığını doğrular — sonucu her sprint raporunda
+görünür. Detaylar için `.claude/agents/seo-agent.md` dosyasına
+bakılmalıdır.

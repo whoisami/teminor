@@ -5,7 +5,19 @@ Her çalışmada güncellenir: tamamlanan maddeler "Durum: Tamamlandı" olarak
 işaretlenir, yeni bulgular ilgili öncelik başlığına eklenir. Öncelik sırası
 iş etkisine göredir, teknik zorluğa göre değil.
 
-**Son güncelleme:** 2026-07-14 (SEO Sprint #3 sonrası)
+**Son güncelleme:** 2026-07-14 (SEO Sprint #4 — ticari önceliklendirme politikası eklendi)
+
+## Ticari Önceliklendirme (SEO Sprint #4)
+
+Bu sprintten itibaren öncelik sırası artık yalnızca "iş etkisi" değil,
+`/CLAUDE.md`'deki Success Metrics sıralamasına (1. Qualified Lead, 2.
+RFQ, 3. Contact Form, 4. Phone Click, 5. WhatsApp Click, 6. Organic
+Conversion Rate, 7. Organic Traffic, 8. Keyword Ranking) göre
+belirlenir. Her açık madde aşağıda **Ticari Etki** satırıyla en çok
+hizmet ettiği Success Metric'e etiketlendi. Bu sprintte yalnızca
+etiketleme/politika eklendi — HIGH/MEDIUM/LOW öncelik seviyeleri, yeni
+bir audit yapılmadığı için değiştirilmedi; bir sonraki teknik sprintte
+bu etiketlerle yeniden değerlendirilecek.
 
 ---
 
@@ -15,6 +27,10 @@ iş etkisine göredir, teknik zorluğa göre değil.
 
 - **Durum:** Altyapı tamamlandı (SEO Sprint #2) — aktivasyon açık
 - **Öncelik:** HIGH
+- **Ticari Etki:** Tüm Success Metrics'in (#1-8) ölçümü buna bağlı —
+  GA4 olmadan Qualified Lead/RFQ/Contact Form/Phone/WhatsApp
+  dönüşümlerinin hiçbiri doğrulanamaz. Listedeki en yüksek ticari
+  öncelik.
 - **Beklenen SEO etkisi:** Organik trafiğin, davranışın ve dönüşümün
   ölçülmesini sağlar. Ölçüm olmadan hiçbir SEO çalışmasının gerçek etkisi
   doğrulanamaz.
@@ -35,6 +51,11 @@ iş etkisine göredir, teknik zorluğa göre değil.
 
 - **Durum:** Doğrulama tamamlanmış, veri erişimi açık (SEO Sprint #3'te tespit edildi)
 - **Öncelik:** HIGH
+- **Ticari Etki:** Doğrudan Organic Traffic/Keyword Ranking'e (#7-8,
+  ladder'ın en altı) hizmet eder; Qualified Lead/RFQ'ye katkısı
+  dolaylıdır (hangi query'lerin/sayfaların dönüşüm sağladığını görmeyi
+  sağlar). Sıfır maliyetli ve zaten hazır olduğu için HIGH'ta tutuldu,
+  ama Success Metrics açısından GA4'ün altında.
 - **Beklenen SEO etkisi:** İndeksleme durumu, arama sorguları, tıklama
   oranları ve teknik hata (coverage) verisine erişim sağlar; sitemap
   gönderimi buradan yapılır.
@@ -52,6 +73,10 @@ iş etkisine göredir, teknik zorluğa göre değil.
 
 - **Durum:** Açık
 - **Öncelik:** HIGH
+- **Ticari Etki:** ICP'deki yerel karar vericilerin (fabrika/tesis/
+  catering sahipleri) Google Business Profile ve yerel arama
+  sonuçlarında Teminor'u bulabilmesi — dolaylı olarak Qualified
+  Lead/Phone Click'e katkı sağlar.
 - **Beklenen SEO etkisi:** `address.addressLocality: "İzmir"` alanı
   doğrulanmadan kalırsa yanlış yerel arama sinyali verme riski var; doğru
   şehir/adres bilgisi yerel SEO ve Google Business Profile eşleşmesi için
@@ -66,6 +91,9 @@ iş etkisine göredir, teknik zorluğa göre değil.
 
 - **Durum:** Açık (yeni bulgu — SEO Sprint #2)
 - **Öncelik:** HIGH
+- **Ticari Etki:** GA4 entegrasyonunun (en yüksek ticari öncelikli madde)
+  yasal ön koşulu olabilir — bu çözülmeden GA4 aktive edilirse tüm
+  Success Metrics ölçümü riske girer.
 - **Beklenen SEO etkisi:** Doğrudan SEO etkisi yok, ama GA4'ün gerçek bir
   Measurement ID ile aktive edilmesinin hukuki ön koşulu olabilir —
   yanlış sırayla yapılırsa (banner olmadan GA4 aktive etmek) KVKK uyum
@@ -113,6 +141,10 @@ iş etkisine göredir, teknik zorluğa göre değil.
 
 - **Durum:** Açık
 - **Öncelik:** MEDIUM
+- **Ticari Etki:** `/iletisim` (RFQ + Contact Form) sayfasının yükleme
+  hızı doğrudan Contact Form/RFQ dönüşüm oranını etkiler — bu ölçüm
+  yalnızca genel Keyword Ranking için değil, dönüşüm sayfası UX'i için
+  de önemli.
 - **Beklenen SEO etkisi:** LCP/CLS/INP Google sıralama sinyalleridir;
   şu ana kadar hiç gerçek ölçüm yapılmadı, `SEO_SCORE.md`'deki Performance
   puanı kod incelemesine dayalı bir tahmindir.
@@ -125,6 +157,10 @@ iş etkisine göredir, teknik zorluğa göre değil.
 
 - **Durum:** Açık (yeni bulgu — SEO Sprint #3, `SEO_SEARCH_MAP.md` denetiminde)
 - **Öncelik:** MEDIUM
+- **Ticari Etki:** Her iki yazı da `/hizmetler`'e (dönüşüm sayfası) CTA
+  veriyor — cannibalization çözülürse organik trafik artışının
+  büyük kısmı zaten RFQ/Contact Form yoluna akar. Yine de bu etki
+  dolaylı (#7 Organic Traffic üzerinden), doğrudan #1-5 değil.
 - **Beklenen SEO etkisi:** İki yazı aynı sorgu için yarışırsa Google
   ikisi arasında sinyali böler, hiçbiri güçlü sıralanamaz
   (cannibalization). Netleştirilirse her iki yazının da kendi hedef
@@ -144,6 +180,10 @@ iş etkisine göredir, teknik zorluğa göre değil.
 
 - **Durum:** Açık (yeni bulgu — SEO Sprint #1)
 - **Öncelik:** MEDIUM
+- **Ticari Etki:** Yok/ihmal edilebilir — hiçbir Success Metric'e
+  ölçülebilir katkısı yok, saf teknik temizlik. SEO Decision Rule'ün
+  3. sorusuna ("yalnızca Google için mi?") cevabı da "Hayır" (Google'ı
+  bile etkilemiyor) — düşük öncelikte kalmaya devam eder.
 - **Beklenen SEO etkisi:** Dolaylı — daha küçük bağımlılık ağacı build
   süresini ve potansiyel tedarik zinciri yüzeyini azaltır; doğrudan
   sayfa performansına (statik export'ta bu paket zaten client bundle'a
