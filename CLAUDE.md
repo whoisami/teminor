@@ -4,6 +4,46 @@ Teminor, 15-100 çalışanlı KOBİ'ler için dış kaynaklı satın alma depart
 tedarik yönetimi hizmeti sunan bir şirkettir. Bu depo, teminor.com kurumsal
 web sitesinin kaynak kodunu içerir.
 
+## Strategic Sources
+
+Bu repo, kod dışında bir stratejik hafıza katmanı da içerir. Herhangi bir
+stratejik, mesajlaşma, operasyon veya SEO kararı verilirken aşağıdaki
+kaynaklar bu öncelik sırasıyla okunur:
+
+1. `docs/strategy/00-company-constitution.md`
+2. `decisions/decision-log.md` (en güncel kayıtlar)
+3. `docs/strategy/01-master-strategy.md`
+4. `docs/strategy/02-messaging-guide.md`
+5. `docs/strategy/03-website-blueprint.md`
+6. `docs/strategy/04-go-to-market.md`
+7. `docs/strategy/05-decision-principles.md`
+8. `docs/operations/*`
+9. `docs/seo/*`
+10. Mevcut teknik ve SEO dosyaları (bu dosyanın "Teknik Özet" bölümü,
+    `SEO_SCORE.md`, `seo-backlog.md`, `SEO_SEARCH_MAP.md`,
+    `SEO_GROWTH_PLAN.md`, `.claude/agents/seo-agent.md`)
+
+**Çelişki halinde:** Şirket Anayasası, en güncel Decision Log kaydı,
+ardından Master Strategy üstün kabul edilir.
+
+## Değişmez Kurallar
+
+- Teminor bir yazılım, pazar yeri, broker veya tedarikçi kataloğu değildir.
+- Teminor, 20–250 çalışanlı işletmeler için dış kaynak satın alma
+  departmanı/kapasitesidir.
+- Ana değer önerisi: "Satın alma iş yükünü biz üstleniyoruz. Kontrol ve
+  nihai karar sizde kalıyor."
+- Kurumsal hedef pazar Türkiye genelidir.
+- İlk 90 günlük satış odağı İzmir, Manisa, Aydın, Denizli ve Uşak'tır.
+- Müşterinin yazılı kurumsal e-posta onayı olmadan sipariş verilmez.
+- Kanıtlanamayan tasarruf, garanti, müşteri sayısı veya başarı iddiası
+  kullanılmaz.
+- Web sitesi çalışmaları bir yeniden tasarım değildir; görsel yapı korunur.
+- Tasarım değişikliği yalnızca açık kullanıcı onayıyla yapılır.
+- Operasyon dashboard'u yalnızca Teminor'un iç kullanımı içindir.
+- Kritik kayıtlar soft-delete veya arşivleme mantığıyla korunur.
+- Her önemli stratejik değişiklik Decision Log'a yazılır.
+
 ## Teknik Özet (koddan doğrulanmıştır)
 
 - **Framework:** Next.js 16 (App Router), statik export (`next.config.ts` →
