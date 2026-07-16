@@ -117,3 +117,112 @@ export function RiskIcon() {
     </svg>
   );
 }
+
+export function ReachIcon() {
+  return (
+    <svg
+      viewBox="0 0 64 64"
+      className="h-12 w-12"
+      aria-hidden="true"
+      fill="none"
+    >
+      <motion.circle
+        cx="32"
+        cy="16"
+        r="6"
+        stroke="#9C7A34"
+        strokeWidth="2.5"
+        initial={{ pathLength: 0 }}
+        whileInView={{ pathLength: 1 }}
+        viewport={{ once: true }}
+        transition={drawTransition}
+      />
+      <motion.circle
+        cx="14"
+        cy="46"
+        r="6"
+        stroke="#1B2A41"
+        strokeWidth="2.5"
+        initial={{ pathLength: 0 }}
+        whileInView={{ pathLength: 1 }}
+        viewport={{ once: true }}
+        transition={{ ...drawTransition, delay: 0.15 }}
+      />
+      <motion.circle
+        cx="50"
+        cy="46"
+        r="6"
+        stroke="#1B2A41"
+        strokeWidth="2.5"
+        initial={{ pathLength: 0 }}
+        whileInView={{ pathLength: 1 }}
+        viewport={{ once: true }}
+        transition={{ ...drawTransition, delay: 0.3 }}
+      />
+      <motion.path
+        d="M28 21 L18 40 M36 21 L46 40"
+        stroke="#1B2A41"
+        strokeWidth="2.5"
+        strokeLinecap="round"
+        initial={{ pathLength: 0 }}
+        whileInView={{ pathLength: 1 }}
+        viewport={{ once: true }}
+        transition={{ ...drawTransition, delay: 0.45 }}
+      />
+    </svg>
+  );
+}
+
+export function TrackingIcon() {
+  return (
+    <svg
+      viewBox="0 0 64 64"
+      className="h-12 w-12"
+      aria-hidden="true"
+      fill="none"
+    >
+      <motion.path
+        d="M8 24h32v22H8z"
+        stroke="#1B2A41"
+        strokeWidth="2.5"
+        strokeLinejoin="round"
+        initial={{ pathLength: 0 }}
+        whileInView={{ pathLength: 1 }}
+        viewport={{ once: true }}
+        transition={drawTransition}
+      />
+      <motion.path
+        d="M40 32h9l7 8v6h-16z"
+        stroke="#1B2A41"
+        strokeWidth="2.5"
+        strokeLinejoin="round"
+        initial={{ pathLength: 0 }}
+        whileInView={{ pathLength: 1 }}
+        viewport={{ once: true }}
+        transition={{ ...drawTransition, delay: 0.3 }}
+      />
+      <motion.circle
+        cx="19"
+        cy="48"
+        r="4.5"
+        stroke="#9C7A34"
+        strokeWidth="2.5"
+        initial={{ pathLength: 0 }}
+        whileInView={{ pathLength: 1 }}
+        viewport={{ once: true }}
+        transition={{ ...drawTransition, delay: 0.55 }}
+      />
+      <motion.circle
+        cx="47"
+        cy="48"
+        r="4.5"
+        stroke="#9C7A34"
+        strokeWidth="2.5"
+        initial={{ pathLength: 0 }}
+        whileInView={{ pathLength: 1 }}
+        viewport={{ once: true }}
+        transition={{ ...drawTransition, delay: 0.65 }}
+      />
+    </svg>
+  );
+}

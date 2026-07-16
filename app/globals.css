@@ -25,40 +25,47 @@ body {
   color: #ffffff;
 }
 
-.container-content {
-  @apply mx-auto w-full max-w-content px-6 md:px-10;
-}
+/* @layer components places these before the utilities layer in the
+   compiled stylesheet (regardless of source order in this file), so a
+   utility class added alongside one of these on an element — e.g.
+   `bg-gold` next to `btn-primary` — reliably wins the cascade instead of
+   silently losing to this class's own `@apply bg-navy`. */
+@layer components {
+  .container-content {
+    @apply mx-auto w-full max-w-content px-6 md:px-10;
+  }
 
-.btn-primary {
-  @apply inline-flex items-center justify-center rounded-sm bg-navy px-6 py-3 text-sm font-medium tracking-wide text-white transition-colors duration-200 hover:bg-[#243a58];
-}
+  .btn-primary {
+    @apply inline-flex items-center justify-center rounded-sm bg-navy px-6 py-3 text-sm font-medium tracking-wide text-white transition-colors duration-200 hover:bg-[#243a58];
+  }
 
-.btn-outline {
-  @apply inline-flex items-center justify-center rounded-sm border border-navy px-6 py-3 text-sm font-medium tracking-wide text-navy transition-colors duration-200 hover:bg-navy hover:text-white;
-}
+  .btn-outline {
+    @apply inline-flex items-center justify-center rounded-sm border border-navy px-6 py-3 text-sm font-medium tracking-wide text-navy transition-colors duration-200 hover:bg-navy hover:text-white;
+  }
 
-.btn-whatsapp {
-  @apply inline-flex items-center justify-center gap-2 rounded-sm bg-[#25D366] px-6 py-3 text-sm font-medium tracking-wide text-white transition-colors duration-200 hover:bg-[#1fb959];
-}
+  .btn-whatsapp {
+    @apply inline-flex items-center justify-center gap-2 rounded-sm bg-[#25D366] px-6 py-3 text-sm font-medium tracking-wide text-white transition-colors duration-200 hover:bg-[#1fb959];
+  }
 
-.eyebrow {
-  @apply text-xs font-semibold uppercase tracking-[0.2em] text-gold;
-}
+  .eyebrow {
+    @apply text-xs font-semibold uppercase tracking-[0.2em] text-gold;
+  }
 
-.form-input {
-  @apply w-full rounded-sm border border-navy/20 bg-white px-4 py-2.5 text-sm text-navy placeholder:text-muted/60 focus:border-gold focus:outline-none focus:ring-1 focus:ring-gold;
-}
+  .form-input {
+    @apply w-full rounded-sm border border-navy/20 bg-white px-4 py-2.5 text-sm text-navy placeholder:text-muted/60 focus:border-gold focus:outline-none focus:ring-1 focus:ring-gold;
+  }
 
-/* Shared hover language for clickable cards site-wide (category tiles,
-   blog cards, service tier cards) — one consistent interaction, not a
-   one-off per component. */
-.card-interactive {
-  @apply transition-all duration-300 ease-out hover:-translate-y-1 hover:border-gold/50 hover:shadow-[0_12px_30px_-12px_rgba(27,42,65,0.25)];
-}
+  /* Shared hover language for clickable cards site-wide (category tiles,
+     blog cards, service tier cards) — one consistent interaction, not a
+     one-off per component. */
+  .card-interactive {
+    @apply transition-all duration-300 ease-out hover:-translate-y-1 hover:border-gold/50 hover:shadow-[0_12px_30px_-12px_rgba(27,42,65,0.25)];
+  }
 
-/* Underline that draws in on hover instead of just appearing. */
-.link-draw {
-  @apply bg-[linear-gradient(currentColor,currentColor)] bg-[length:0%_1px] bg-left-bottom bg-no-repeat transition-[background-size] duration-300 ease-out hover:bg-[length:100%_1px];
+  /* Underline that draws in on hover instead of just appearing. */
+  .link-draw {
+    @apply bg-[linear-gradient(currentColor,currentColor)] bg-[length:0%_1px] bg-left-bottom bg-no-repeat transition-[background-size] duration-300 ease-out hover:bg-[length:100%_1px];
+  }
 }
 
 @media (prefers-reduced-motion: no-preference) {

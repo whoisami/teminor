@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { useReducedMotion } from "framer-motion";
+import useSafeReducedMotion from "@/lib/useSafeReducedMotion";
 import { MIN_SUPPLIER_COMPARISON } from "@/lib/site";
 
 // The site's signature element: a small, self-cycling status ledger that
@@ -17,10 +17,9 @@ const STEP_MS = 1500;
 const HOLD_MS = 2400;
 
 export default function ApprovalLedger() {
-  const reduceMotion = useReducedMotion();
-  const [phaseIndex, setPhaseIndex] = useState(
-    reduceMotion ? PHASES.length - 1 : 0
-  );
+  const reduceMotion = useSafeReducedMotion();
+  const [autoPhaseIndex, setAutoPhaseIndex] = useState(0);
+  const phaseIndex = reduceMotion ? PHASES.length - 1 : autoPhaseIndex;
 
   useEffect(() => {
     if (reduceMotion) return;
@@ -34,7 +33,7 @@ export default function ApprovalLedger() {
         () => {
           if (cancelled) return;
           const next = isApproved ? 0 : current + 1;
-          setPhaseIndex(next);
+          setAutoPhaseIndex(next);
           advance(next);
         },
         isApproved ? HOLD_MS : STEP_MS

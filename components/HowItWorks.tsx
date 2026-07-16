@@ -2,25 +2,43 @@
 
 import { motion } from "framer-motion";
 import Reveal from "@/components/Reveal";
-import { MIN_SUPPLIER_COMPARISON } from "@/lib/site";
 
 const steps = [
   {
-    title: "Talep Alımı",
-    description: "İhtiyacınızı bildirin, teknik detaylar netleştirilir.",
+    title: "RFQ formu size gönderilir",
+    description:
+      "Teminor tarafından iletilen talep formunu doldurup e-posta ile geri gönderirsiniz; talebiniz sisteme kaydedilir.",
   },
   {
-    title: "Karşılaştırmalı Teklif Toplama",
-    description: `En az ${MIN_SUPPLIER_COMPARISON}+ tedarikçiden fiyat ve termin teyidi alınır.`,
+    title: "Tedarikçi araştırması yapılır",
+    description:
+      "Tercihli veya yasaklı tedarikçileriniz varsa bildirirsiniz; araştırmayı biz yürütürüz.",
   },
   {
-    title: "Müşteri Onayı",
-    description: "Yazılı onayınız olmadan hiçbir sipariş verilmez.",
+    title: "Teklifler toplanır",
+    description:
+      "Gerekli teknik soruları siz yanıtlarsınız; teklif toplama sürecini biz yürütürüz.",
+  },
+  {
+    title: "Karşılaştırma raporu hazırlanır",
+    description:
+      "Fiyat, vade, termin, nakliye ve diğer ticari koşullar mümkün olduğu ölçüde normalize edilerek karşılaştırılır; öneriyi siz değerlendirirsiniz.",
+  },
+  {
+    title: "Onayınıza sunulur",
+    description:
+      "Yetkili kurumsal e-postanızdan açık onay verirsiniz; onay olmadan sipariş verilmez.",
     stamped: true,
   },
   {
-    title: "Sipariş ve Teslimat Takibi",
-    description: "Süreç sonuna kadar takip edilir, aylık raporlanır.",
+    title: "Sipariş iletilir",
+    description:
+      "Alıcı ve ödeme borçlusu siz olursunuz; sipariş yalnızca onay kapsamıyla sınırlı iletilir.",
+  },
+  {
+    title: "Teslimat takip edilir",
+    description:
+      "Teslim ve kalite kontrolünü siz yaparsınız; termin ve sevkiyat sürecini biz takip ederiz.",
   },
 ];
 
@@ -38,7 +56,7 @@ const jsonLd = {
 
 export default function HowItWorks() {
   return (
-    <section className="bg-white py-24">
+    <section id="nasil-calisir" className="bg-white py-24">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
@@ -47,11 +65,11 @@ export default function HowItWorks() {
         <Reveal>
           <p className="eyebrow">Süreç</p>
           <h2 className="mt-3 font-serif text-3xl text-navy md:text-4xl">
-            Nasıl Çalışır?
+            Teminor Nasıl Çalışır?
           </h2>
         </Reveal>
 
-        <ol className="mt-14 flex flex-col gap-10 lg:flex-row lg:items-start lg:gap-0">
+        <ol className="mt-14 flex flex-col gap-10 lg:grid lg:grid-cols-4 lg:items-start lg:gap-x-6 lg:gap-y-14">
           {steps.map((step, i) => (
             <Reveal key={step.title} delay={i * 0.08} className="flex-1">
               <li className="flex flex-col items-center text-center lg:items-start lg:text-left">
@@ -67,7 +85,7 @@ export default function HowItWorks() {
                       </span>
                     )}
                   </span>
-                  {i < steps.length - 1 && (
+                  {i < steps.length - 1 && (i + 1) % 4 !== 0 && (
                     <motion.span
                       aria-hidden="true"
                       className="ml-2 hidden h-px flex-1 origin-left bg-navy/15 lg:block"

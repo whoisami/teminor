@@ -1,7 +1,8 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { useInView, useReducedMotion } from "framer-motion";
+import { useInView } from "framer-motion";
+import useSafeReducedMotion from "@/lib/useSafeReducedMotion";
 
 type CountUpStatProps = {
   value: number;
@@ -22,11 +23,13 @@ export default function CountUpStat({
 }: CountUpStatProps) {
   const ref = useRef<HTMLParagraphElement>(null);
   const inView = useInView(ref, { once: true, margin: "-80px" });
-  const reduceMotion = useReducedMotion();
-  const [display, setDisplay] = useState(reduceMotion ? value : 0);
+  const reduceMotion = useSafeReducedMotion();
+  const [autoDisplay, setAutoDisplay] = useState(0);
+  const display = reduceMotion ? value : autoDisplay;
 
   useEffect(() => {
-    if (!inView || reduceMotion) return;
+    if (reduceMotion) return;
+    if (!inView) return;
 
     const duration = 900;
     const start = performance.now();
@@ -34,7 +37,7 @@ export default function CountUpStat({
 
     function tick(now: number) {
       const progress = Math.min((now - start) / duration, 1);
-      setDisplay(Math.round(progress * value));
+      setAutoDisplay(Math.round(progress * value));
       if (progress < 1) frame = requestAnimationFrame(tick);
     }
 
