@@ -137,7 +137,7 @@ export default function PackageComparison({
       <div
         role="tablist"
         aria-label="Hizmet paketleri karşılaştırması"
-        className="flex flex-wrap gap-2 border-b border-navy/10"
+        className="flex flex-wrap gap-1.5 rounded-sm border border-navy/10 bg-light-bg p-1.5"
       >
         {tabs.map((tab, i) => {
           const isActive = tab.id === activeId;
@@ -156,9 +156,9 @@ export default function PackageComparison({
               tabIndex={isActive ? 0 : -1}
               onClick={() => setActiveId(tab.id)}
               onKeyDown={handleKeyDown}
-              className={`relative rounded-t-sm px-4 py-3 text-sm font-medium transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold ${
+              className={`relative rounded-sm px-4 py-2.5 text-sm font-medium transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold ${
                 isActive
-                  ? "border-b-2 border-gold text-navy"
+                  ? "bg-white text-navy shadow-sm"
                   : "text-muted hover:text-navy"
               }`}
             >
@@ -184,7 +184,7 @@ export default function PackageComparison({
             animate={reduceMotion ? { opacity: 1 } : { opacity: 1, y: 0 }}
             exit={reduceMotion ? { opacity: 0 } : { opacity: 0, y: -8 }}
             transition={{ duration: reduceMotion ? 0.1 : 0.2, ease: "easeOut" }}
-            className="rounded-sm border border-navy/10 bg-white p-6 text-sm leading-relaxed text-muted"
+            className="rounded-sm border border-navy/10 bg-white p-7 text-sm leading-relaxed text-muted shadow-sm"
           >
             {active.scope}
           </motion.div>

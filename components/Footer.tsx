@@ -13,13 +13,15 @@ export default function Footer() {
     <footer className="border-t border-white/10 bg-navy text-white/80">
       <div className="container-content grid gap-10 py-16 md:grid-cols-4">
         <div className="md:col-span-2">
-          <Image
-            src="/logo/teminor_lockup.png"
-            alt="Teminor logo"
-            width={480}
-            height={320}
-            className="h-10 w-auto brightness-0 invert"
-          />
+          <div className="inline-block rounded-sm bg-white px-4 py-2.5">
+            <Image
+              src="/logo/teminor_lockup.png"
+              alt="Teminor logo"
+              width={480}
+              height={320}
+              className="h-9 w-auto"
+            />
+          </div>
           <p className="mt-4 max-w-sm text-sm leading-relaxed text-white/70">
             Teminor, KOBİ&apos;ler için dış kaynaklı satın alma departmanıdır.
           </p>

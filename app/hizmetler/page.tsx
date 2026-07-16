@@ -94,8 +94,8 @@ export default function HizmetlerPage() {
   return (
     <>
       <PageViewTracker type="service" serviceName="Hizmetler" />
-      <section className="bg-navy py-24 text-white">
-        <div className="container-content">
+      <section className="relative overflow-hidden bg-gradient-to-br from-ink to-navy py-24 text-white md:py-28">
+        <div className="container-content relative">
           <Reveal>
             <p className="eyebrow">Hizmetler</p>
             <h1 className="mt-4 max-w-2xl font-serif text-4xl md:text-5xl">
@@ -113,59 +113,72 @@ export default function HizmetlerPage() {
             >
               Modelinizi Birlikte Seçelim
             </TrackedCta>
+            <p className="mt-6 max-w-xl text-xs uppercase tracking-[0.15em] text-white/45">
+              Yazılı onaysız sipariş yok · Adil kullanım kapsamı net
+              tanımlanır · Nihai karar sizde kalır
+            </p>
           </Reveal>
         </div>
       </section>
 
-      <section className="bg-light-bg py-20">
+      <section className="bg-light-bg py-24">
         <div className="container-content">
           <Reveal>
-            <h2 className="font-serif text-3xl text-navy md:text-4xl">
+            <p className="eyebrow">Paketler</p>
+            <h2 className="mt-3 max-w-2xl font-serif text-3xl text-navy md:text-4xl">
               Hizmet Paketlerimiz
             </h2>
+            <p className="mt-4 max-w-2xl text-base leading-relaxed text-muted">
+              Her paket aynı onay disiplinini paylaşır; aradaki fark kapsam,
+              RFQ hacmi ve ekibinize sağlanan destek düzeyidir.
+            </p>
           </Reveal>
-          <div className="mt-10 grid gap-6 md:grid-cols-2">
+          <div className="mt-12 grid gap-8 md:grid-cols-2">
             {tiers.map((tier, i) => (
               <Reveal key={tier.name} delay={i * 0.08}>
-                <div className="card-interactive flex h-full flex-col rounded-sm border border-navy/10 bg-white p-8">
-                  <p className="eyebrow">
-                    {tier.name}{" "}
-                    <span className="text-navy/40">
-                      (Sözleşme paket adı: {tier.tagline})
-                    </span>
-                  </p>
-                  <p className="mt-3 text-xs font-semibold uppercase tracking-wide text-navy/50">
+                <div className="card-interactive flex h-full flex-col rounded-sm border border-navy/10 bg-white p-8 shadow-sm">
+                  <span className="h-1 w-10 rounded-full bg-gold" aria-hidden="true" />
+                  <h3 className="mt-5 font-serif text-xl text-navy">
+                    {tier.name}
+                  </h3>
+                  <p className="mt-4 text-xs font-semibold uppercase tracking-wide text-navy/40">
                     Kimler için
                   </p>
                   <p className="mt-1 text-sm leading-relaxed text-muted">
                     {tier.audience}
                   </p>
-                  <p className="mt-4 text-sm leading-relaxed text-navy/90">
+                  <p className="mt-5 text-sm leading-relaxed text-navy/90">
                     {tier.benefit}
                   </p>
-                  <p className="mt-4 text-xs font-semibold uppercase tracking-wide text-navy/50">
-                    Kapsam
-                  </p>
-                  <p className="mt-1 text-sm leading-relaxed text-muted">
-                    {tier.scope}
-                  </p>
-                  <p className="mt-4 text-xs font-semibold uppercase tracking-wide text-navy/50">
-                    Müşteri kontrolü
-                  </p>
-                  <p className="mt-1 text-sm leading-relaxed text-muted">
-                    {tier.control}
-                  </p>
-                  <p className="mt-5 text-xs font-semibold text-gold">
+                  <div className="mt-6 border-t border-navy/10 pt-6">
+                    <p className="text-xs font-semibold uppercase tracking-wide text-navy/40">
+                      Kapsam
+                    </p>
+                    <p className="mt-1 text-sm leading-relaxed text-muted">
+                      {tier.scope}
+                    </p>
+                  </div>
+                  <div className="mt-6">
+                    <p className="text-xs font-semibold uppercase tracking-wide text-navy/40">
+                      Müşteri kontrolü
+                    </p>
+                    <p className="mt-1 text-sm leading-relaxed text-muted">
+                      {tier.control}
+                    </p>
+                  </div>
+                  <p className="mt-6 text-xs font-semibold text-gold">
                     {tier.trust}
                   </p>
-                  <TrackedCta
-                    href="/iletisim"
-                    label={`hizmet_teklif_${tier.tagline.toLowerCase()}`}
-                    location="hizmetler_tier_card"
-                    className="btn-primary mt-6 self-start"
-                  >
-                    {tier.ctaLabel}
-                  </TrackedCta>
+                  <div className="mt-8 border-t border-navy/10 pt-6">
+                    <TrackedCta
+                      href="/iletisim"
+                      label={`hizmet_teklif_${tier.tagline.toLowerCase()}`}
+                      location="hizmetler_tier_card"
+                      className="btn-primary w-full justify-center sm:w-auto"
+                    >
+                      {tier.ctaLabel}
+                    </TrackedCta>
+                  </div>
                 </div>
               </Reveal>
             ))}
@@ -173,12 +186,12 @@ export default function HizmetlerPage() {
         </div>
         <div className="container-content">
           <Reveal delay={0.4}>
-            <p className="mt-10 text-center text-sm text-muted">
+            <p className="mt-12 text-center text-sm text-muted">
               Dış kaynaklı satın alma modelinin nasıl işlediğini merak
               ediyorsanız{" "}
               <Link
                 href="/blog/dis-kaynak-satin-alma-departmani-nedir"
-                className="font-semibold text-navy underline decoration-gold decoration-2 underline-offset-4 hover:text-gold"
+                className="link-draw font-semibold text-navy decoration-gold decoration-2 underline-offset-4 hover:text-gold"
               >
                 Dış Kaynak Satın Alma Departmanı Nedir?
               </Link>{" "}
@@ -188,34 +201,44 @@ export default function HizmetlerPage() {
         </div>
       </section>
 
-      <section className="bg-white py-20">
+      <section className="bg-white py-24">
         <div className="container-content">
-          <PackageInteractive />
+          <Reveal>
+            <p className="eyebrow">Karşılaştırma</p>
+            <h2 className="mt-3 max-w-2xl font-serif text-3xl text-navy md:text-4xl">
+              Paketleri Karşılaştırın, Size Uygun Olanı Bulun
+            </h2>
+          </Reveal>
+          <div className="mt-12">
+            <PackageInteractive />
+          </div>
         </div>
       </section>
 
       {/* Özel Proje ve Tek Seferlik Tedarikçi Araştırması — ana paket
           karşılaştırmasının ve paket bulucunun dışında tutulur. */}
-      <section className="bg-light-bg py-20">
-        <div className="container-content max-w-2xl">
+      <section className="bg-light-bg py-24">
+        <div className="container-content">
           <Reveal>
-            <p className="eyebrow">Özel Proje</p>
-            <h2 className="mt-3 font-serif text-2xl text-navy md:text-3xl">
-              Özel Proje ve Tek Seferlik Tedarikçi Araştırması
-            </h2>
-            <p className="mt-4 text-sm leading-relaxed text-muted">
-              Düzenli hizmet paketi dışında kalan, zor bulunan ürün, teknik
-              tedarikçi, özel üretim veya tek seferlik kaynak araştırma
-              ihtiyaçları proje bazında ayrıca değerlendirilir.
-            </p>
-            <TrackedCta
-              href="/iletisim"
-              label="hizmetler_ozel_proje"
-              location="hizmetler_ozel_proje"
-              className="btn-primary mt-6 inline-block"
-            >
-              Projenizi Değerlendirelim
-            </TrackedCta>
+            <div className="mx-auto max-w-2xl rounded-sm border border-navy/10 bg-white p-10 text-center shadow-sm">
+              <p className="eyebrow">Özel Proje</p>
+              <h2 className="mt-3 font-serif text-2xl text-navy md:text-3xl">
+                Özel Proje ve Tek Seferlik Tedarikçi Araştırması
+              </h2>
+              <p className="mt-4 text-sm leading-relaxed text-muted">
+                Düzenli hizmet paketi dışında kalan, zor bulunan ürün, teknik
+                tedarikçi, özel üretim veya tek seferlik kaynak araştırma
+                ihtiyaçları proje bazında ayrıca değerlendirilir.
+              </p>
+              <TrackedCta
+                href="/iletisim"
+                label="hizmetler_ozel_proje"
+                location="hizmetler_ozel_proje"
+                className="btn-primary mt-6 inline-block"
+              >
+                Projenizi Değerlendirelim
+              </TrackedCta>
+            </div>
           </Reveal>
         </div>
       </section>

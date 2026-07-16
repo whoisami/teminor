@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import Reveal from "@/components/Reveal";
+import RoiCalculator from "@/components/RoiCalculator";
 import {
   DEFAULT_WHATSAPP_MESSAGE,
   MIN_SUPPLIER_COMPARISON,
@@ -209,7 +210,28 @@ export default function NedenTeminorPage() {
         </div>
       </section>
 
-      <section className="bg-white py-20">
+      <section className="bg-white py-24">
+        <div className="container-content max-w-4xl">
+          <Reveal>
+            <p className="eyebrow text-center">Operasyonel Yük</p>
+            <h2 className="mt-3 text-center font-serif text-3xl text-navy md:text-4xl">
+              Satın Alma Sürecinizin Bugünkü Maliyetini Hesaplayın
+            </h2>
+            <p className="mx-auto mt-4 max-w-2xl text-center leading-relaxed text-muted">
+              Tasarruf yüzdesi vaat etmiyoruz; bunun yerine ekibinizin satın
+              alma sürecine bugün ne kadar zaman ve maliyet ayırdığını kendi
+              rakamlarınızla görün.
+            </p>
+          </Reveal>
+          <Reveal delay={0.1}>
+            <div className="mt-10">
+              <RoiCalculator />
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
+      <section className="bg-light-bg py-20">
         <div className="container-content">
           <Reveal>
             <p className="eyebrow text-center">Örnek Senaryolar</p>
@@ -220,7 +242,7 @@ export default function NedenTeminorPage() {
           <div className="mt-10 grid gap-6 md:grid-cols-3">
             {scenarioCards.map((card, i) => (
               <Reveal key={card.title} delay={i * 0.08}>
-                <div className="flex h-full flex-col rounded-sm border border-navy/10 bg-light-bg p-8">
+                <div className="card-interactive flex h-full flex-col rounded-sm border border-navy/10 bg-white p-8 shadow-sm">
                   <p className="text-xs font-medium uppercase tracking-wide text-gold">
                     Örnek Senaryo
                   </p>
@@ -250,7 +272,7 @@ export default function NedenTeminorPage() {
         </div>
       </section>
 
-      <section className="bg-light-bg py-20">
+      <section className="bg-white py-20">
         <div className="container-content flex flex-col items-center gap-6 text-center">
           <Reveal>
             <h2 className="font-serif text-3xl text-navy md:text-4xl">

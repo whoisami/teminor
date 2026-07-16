@@ -145,43 +145,71 @@ export default function PackageFinder({ onResult }: PackageFinderProps) {
     onResult?.(null);
   }
 
-  return (
-    <form onSubmit={handleSubmit} className="space-y-8">
-      {QUESTIONS.map((q) => (
-        <fieldset key={q.key}>
-          <legend className="font-serif text-base text-navy">{q.legend}</legend>
-          <div className="mt-3 flex flex-wrap gap-2">
-            {q.options.map((opt) => {
-              const inputId = `${formId}-${q.key}-${opt.value}`;
-              const checked = answers[q.key] === opt.value;
-              return (
-                <div key={opt.value}>
-                  <input
-                    type="radio"
-                    id={inputId}
-                    name={q.key}
-                    value={opt.value}
-                    checked={checked}
-                    onChange={() =>
-                      setAnswers((prev) => ({ ...prev, [q.key]: opt.value }))
-                    }
-                    className="peer sr-only"
-                  />
-                  <label
-                    htmlFor={inputId}
-                    className="inline-flex cursor-pointer items-center rounded-sm border border-navy/15 px-4 py-2 text-sm text-navy transition-colors duration-150 peer-checked:border-gold peer-checked:bg-gold/10 peer-checked:font-semibold peer-focus-visible:ring-2 peer-focus-visible:ring-gold"
-                  >
-                    {opt.label}
-                  </label>
-                </div>
-              );
-            })}
-          </div>
-        </fieldset>
-      ))}
+  const answeredCount = Object.values(answers).filter((v) => v !== null).length;
 
-      <div className="flex flex-wrap items-center gap-4">
-        <button type="submit" disabled={!allAnswered} className="btn-primary disabled:opacity-40">
+  return (
+    <form
+      onSubmit={handleSubmit}
+      className="rounded-sm border border-navy/10 bg-light-bg p-8 shadow-sm"
+    >
+      <div className="flex items-center justify-between">
+        <p className="text-xs font-semibold uppercase tracking-wide text-navy/40">
+          {answeredCount}/{QUESTIONS.length} soru yanıtlandı
+        </p>
+        <div className="h-1.5 w-32 overflow-hidden rounded-full bg-navy/10">
+          <div
+            className="h-full rounded-full bg-gold transition-all duration-300 ease-out"
+            style={{ width: `${(answeredCount / QUESTIONS.length) * 100}%` }}
+          />
+        </div>
+      </div>
+
+      <div className="mt-8 space-y-8">
+        {QUESTIONS.map((q, qi) => (
+          <fieldset key={q.key}>
+            <legend className="flex items-baseline gap-2 font-serif text-base text-navy">
+              <span className="font-mono text-xs text-gold">
+                {String(qi + 1).padStart(2, "0")}
+              </span>
+              {q.legend}
+            </legend>
+            <div className="mt-3 flex flex-wrap gap-2">
+              {q.options.map((opt) => {
+                const inputId = `${formId}-${q.key}-${opt.value}`;
+                const checked = answers[q.key] === opt.value;
+                return (
+                  <div key={opt.value}>
+                    <input
+                      type="radio"
+                      id={inputId}
+                      name={q.key}
+                      value={opt.value}
+                      checked={checked}
+                      onChange={() =>
+                        setAnswers((prev) => ({ ...prev, [q.key]: opt.value }))
+                      }
+                      className="peer sr-only"
+                    />
+                    <label
+                      htmlFor={inputId}
+                      className="inline-flex cursor-pointer items-center rounded-sm border border-navy/15 bg-white px-4 py-2 text-sm text-navy transition-all duration-150 hover:border-gold/50 peer-checked:border-gold peer-checked:bg-gold/10 peer-checked:font-semibold peer-focus-visible:ring-2 peer-focus-visible:ring-gold"
+                    >
+                      {opt.label}
+                    </label>
+                  </div>
+                );
+              })}
+            </div>
+          </fieldset>
+        ))}
+      </div>
+
+      <div className="mt-8 flex flex-wrap items-center gap-4 border-t border-navy/10 pt-6">
+        <button
+          type="submit"
+          disabled={!allAnswered}
+          className="btn-primary bg-gold hover:bg-[#8a6b2d] disabled:cursor-not-allowed disabled:bg-navy/20 disabled:text-navy/40"
+        >
           Önerimi Göster
         </button>
         {result && (
@@ -203,9 +231,10 @@ export default function PackageFinder({ onResult }: PackageFinderProps) {
             exit={reduceMotion ? { opacity: 0 } : { opacity: 0, y: -8 }}
             transition={{ duration: reduceMotion ? 0.15 : 0.22, ease: "easeOut" }}
             role="status"
-            className="rounded-sm border border-gold/40 bg-gold/5 p-6"
+            className="mt-6 rounded-sm border border-gold/40 bg-white p-7 shadow-sm"
           >
-            <p className="font-serif text-lg text-navy">
+            <p className="eyebrow">Öneri</p>
+            <p className="mt-2 font-serif text-lg text-navy">
               {RESULT_LABEL[result]} size uygun olabilir.
             </p>
             <p className="mt-3 text-sm leading-relaxed text-muted">

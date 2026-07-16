@@ -16,7 +16,10 @@ export default function PackageInteractive() {
   return (
     <div className="grid gap-16">
       <div>
-        <h3 className="font-serif text-xl text-navy">
+        <p className="text-xs font-semibold uppercase tracking-wide text-navy/40">
+          01 — Karşılaştırma
+        </p>
+        <h3 className="mt-2 font-serif text-xl text-navy">
           Paketler Arasında Fark Nedir?
         </h3>
         <p className="mt-2 text-sm text-muted">
@@ -29,9 +32,16 @@ export default function PackageInteractive() {
       </div>
 
       <div>
-        <h3 className="font-serif text-xl text-navy">
+        <p className="text-xs font-semibold uppercase tracking-wide text-navy/40">
+          02 — Paket Bulucu
+        </p>
+        <h3 className="mt-2 font-serif text-xl text-navy">
           Size Uygun Modeli Bulun
         </h3>
+        <p className="mt-2 text-sm text-muted">
+          Beş kısa soruyu yanıtlayın, size uygun olabilecek paketi hemen
+          görün.
+        </p>
         <div className="mt-6">
           <PackageFinder onResult={setRecommended} />
         </div>
