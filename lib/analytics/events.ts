@@ -11,6 +11,8 @@ export const AnalyticsEvents = {
   ContactPageView: "contact_page_view",
   ContactFormSubmit: "contact_form_submit",
   RfqFormSubmit: "rfq_form_submit",
+  ManufacturerFormSubmit: "manufacturer_form_submit",
+  BuyerFormSubmit: "buyer_form_submit",
   PhoneClick: "phone_click",
   EmailClick: "email_click",
   WhatsAppClick: "whatsapp_click",
@@ -38,6 +40,14 @@ export function trackContactFormSubmit(sector: string) {
 
 export function trackRfqFormSubmit() {
   trackEvent(AnalyticsEvents.RfqFormSubmit);
+}
+
+export function trackManufacturerFormSubmit() {
+  trackEvent(AnalyticsEvents.ManufacturerFormSubmit);
+}
+
+export function trackBuyerFormSubmit() {
+  trackEvent(AnalyticsEvents.BuyerFormSubmit);
 }
 
 export function trackPhoneClick(location: string) {

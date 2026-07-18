@@ -2,14 +2,13 @@
 
 import { useEffect, useState } from "react";
 import useSafeReducedMotion from "@/lib/useSafeReducedMotion";
-import { MIN_SUPPLIER_COMPARISON } from "@/lib/site";
 
 // The site's signature element: a small, self-cycling status ledger that
-// dramatizes Teminor's actual operating promise — multi-supplier
-// comparison, written customer approval before anything ships — instead
-// of decorating the hero with a generic texture. Illustrative only (not
-// a real request), same "Örnek Senaryo" transparency spirit used
-// elsewhere on the site: nothing here claims to be live data.
+// dramatizes Teminor's actual operating promise — Buyer Validation Sprint
+// research/verification before any commercial claim — instead of
+// decorating the hero with a generic texture. Illustrative only (not a
+// real request), same "Örnek Senaryo" transparency spirit used elsewhere
+// on the site: nothing here claims to be live data or a guaranteed sale.
 const PHASES = ["received", "comparing", "waiting", "approved"] as const;
 type Phase = (typeof PHASES)[number];
 
@@ -58,7 +57,7 @@ export default function ApprovalLedger() {
     <div className="w-full max-w-sm rounded-sm border border-white/10 bg-ink/60 p-6 shadow-[0_30px_60px_-20px_rgba(0,0,0,0.5)] backdrop-blur">
       <div className="flex items-center justify-between border-b border-white/10 pb-3">
         <span className="font-mono text-xs tracking-wide text-white/50">
-          TALEP #048
+          SPRINT #048
         </span>
         <span className="font-mono text-xs tracking-wide text-white/30">
           Örnek Senaryo
@@ -66,28 +65,28 @@ export default function ApprovalLedger() {
       </div>
 
       <ul className="mt-4 space-y-3">
-        <LedgerRow label="Talep alındı" done={received} />
+        <LedgerRow label="Ürün değerlendirildi" done={received} />
         <LedgerRow
-          label={`${MIN_SUPPLIER_COMPARISON} teklif toplanıyor`}
+          label="Hedef alıcılar araştırılıyor"
           done={comparing && !waiting}
           active={comparing && !approved && !waiting}
         />
-        <LedgerRow label="Onay bekliyor" done={approved} active={waiting} />
+        <LedgerRow label="Görüşme bekleniyor" done={approved} active={waiting} />
       </ul>
 
       <div className="mt-5 border-t border-white/10 pt-4">
         {approved ? (
           <div className="flex items-center justify-between">
             <span className="animate-stamp inline-flex items-center gap-2 rounded-sm border-2 border-stamp-gold px-3 py-1 font-mono text-xs font-semibold tracking-wide text-stamp-gold">
-              ✓ ONAYLANDI
+              ✓ TEMAS KURULDU
             </span>
             <span className="font-mono text-xs text-white/50">
-              Sevkiyatta →
+              Görüşme →
             </span>
           </div>
         ) : (
           <span className="font-mono text-xs text-white/30">
-            Yazılı onay bekleniyor…
+            Karar verici doğrulanıyor…
           </span>
         )}
       </div>

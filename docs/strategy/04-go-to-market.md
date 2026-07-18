@@ -3,8 +3,18 @@
 **Doküman ID:** STRAT-04
 **Versiyon:** 1.0
 **Tarih:** 16 Temmuz 2026
-**Üst referans:** `docs/strategy/00-company-constitution.md`,
+**Üst referans:** `docs/strategy/00-company-constitution.md` (v2.0),
 `docs/strategy/01-master-strategy.md`
+
+> **v2.0 Uyum Notu (18 Temmuz 2026):** Bu belgedeki ICP, öncelikli 5 il,
+> satış hunisi ve ilk temas mesajı, satınalma dış kaynak modeli
+> döneminde tanımlanmıştır ve artık yalnızca **Stratejik Satınalma /
+> Sourcing from Turkey** hizmet hattının satış hunisidir. Teminor'un
+> birincil hizmeti olan ihracat satış geliştirme için go-to-market
+> hunisi Anayasa v2.0 §17 "İlk Operasyon Önceliği" ile başlar: tek
+> üretici + tek ürün grubu + tek alıcı segmentiyle ücretli Buyer
+> Validation Sprint. Bu belge silinmemiştir; ikinci hizmet hattı için
+> geçerliliğini korur.
 
 ---
 

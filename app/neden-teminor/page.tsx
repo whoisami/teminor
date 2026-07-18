@@ -79,13 +79,22 @@ export default function NedenTeminorPage() {
       <section className="bg-navy py-24 text-white">
         <div className="container-content">
           <Reveal>
-            <p className="eyebrow">Neden Teminor</p>
+            <p className="eyebrow">
+              Neden Teminor — Stratejik Satınalma ve Türkiye&apos;den Tedarik
+            </p>
             <h1 className="mt-4 max-w-2xl font-serif text-4xl md:text-5xl">
               Satın alma sürecinizi devrederken kontrolü kaybetmezsiniz.
             </h1>
             <p className="mt-6 max-w-2xl text-lg text-white/75">
               Teminor&apos;u farklı kılan, satın alma disiplinini şirketinizin
               ihtiyaçlarına göre kurması ve her adımda kararı size bırakmasıdır.
+              Bu sayfa, Teminor&apos;un ikinci ana yetkinliği olan Stratejik
+              Satınalma / Türkiye&apos;den Tedarik hizmetini anlatır — birincil
+              hizmetimiz olan ihracat satış geliştirme için{" "}
+              <Link href="/hizmetler" className="underline decoration-gold decoration-2 underline-offset-4 hover:text-gold">
+                Hizmetler
+              </Link>{" "}
+              sayfasına bakabilirsiniz.
             </p>
           </Reveal>
         </div>

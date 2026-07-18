@@ -11,6 +11,11 @@
 > taraf araç verisi sağlandığında eklenir (bkz. Constitution §9,
 > `SEO_GROWTH_PLAN.md` §3 "Data Required" disiplini).
 
+> **v2.0 Uyum Notu (18 Temmuz 2026):** Kümeler §1-§8, Teminor'un artık
+> ikincil hizmeti olan "Stratejik Satınalma / Sourcing from Turkey" için
+> geçerliliğini korur. Anayasa v2.0 ile birincil hizmet haline gelen
+> ihracat satış geliştirme için yeni kümeler §9-§10'da eklenmiştir.
+
 ---
 
 ## Küme Yapısı
@@ -94,6 +99,36 @@ var mı / boşluk mu) içerir.
 - **Durum:** **Boşluk** — Master Strategy'deki öncelikli sektörlerle
   mevcut web sitesi içeriği arasındaki en büyük fark burada. Bu belge bu
   farkı raporlar, kapatmaz (içerik üretimi bu görevin kapsamı dışında).
+
+### 9. İhracat Satış Geliştirme ve Yabancı Alıcı Bulma (TR, v2.0 — yeni, birincil)
+
+- **Niyet:** Karma (bilgi + işlem).
+- **Anahtar kelimeler:** yabancı alıcı bulma, ihracat müşterisi bulma,
+  yurtdışı müşteri bulma, ihracat satış geliştirme, ihracat satış
+  temsilciliği, yurtdışı satış temsilcisi, distribütör bulma, ithalatçı
+  bulma, ihracata uygunluk analizi, dış kaynak ihracat departmanı.
+- **İlgili mevcut içerik:** Yok — bu tamamen yeni bir küme.
+- **Durum:** **Boşluk.** Öncelikli TR içerik listesi için bkz.
+  `docs/seo/content-roadmap.md` §"v2.0 — İhracat Satış Geliştirme".
+
+### 10. Türkiye'den Tedarik (TR/EN, v2.0 — genişletilmiş, ikincil)
+
+- **Niyet:** İşlem (yabancı alıcı karar aşaması).
+- **Anahtar kelimeler (TR):** Türkiye'den üretici bulma, Türkiye'den
+  tedarik, stratejik satınalma.
+- **Anahtar kelimeler (EN):** sourcing from Turkey, find suppliers in
+  Turkey, Turkish manufacturer sourcing, Turkish supplier verification,
+  export sales development Turkey, outsourced export sales, buyer
+  development services, distributor search services, trade
+  representation Turkey.
+- **İlgili mevcut içerik:** Kısmen örtüşüyor — Küme 1 (Dış Kaynak Satın
+  Alma) TR tarafında zaten bu temayı işliyor, ancak **İngilizce hiçbir
+  içerik yok** (site tek dilli, `lang="tr"` — bkz. audit).
+  Not: keyword stuffing yasağı (Anayasa v2.0 §13, CLAUDE.md "Asla")
+  burada da bağlayıcıdır.
+- **Durum:** **Boşluk** (EN tarafı) + tam TR/EN i18n routing altyapısı bu
+  depoda henüz kurulmamıştır — ayrı bir mimari karar gerektirir (bkz.
+  final rapor "Yapılmayan İşlemler").
 
 ## Küme-Sektör Eşleşmesi (Gözlem)
 

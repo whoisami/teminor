@@ -10,6 +10,12 @@
 > Kavramsal bir durum makinesidir — hiçbir uygulama kodu bu görev
 > kapsamında yazılmamıştır.
 
+> **v2.0 Uyum Notu (18 Temmuz 2026):** Aşağıdaki durum makinesi, artık
+> "Stratejik Satınalma / Sourcing from Turkey" hizmet hattının RFQ akışını
+> tanımlar ve değişmeden korunur. Teminor'un birincil hizmeti (ihracat
+> satış geliştirme) için ayrı bir pipeline aşağıda "İhracat Satış
+> Geliştirme Pipeline'ı" başlığı altında eklenmiştir.
+
 ---
 
 ## Durum Listesi
@@ -157,3 +163,47 @@ Taslak → Müşteriye Gönderildi → [Müşteri Bilgisi Bekleniyor] → RFQ On
 
 (Herhangi bir aşamadan) → İptal | Askıda
 ```
+
+---
+
+## İhracat Satış Geliştirme Pipeline'ı (v2.0, yeni)
+
+Bu pipeline, bir **Fırsat** (`OPP-YYYY-#####`) kaydının yaşam döngüsünü
+tanımlar — Anayasa v2.0'ın birincil hizmeti olan ihracat satış
+geliştirme/ticari temsilcilik için. Yukarıdaki RFQ durum makinesiyle
+**çakışmaz**; bir Fırsat, "RFQ" ve "Numune" aşamalarında yukarıdaki
+Sourcing RFQ akışına dallanabilir (bir yabancı alıcının Türkiye'den
+tedarik ihtiyacı doğduğunda).
+
+```
+Manufacturer Candidate → Manufacturer Qualified → Product Ready
+    → Market Selected → Buyer Account Identified → Decision Maker Verified
+    → Outreach Prepared → Contacted → Follow-up → Positive Signal
+    → Meeting → RFQ → Sample → Offer → Negotiation → Won/Lost
+    → Representation Opportunity → Trading Opportunity
+```
+
+| Durum | Açıklama |
+|---|---|
+| Manufacturer Candidate | Üretici aday olarak eklendi, Anayasa v2.0 §9 kriterlerine göre henüz değerlendirilmedi. |
+| Manufacturer Qualified | Üretici zorunlu kabul kriterlerini karşılıyor. |
+| Product Ready | Ürün/ürün grubu ihracat uygunluk analizinden geçti. |
+| Market Selected | Hedef pazar ve alıcı segmenti belirlendi. |
+| Buyer Account Identified | Uygun yabancı alıcı adayı bulundu (henüz doğrulanmadı). |
+| Decision Maker Verified | Alıcı tarafında karar verici doğrulandı (Anayasa v2.0 §10). |
+| Outreach Prepared | İlk temas materyali/mesajı hazırlandı. |
+| Contacted | İlk temas kuruldu. |
+| Follow-up | Takip aşamasında. |
+| Positive Signal | Olumlu ticari sinyal alındı (Commercial Signal kaydı açıldı). |
+| Meeting | Görüşme gerçekleşti. |
+| RFQ | Alıcı teklif talebinde bulundu — gerekirse Sourcing RFQ akışına bağlanır. |
+| Sample | Numune süreci işletiliyor. |
+| Offer | Teklif iletildi. |
+| Negotiation | Müzakere aşamasında. |
+| Won/Lost | Fırsat kazanıldı veya kaybedildi (terminal durum, soft-delete ile korunur). |
+| Representation Opportunity | Tekrarlanan olumlu sonuç, temsilcilik görüşmesini gündeme getirdi. |
+| Trading Opportunity | Teminor'un kendi adına alım-satım yapması değerlendiriliyor. |
+
+**Not:** "Won/Lost" bir terminal durumdur ama kalıcı silinmez —
+Constitution v2.0 §10 (soft-delete/arşivleme ilkesi v1.0'dan değişmeden
+korunmuştur, bkz. `coding-standards.md` §1).

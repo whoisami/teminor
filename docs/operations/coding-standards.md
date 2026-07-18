@@ -10,6 +10,12 @@
 > olacak standartları tanımlar. Bu görev kapsamında hiçbir kod
 > yazılmamıştır; bu, ileriye dönük bir referans belgesidir.
 
+> **v2.0 Uyum Notu (18 Temmuz 2026):** Bu standartlar (soft-delete, audit
+> log, UUID+iş kodu, RBAC, dosya sürümleme, para birimi/tarih, migration
+> güvenliği, secret yönetimi) hizmet hattından bağımsızdır — Anayasa
+> v2.0 ile eklenen Manufacturer/Buyer Account/Opportunity/Representation
+> Agreement varlıkları için de değişmeden geçerlidir.
+
 ---
 
 ## 1. Soft-Delete

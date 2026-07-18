@@ -3,7 +3,16 @@
 **Doküman ID:** STRAT-02
 **Versiyon:** 1.0
 **Tarih:** 16 Temmuz 2026
-**Üst referans:** `docs/strategy/00-company-constitution.md`
+**Üst referans:** `docs/strategy/00-company-constitution.md` (v2.0)
+
+> **v2.0 Uyum Notu (18 Temmuz 2026):** Bu belgedeki "satın alma iş yükünü
+> biz üstleniyoruz" merkezli mesajlaşma, artık yalnızca **Stratejik
+> Satınalma / Sourcing from Turkey** hizmet hattı için geçerlidir.
+> Teminor'un birincil marka mesajı Anayasa v2.0 §5'teki "Üretimden Küresel
+> Talebe" cümlesi ve §13 web sitesi ilkeleridir. Bu belgedeki ton
+> ilkeleri (sakin, kesin, ticari, şeffaf, ortaklık dili) ve "kanıtlanamayan
+> iddia yasağı" hâlâ tüm kanallar için geçerlidir; yalnızca ana mesaj ve
+> CTA kütüphanesi ikincil hizmet hattına indirgenmiştir.
 
 > Bu belge web sitesi metnini, satış görüşmesi dilini veya SEO içeriğini
 > **değiştirmez** — mevcut metinlerin (`app/page.tsx`, `app/hizmetler/

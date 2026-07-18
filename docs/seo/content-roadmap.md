@@ -14,6 +14,14 @@
 > üretme" kısıtı gereği ayrı bir kullanıcı onayı gerektirir (bkz.
 > `/CLAUDE.md` → SEO Agent → Continuous Optimization Mode).
 
+> **v2.0 Uyum Notu (18 Temmuz 2026):** Aşağıdaki 12 konu, artık ikincil
+> hizmet hattı olan "Stratejik Satınalma / Sourcing from Turkey" için
+> geçerliliğini korur. Teminor'un birincil hizmeti (ihracat satış
+> geliştirme) için öncelikli içerik listesi §"v2.0 — İhracat Satış
+> Geliştirme" bölümünde eklenmiştir; bu listeden 2-3 yazı bu görev
+> kapsamında fiilen yazılmıştır (bkz. final rapor), kalanı roadmap'te
+> kalır.
+
 ---
 
 | # | Konu | Arama Niyeti | Hedef Persona | Ana CTA | Bağlı Hizmet Sayfası |
@@ -55,6 +63,32 @@ puanlama, bu konular gerçekten üretim sırasına alındığında seo-agent
 tarafından yapılmalıdır. Kaba öncelik mantığı: dönüşüme en yakın olanlar
 (1, 2, 11, 12) önce; sektör-özel derinlik içerikleri (5-10) sonra
 değerlendirilebilir.
+
+## v2.0 — İhracat Satış Geliştirme (Birincil Hizmet, Öncelikli)
+
+| # | Konu | Dil | Durum |
+|---|---|---|---|
+| 1 | Yabancı Alıcı Nasıl Bulunur? | TR | **Yazıldı** (bu görev) |
+| 2 | Alıcı Listesi Neden Tek Başına Satış Getirmez? | TR | **Yazıldı** (bu görev) |
+| 3 | Distribütör Bulma Süreci Nasıl Yönetilir? | TR | Roadmap'te |
+| 4 | Bir Ürün İhracata Hazır mı? | TR | **Yazıldı** (bu görev) |
+| 5 | İhracat Satış Temsilcisi ile Danışman Arasındaki Fark | TR | Roadmap'te |
+| 6 | Yabancı Alıcıya İlk E-posta Nasıl Yazılır? | TR | Roadmap'te |
+| 7 | İhracatta RFQ Nedir? | TR | Roadmap'te |
+| 8 | Türkiye'den Güvenilir Üretici Nasıl Bulunur? | TR | Roadmap'te |
+| 9 | How to Find Qualified Turkish Manufacturers | EN | Roadmap'te |
+| 10 | Sourcing from Turkey: A Practical Guide | EN | Roadmap'te |
+| 11 | How Export Sales Representation Works | EN | Roadmap'te |
+| 12 | How to Evaluate a Turkish Supplier | EN | Roadmap'te |
+
+**Kapsam kararı (bu görev):** Talimat "ilk aşamada bunlarla sınırlı kal,
+yüzlerce yazı üretme" uyarısını içeriyor; bu görevde yukarıdaki 12
+konudan **3 TR yazısı** fiilen yazılmıştır (1, 2, 4 — sırasıyla alıcı
+bulma temel kavramı, en sık yanlış anlaşılan nokta, ve ihracat hazırlığı
+öz-değerlendirmesi). EN içerik ve kalan TR konular, **tam TR/EN i18n
+routing altyapısı kurulana kadar** roadmap'te bekletilir (bkz. final
+rapor "Yapılmayan İşlemler" — bu depoda henüz `/en` route yapısı yok,
+tek dilli içeriği iki dile bölmeden önce mimari karar gerekir).
 
 ## Bu Roadmap ile Mevcut Blog İçeriği Arasındaki İlişki
 

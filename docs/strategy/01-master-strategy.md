@@ -3,7 +3,18 @@
 **Doküman ID:** STRAT-01
 **Versiyon:** 1.0
 **Tarih:** 16 Temmuz 2026
-**Üst referans:** `docs/strategy/00-company-constitution.md`
+**Üst referans:** `docs/strategy/00-company-constitution.md` (v2.0)
+
+> **v2.0 Uyum Notu (18 Temmuz 2026):** Bu belge v1.0 döneminde, Teminor'un
+> ana işi "dış kaynak satın alma departmanı" iken yazılmıştır. Anayasa
+> v2.0 ile ana konumlandırma ihracat satış geliştirme/ticari temsilciliğe
+> çevrilmiştir (bkz. `decisions/decision-log.md` → DEC-2026-0002). Bu
+> belge **silinmemiş, çelişki halinde ikincil kabul edilmiştir**: hedef
+> pazar/ICP/sektör önceliklendirmesi, satış hunisi, RFQ/tedarikçi
+> puanlama mantığı ve go-to-market kanalları burada tanımlandığı şekliyle
+> **artık yalnızca "Stratejik Satınalma / Sourcing from Turkey" hizmet
+> hattı için geçerlidir** — Teminor'un birincil hizmeti (ihracat satış
+> geliştirme) için değil. Birincil strateji için Anayasa v2.0'a bakın.
 
 ---
 

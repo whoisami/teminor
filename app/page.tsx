@@ -26,16 +26,16 @@ import {
 } from "@/lib/site";
 
 const description =
-  "Teminor, işletmelerin satın alma iş yükünü dışarıdan yürütür. Tedarikçi araştırma, teklif karşılaştırma ve sipariş takibi; yazılı onay olmadan sipariş verilmez.";
+  "Teminor, Türk üreticilerin ürünleri için uygun yabancı alıcıları araştırır, karar vericilere ulaşır ve ihracat satış sürecini ticari görüşmeye kadar yönetir.";
 
 export const metadata: Metadata = {
-  title: "Teminor | Dış Kaynak Satın Alma Departmanı — Kontrol Sizde Kalır",
+  title: "Teminor | İhracat Satış Geliştirme ve Yabancı Alıcı Bulma",
   description,
   alternates: { canonical: "/" },
   openGraph: {
-    title: "Teminor — Satın Alma İş Yükünüzü Biz Üstlenelim",
+    title: "Teminor — Üretimden Küresel Talebe",
     description:
-      "Tedarikçi araştırma, teklif karşılaştırma ve sipariş takibini dış kaynak olarak yürütüyoruz. Nihai karar her zaman sizde kalır.",
+      "Doğrulanmış ticari ilgi geliştiririz; liste veya rapor satmayız. İhracat satış geliştirme, yabancı alıcı geliştirme ve ticari temsilcilik.",
     url: SITE_URL,
     type: "website",
   },
@@ -43,76 +43,71 @@ export const metadata: Metadata = {
 
 const homeFaqItems = [
   {
-    question: "Teminor benim adıma sipariş verebilir mi?",
+    question: "Teminor bana alıcı veya satış garantisi verir mi?",
     answer:
-      "Sipariş yalnızca sizin yazılı onayınızla ve onay kapsamıyla sınırlı olarak iletilir.",
+      "Hayır. Doğrulanmış ticari ilgi geliştirir ve satış sürecini yönetiriz; satış, ihracat veya alıcı garantisi vermeyiz.",
   },
   {
-    question: "Kontrolü kaybeder miyim?",
+    question: "Teminor, üreticinin yetkili temsilcisi mi?",
     answer:
-      "Hayır. Nihai tedarikçi seçimi ve sipariş onayı her zaman sizde kalır.",
+      "Yalnızca yazılı sözleşmeyle tanımlanan ürün, pazar ve yetki kapsamında. Yazılı sözleşme yoksa hiçbir üreticinin yetkili temsilcisi olduğumuzu iddia etmeyiz.",
   },
   {
-    question: "Tedarikçiden komisyon alıyor musunuz?",
+    question: "Buyer Validation Sprint nedir?",
     answer:
-      "Teminor, müşterinin önceden yazılı bilgisi ve onayı olmadan değerlendirilen tedarikçilerden komisyon veya başka bir ticari menfaat kabul etmez.",
+      "Tek bir ürün grubu ve sınırlı bir hedef pazar için hedef alıcı/karar verici araştırma, doğrulama ve kontrollü temas çalışmasıdır; sonunda bir ticari sinyal raporu paylaşılır.",
+  },
+  {
+    question: "Başvuru için hangi bilgileri paylaşmam gerekiyor?",
+    answer:
+      "Ürün grubu, HS/GTİP, kapasite, MOQ, teslim süresi, sertifikalar ve İngilizce katalog/teknik doküman durumunuz gibi bilgileri paylaşmanız gerekir.",
+  },
+  {
+    question: "Fiyat, sözleşme veya sipariş kararını Teminor mu verir?",
+    answer:
+      "Hayır. Fiyat bağlama, sözleşme imzalama ve nihai karar yetkisi, ayrıca ve açıkça verilmedikçe üreticide/müşteride kalır.",
+  },
+  {
+    question: "Tedarikçiden veya alıcıdan komisyon alıyor musunuz?",
+    answer:
+      "Teminor, önceden yazılı bilgi ve onay olmadan gizli komisyon veya açıklanmayan bir menfaat kabul etmez.",
   },
   {
     question: "Ürün yanlış veya kusurlu çıkarsa sorumluluk kimde?",
     answer:
-      "Teknik uygunluk ve nihai kabul sizin sorumluluğunuzdadır; tedarikçinin ayıplı ifası Teminor tarafından garanti edilmez.",
+      "Ürünün teknik uygunluğu, kalite standardı, mevzuata uyumu ve zamanında teslimi üreticinin sorumluluğundadır.",
   },
   {
-    question: "Kaç tedarikçiden teklif alınır?",
+    question: "Satınalma / Türkiye'den tedarik hizmetini de sunuyor musunuz?",
     answer:
-      "Teklif sayısı kategoriye ve pazardaki uygun tedarikçi durumuna göre değişir; pilot çalışmada RFQ başına en fazla 3 tedarikçi adayı araştırılır.",
-  },
-  {
-    question: "Tedarikçi teklif vermezse ne olur?",
-    answer:
-      "Alternatif adaylarla araştırma sürdürülür ve durum size bildirilir.",
-  },
-  {
-    question: "Mevcut satın alma çalışanımız varsa hizmeti kullanabilir miyiz?",
-    answer:
-      "Evet. Teminor, ekibinizin yoğun veya kapasitesini aşan kategorilerinde ek kaynak olarak çalışabilir.",
-  },
-  {
-    question: "Hangi kategorilerde çalışıyorsunuz?",
-    answer:
-      "Başta makine/metal, ambalaj/plastik/kimya ve gıda üretimi olmak üzere, üretim ve teknik servis ağırlıklı kategorilerde çalışıyoruz.",
+      "Evet. Yabancı alıcılar için Türkiye'den üretici bulma ve tedarik süreci koordinasyonu, ikinci ana yetkinliğimiz olarak devam ediyor — detaylar için Hizmetler sayfasına bakabilirsiniz.",
   },
   {
     question: "RFQ nedir ve nasıl açılır?",
     answer:
-      "RFQ, bir satın alma talebinin teknik ve ticari detaylarını içeren teklif talep formudur. Teminor formu size gönderir; doldurup e-posta ile geri gönderdiğinizde talebiniz sisteme kaydedilir.",
-  },
-  {
-    question: "Pilot çalışma nasıl işler?",
-    answer:
-      "Pilot çalışma 30 gün sürer; 2 kategori ve toplam 3 RFQ kapsamında ilerler. Her RFQ'da en fazla 5 kalem işlenir ve en fazla 3 tedarikçi adayı araştırılır. Süreç sonunda bir değerlendirme raporu paylaşılır.",
+      "RFQ, bir satın alma veya ihracat talebinin teknik ve ticari detaylarını içeren teklif talep formudur. Teminor formu iletir; doldurup geri gönderdiğinizde talebiniz sisteme kaydedilir.",
   },
 ];
 
 const nedenTeminorPoints = [
-  "Aracı değil, ortağınız — süreci devralırız, sadece isim vermeyiz.",
-  "Onay olmadan hiçbir sipariş verilmez — kararı hep siz verirsiniz.",
-  "Tek sektöre değil, ihtiyacınıza göre kurulan operasyon modeli.",
-  "Şeffaf ücretlendirme — gizli komisyon yok, ne ödediğinizi bilirsiniz.",
+  "Rapor veya liste satmayız — doğrulanmış ticari ilgi geliştiririz.",
+  "Yazılı sözleşme olmadan hiçbir üreticinin yetkili temsilcisi olduğumuzu iddia etmeyiz.",
+  "Her çalışma tek ürün grubu ve net hedef segmentle sınırlandırılır.",
+  "Satış veya alıcı garantisi vermeyiz; yalnızca yapılan çalışma ve doğrulanan sonuçlar raporlanır.",
 ];
 
 const stats = [
   {
-    title: "Türkiye Genelinde Tedarikçi Araştırması",
-    label: "Bölgesel sınır olmadan, ihtiyacınıza uygun tedarikçi araştırılır.",
+    title: "Tek Ürün Grubu, Net Hedef Segment",
+    label: "Her çalışma sınırlı ve ölçülebilir bir kapsamla yürütülür.",
   },
   {
-    title: "Standart Taleplerde 1-2 İş Günü Yanıt",
-    label: "Talebiniz standart süreçte 1-2 iş günü içinde değerlendirilir.",
+    title: "Doğrulanmış Karar Verici Teması",
+    label: "Genel listeler değil, doğrulanmış karar vericilerle temas kurulur.",
   },
   {
-    title: null,
-    label: "Tek kaynağa bağımlı kalmadan, karşılaştırmalı teklif toplanır.",
+    title: "Şeffaf Ticari Sinyal Raporlama",
+    label: "Yapılan çalışma ve doğrulanan sonuçlar düzenli olarak raporlanır.",
   },
 ];
 
@@ -163,13 +158,14 @@ export default function HomePage() {
           <Reveal>
             <p className="eyebrow">Problem</p>
             <h2 className="mt-3 max-w-2xl font-serif text-3xl text-navy md:text-4xl">
-              Satın Alma, Ana İşiniz Değil — Ama Zamanınızı Tüketiyor
+              Doğru Alıcıyı Bulmak, Ürün Kadar Zor
             </h2>
             <p className="mt-6 max-w-2xl text-base leading-relaxed text-muted">
-              Talepler e-posta ve Excel arasında dağıldığında; kimden teklif
-              alındığı, hangi şartın neden seçildiği ve işin nerede beklediği
-              görünmez hale gelir. Her geciken teklif veya takipsiz kalan
-              sipariş, ekibinizin asıl işine ayırması gereken zamanı alır.
+              Genel şirket listeleri veya tek seferlik fuar temasları tek
+              başına satış getirmez. Karar vericiye ulaşmak, doğru zamanda
+              doğru teklifi sunmak ve süreci takip etmek; üretimin ve
+              kalitenin dışında kalan, zaman ve uzmanlık isteyen ayrı bir
+              disiplindir.
             </p>
           </Reveal>
         </div>
@@ -181,14 +177,13 @@ export default function HomePage() {
           <Reveal>
             <p className="eyebrow">Çözüm</p>
             <h2 className="mt-3 max-w-2xl font-serif text-3xl text-navy md:text-4xl">
-              Süreç Sizin, Yürütme Bizim
+              Alıcıyı Buluruz, Satış Sürecini Yönetiriz
             </h2>
             <p className="mt-6 max-w-2xl text-base leading-relaxed text-muted">
-              Teminor, satın alma taleplerinizi standartlaştırır; alternatif
-              tedarikçileri araştırır, teklifleri fiyat, vade, termin,
-              nakliye ve diğer ticari koşullar mümkün olduğu ölçüde normalize
-              edilerek karşılaştırır, müzakereyi ve sipariş takibini yürütür.
-              Siz yalnızca öneriyi değerlendirir ve yazılı onay verirsiniz.
+              Teminor, ürününüze uygun yabancı alıcıları araştırır, karar
+              vericileri doğrular; ilk temastan RFQ, numune ve teklife kadar
+              satış sürecini sizinle birlikte yönetir. Doğrulanmış ticari
+              ilgi geliştiririz; liste veya rapor satmayız.
             </p>
           </Reveal>
         </div>
@@ -200,37 +195,37 @@ export default function HomePage() {
           <Reveal>
             <p className="eyebrow">Neden Bizimle Çalışmalısınız</p>
             <h2 className="mt-3 max-w-xl font-serif text-3xl text-navy md:text-4xl">
-              İşi biz yürütürüz, kararı siz verirsiniz.
+              Alıcıyı biz buluruz, kararı siz verirsiniz.
             </h2>
           </Reveal>
           <div className="mt-14 grid gap-6 md:grid-cols-3">
             <BenefitCard
               icon={<TimeIcon />}
               title="Zaman Kazanın"
-              description="Teklif toplama ve tedarikçi takibi ekibinizin gündeminden çıkar; siz stratejik işinize odaklanırsınız."
-            />
-            <BenefitCard
-              icon={<CostIcon />}
-              title="Net Karşılaştırma"
-              description="Teklifler fiyat, vade, termin, nakliye ve diğer ticari koşullar mümkün olduğu ölçüde normalize edilerek karşılaştırılır."
-              delay={0.08}
+              description="Alıcı araştırma ve ilk temas süreci sizin yerinize yürütülür; siz üretim ve kaliteye odaklanırsınız."
             />
             <BenefitCard
               icon={<ReachIcon />}
-              title="Daha Geniş Tedarikçi Erişimi"
-              description="Mevcut tedarikçi ağınızın dışında, kategoriye uygun alternatif adaylar araştırılır."
+              title="Doğru Alıcıya Ulaşın"
+              description="Genel listeler yerine, ürününüze uygun karar vericiler araştırılır ve doğrulanır."
+              delay={0.08}
+            />
+            <BenefitCard
+              icon={<CostIcon />}
+              title="Süreç Disiplini"
+              description="İlk temastan teklife kadar her aşama yapılandırılmış ve takip edilebilir şekilde yürütülür."
               delay={0.16}
             />
             <BenefitCard
               icon={<RiskIcon />}
-              title="İz Bırakan Süreç"
-              description="Her RFQ, teklif, onay ve sipariş kayıt altına alınır; kimin ne zaman onayladığı nettir."
+              title="Şeffaf Raporlama"
+              description="Yapılan çalışma, temas ve doğrulanan sonuçlar raporlanır; satış garantisi verilmez."
               delay={0.24}
             />
             <BenefitCard
               icon={<TrackingIcon />}
-              title="Teslimat Takibi"
-              description="Sipariş onaylandıktan sonra termin ve sevkiyat süreci düzenli olarak takip edilir."
+              title="Kontrol Sizde Kalır"
+              description="Fiyat, sözleşme ve nihai karar yetkisi, yazılı yetki verilmedikçe sizde kalır."
               delay={0.32}
             />
           </div>
@@ -238,6 +233,40 @@ export default function HomePage() {
       </section>
 
       <HowItWorks />
+
+      {/* Sourcing from Turkey — ikincil hizmet girişi */}
+      <section className="bg-navy py-16 text-white">
+        <div className="container-content text-center">
+          <Reveal>
+            <p className="eyebrow">İkincil Hizmet</p>
+            <h2 className="mt-3 font-serif text-2xl md:text-3xl">
+              Yabancı Alıcıysanız: Türkiye&apos;den Tedarik ve Stratejik
+              Satınalma
+            </h2>
+            <p className="mx-auto mt-4 max-w-2xl text-white/70">
+              Türkiye&apos;den ürün veya üretici arıyorsanız, tedarikçi
+              araştırma, teklif toplama ve karşılaştırma sürecini sizin için
+              yürütürüz.
+            </p>
+            <div className="mt-6 flex justify-center">
+              <CountUpStat
+                value={MIN_SUPPLIER_COMPARISON}
+                prefix="Her Talepte "
+                suffix="+ Tedarikçi Karşılaştırması"
+                className="font-serif text-xl text-gold"
+              />
+            </div>
+            <TrackedCta
+              href="/iletisim#alici-talebi"
+              label="home_sourcing_alici_ariyorum"
+              location="home_sourcing"
+              className="btn-primary mt-6 inline-block bg-gold hover:bg-[#8a6b2d]"
+            >
+              Türkiye&apos;den Üretici Arıyorum
+            </TrackedCta>
+          </Reveal>
+        </div>
+      </section>
 
       <CategoryGrid />
 
@@ -249,7 +278,7 @@ export default function HomePage() {
           <Reveal>
             <p className="eyebrow">Neden Teminor</p>
             <h2 className="mt-3 font-serif text-3xl md:text-4xl">
-              Satın almayı devretmek, kontrolü kaybetmek değildir.
+              İlk temas kurmak, satışın garantisi değildir.
             </h2>
             <TrackedCta
               href="/neden-teminor"
@@ -277,24 +306,13 @@ export default function HomePage() {
       <section className="bg-light-bg py-24">
         <div className="container-content">
           <Reveal>
-            <p className="eyebrow">Rakamlarla Teminor</p>
+            <p className="eyebrow">Nasıl Çalıştığımız</p>
           </Reveal>
           <div className="mt-10 grid gap-6 sm:grid-cols-3">
             {stats.map((stat, i) => (
               <Reveal key={stat.label} delay={i * 0.1}>
                 <div className="card-interactive rounded-sm border border-navy/10 bg-white p-8 text-center">
-                  {stat.title ? (
-                    <p className="font-serif text-xl text-gold">
-                      {stat.title}
-                    </p>
-                  ) : (
-                    <CountUpStat
-                      value={MIN_SUPPLIER_COMPARISON}
-                      prefix="Her Talepte "
-                      suffix="+ Tedarikçi Karşılaştırması"
-                      className="font-serif text-xl text-gold"
-                    />
-                  )}
+                  <p className="font-serif text-xl text-gold">{stat.title}</p>
                   <p className="mt-2 text-sm text-muted">{stat.label}</p>
                 </div>
               </Reveal>
@@ -313,11 +331,11 @@ export default function HomePage() {
             </h2>
             <ul className="mt-8 space-y-4">
               {[
-                "Yazılı müşteri onayı olmadan sipariş verilmez.",
-                "Nihai tedarikçi seçimi size aittir.",
-                "Teminor, müşterinin önceden yazılı bilgisi ve onayı olmadan değerlendirilen tedarikçilerden komisyon veya başka bir ticari menfaat kabul etmez.",
-                "Tüm teklifler, kararlar ve durum değişiklikleri kayıt altına alınır.",
-                "Teknik uygunluk ve teslim kabulü sizin tarafınızdan doğrulanır.",
+                "Üretici adına fiyat bağlama, sözleşme imzalama veya tahsilat yetkisi, ayrıca ve açıkça verilmedikçe kullanılmaz.",
+                "Gizli komisyon veya açıklanmayan menfaat kabul edilmez.",
+                "Yetkili temsilcilik yalnızca yazılı sözleşmeyle ve tanımlı kapsamla kurulur.",
+                "Ürünün teknik uygunluğu, kalite standardı ve zamanında teslimi üreticinin sorumluluğundadır.",
+                "Kanıtlanamayan müşteri, hacim, başarı veya ortaklık iddiası paylaşılmaz.",
               ].map((point) => (
                 <li key={point} className="flex gap-4">
                   <span className="mt-1 h-2 w-2 shrink-0 rounded-full bg-gold" />
@@ -331,29 +349,28 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Pilot Hizmet */}
+      {/* Buyer Validation Sprint */}
       <section className="bg-navy py-24 text-white">
         <div className="container-content max-w-2xl">
           <Reveal>
-            <p className="eyebrow">Pilot</p>
+            <p className="eyebrow">Buyer Validation Sprint</p>
             <h2 className="mt-3 font-serif text-3xl md:text-4xl">
-              30 Günlük Satın Alma Pilot Çalışması
+              Tek Ürün, Tek Pazar, Doğrulanmış Ticari Sinyal
             </h2>
             <p className="mt-6 text-base leading-relaxed text-white/75">
-              30 gün süresince, 2 kategori ve toplam 3 RFQ kapsamında modeli
-              gerçek talebiniz üzerinde test edin. Her RFQ&apos;da en fazla 5
-              kalem işlenir ve kategoriye uygun en fazla 3 tedarikçi adayı
-              araştırılır. Pilot sonunda süreç ve gelişim raporu paylaşılır;
-              talep ederseniz düzenli çalışma modeline geçiş birlikte
-              değerlendirilir.
+              Buyer Validation Sprint; tek bir ürün grubu, sınırlı bir hedef
+              pazar ve net bir alıcı segmentiyle çalışır. Hedef şirketler ve
+              karar vericiler doğrulanır, kontrollü temas ve takip yürütülür,
+              süreç sonunda bir ticari sinyal raporu paylaşılır. Amaç satış
+              garantisi değil, sinyal doğrulamadır.
             </p>
             <TrackedCta
               href="/hizmetler"
-              label="home_pilot_calismayi_inceleyin"
-              location="home_pilot"
+              label="home_buyer_validation_sprint_inceleyin"
+              location="home_sprint"
               className="btn-primary mt-8 bg-gold hover:bg-[#8a6b2d]"
             >
-              Pilot Çalışmayı İnceleyin
+              Buyer Validation Sprint&apos;i İnceleyin
             </TrackedCta>
           </Reveal>
         </div>
@@ -362,9 +379,10 @@ export default function HomePage() {
       <FAQSection items={homeFaqItems} />
 
       <FinalCta
-        heading="Satın Alma İş Yükünüzü Birlikte Haritalandıralım"
-        ctaLabel="İlk Talebinizi Değerlendirelim"
-        ctaTrackingLabel="home_final_cta_ilk_talep"
+        heading="Ürününüzü Değerlendirip İlk Adımı Birlikte Atalım"
+        ctaLabel="Ürününüzü Değerlendirelim"
+        href="/iletisim#uretici-basvurusu"
+        ctaTrackingLabel="home_final_cta_urun_degerlendirme"
         location="home_final_cta"
       />
 
@@ -375,7 +393,7 @@ export default function HomePage() {
             <Reveal>
               <p className="eyebrow">Blog</p>
               <h2 className="mt-3 font-serif text-3xl text-navy md:text-4xl">
-                Satın Alma Üzerine Yazılar
+                İhracat ve Satın Alma Üzerine Yazılar
               </h2>
               <TrackedCta
                 href="/blog"

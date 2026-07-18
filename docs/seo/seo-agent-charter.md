@@ -3,7 +3,14 @@
 **Doküman ID:** SEO-STRAT-01
 **Versiyon:** 1.0
 **Tarih:** 16 Temmuz 2026
-**Üst referans:** `docs/strategy/00-company-constitution.md`
+**Üst referans:** `docs/strategy/00-company-constitution.md` (v2.0)
+
+> **v2.0 Uyum Notu (18 Temmuz 2026):** seo-agent'ın hedef karar vericileri
+> artık iki eksenlidir — Türk üretici/ihracat tarafı ve yabancı alıcı
+> tarafı (birincil), satınalma ICP'si (ikincil). Bkz. `/CLAUDE.md` → ICP
+> bölümü. Bu belgedeki değişmez kurallar (kanıtlanamayan iddia yasağı,
+> keyword stuffing yasağı, tek niyet/tek CTA ilkesi) hizmet hattından
+> bağımsız, değişmeden geçerlidir.
 
 > **Bu belge `.claude/agents/seo-agent.md`'nin yerine geçmez, onu
 > tamamlar.** `.claude/agents/seo-agent.md`, seo-agent'ın operasyonel

@@ -3,7 +3,14 @@
 **Doküman ID:** STRAT-03
 **Versiyon:** 1.0
 **Tarih:** 16 Temmuz 2026
-**Üst referans:** `docs/strategy/00-company-constitution.md`
+**Üst referans:** `docs/strategy/00-company-constitution.md` (v2.0)
+
+> **v2.0 Uyum Notu (18 Temmuz 2026):** Bu belgedeki ana sayfa akışı, hero
+> mesajı ve hizmetler sayfası paket mimarisi **Stratejik Satınalma /
+> Sourcing from Turkey** hizmet hattının web sitesi kapsamını tanımlar.
+> Ana sayfanın birincil mesajı artık Anayasa v2.0 §13'teki ihracat satış
+> geliştirme ilkeleridir. Tasarımı koruma ilkesi (§13) ve mobil metin
+> kuralları (§14) değişmeden her iki hizmet hattı için de geçerlidir.
 
 > **Bu belge web sitesi kodunu tanımlar, değiştirmez.** Bu doküman
 > oluşturulduğu anda `app/`, `components/` içindeki hiçbir dosyaya

@@ -9,21 +9,84 @@ import PackageInteractive from "@/components/hizmetler/PackageInteractive";
 import { SITE_URL } from "@/lib/site";
 
 const description =
-  "İşletmenizin büyüklüğüne uygun satın alma dış kaynak modelini seçin: pilot çalışmadan tam kapsamlı departman desteğine kadar. Kontrol ve onay yetkisi sizde kalır.";
+  "İhracat uygunluk analizi, yabancı alıcı geliştirme, ihracat satış geliştirme ve ticari temsilcilik hizmetlerimiz. Türkiye'den tedarik ve stratejik satınalma ikinci ana yetkinliğimizdir.";
 
 export const metadata: Metadata = {
-  title: "Teminor Hizmet Paketleri | Pilot, Başlangıç, Operasyon ve Departman Modeli",
+  title: "Teminor Hizmetleri | İhracat Satış Geliştirme ve Ticari Temsilcilik",
   description,
   alternates: { canonical: "/hizmetler" },
   openGraph: {
-    title: "Teminor Hizmet Paketleri — Kontrol Sizde Kalır",
+    title: "Teminor Hizmetleri — Üretimden Küresel Talebe",
     description:
-      "Pilot çalışmadan dış kaynak satın alma departmanına kadar, büyüklüğünüze uygun modeli seçin.",
+      "İhracat uygunluk analizinden ticari temsilciliğe; Türkiye'den tedarikten stratejik satınalmaya kadar hizmetlerimiz.",
     url: `${SITE_URL}/hizmetler`,
     type: "website",
   },
 };
 
+// Birincil hizmetler — Anayasa v2.0 §6 (Ana İş Modeli) aşama 1-4.
+const exportServices = [
+  {
+    name: "Export Readiness Assessment",
+    trName: "İhracat Uygunluk Analizi",
+    audience:
+      "İhracata yeni başlayan veya ihracat sürecini sistemli hale getirmek isteyen Türk üreticiler",
+    scope:
+      "Ürününüzün, üretim kapasitenizin ve teklif altyapınızın dış satışa hazır olup olmadığını; kapasite, MOQ, teslim süresi, sertifika ve İngilizce dokümantasyon açısından değerlendiririz.",
+    requiredInfo:
+      "Ürün grubu, HS/GTİP, kapasite, sertifikalar, mevcut ihracat deneyiminiz",
+    output:
+      "Uygunluk değerlendirme raporu — hazır olduğunuz ve geliştirilmesi gereken alanlar",
+    limits: "Satış garantisi verilmez; yalnızca mevcut durumun değerlendirmesi sunulur.",
+    ctaLabel: "Ürününüzü Değerlendirelim",
+    ctaHref: "/iletisim#uretici-basvurusu",
+  },
+  {
+    name: "Export Buyer Development",
+    trName: "Yabancı Alıcı Geliştirme",
+    audience: "İhracata hazır, hedef pazarını netleştirmiş üreticiler",
+    scope:
+      "Uygun ithalatçı, distribütör, toptancı, OEM veya kurumsal alıcı adaylarını araştırır, karar vericileri doğrularız — Buyer Validation Sprint kapsamında.",
+    requiredInfo: "Ürün grubu, hedef pazar, fiyat pozisyonu, numune kabiliyeti",
+    output: "Doğrulanmış hedef şirket/karar verici listesi ve ticari sinyal raporu",
+    limits: "Liste satışı değildir; alıcı garantisi verilmez.",
+    ctaLabel: "Buyer Validation Sprint'i Değerlendirelim",
+    ctaHref: "/iletisim#uretici-basvurusu",
+  },
+  {
+    name: "Export Sales Development",
+    trName: "İhracat Satış Geliştirme",
+    audience:
+      "Doğrulanmış alıcı adayları olan, satış sürecini yönetecek iç kapasitesi sınırlı üreticiler",
+    scope:
+      "İlk temas, takip, toplantı, RFQ, numune ve teklif sürecini sizinle birlikte yönetiriz — Aylık İhracat Satış Masası modeliyle sürekli yürütülür.",
+    requiredInfo: "Doğrulanmış alıcı adayları, ürün teklif altyapısı",
+    output: "Düzenli pipeline raporlaması",
+    limits: "Satış garantisi verilmez; nihai fiyat ve sözleşme kararı sizindir.",
+    ctaLabel: "Süreci Birlikte Değerlendirelim",
+    ctaHref: "/iletisim#uretici-basvurusu",
+  },
+  {
+    name: "Export Sales Representation",
+    trName: "Ticari Temsilcilik",
+    audience:
+      "Alıcı ilişkileri olgunlaşmış, yurt dışında sürekli ve yetkili bir ticari uzantı isteyen üreticiler",
+    scope:
+      "Yazılı sözleşmeyle tanımlanan ürün, pazar ve yetki kapsamında yurtdışı satış temsilciliği yürütürüz — komisyon, müşteri koruma ve yetki sınırları sözleşmede tanımlanır.",
+    requiredInfo:
+      "Temsil edilecek ürün/ürün grupları, hedef ülke/bölge, münhasırlık tercihi",
+    output: "Yazılı temsilcilik sözleşmesi ve tanımlı yetki kapsamı",
+    limits:
+      "Sistemde varsayılan olarak pasiftir; yalnızca yazılı sözleşme ile aktifleşir. Yazılı yetki olmadan temsilcilik iddiası kullanılmaz.",
+    ctaLabel: "Temsilcilik Görüşmesi Talep Edin",
+    ctaHref: "/iletisim",
+  },
+] as const;
+
+// İkincil hizmetler — Anayasa v2.0 §6 aşama 5 (Stratejik Satınalma ve
+// Türkiye'den Tedarik). v1.0 döneminde kurulan 4 paket yapısı burada
+// korunur, yalnızca hedef kitle "yabancı alıcı + yerli müşteri" olarak
+// genişletilmiştir (bkz. decisions/decision-log.md → DEC-2026-0002).
 const tiers = [
   {
     name: "Satın Alma Pilot Çalışması",
@@ -74,6 +137,11 @@ const tiers = [
 
 const hizmetlerFaqItems = [
   {
+    question: "İhracat satış geliştirme ile Türkiye'den tedarik hizmeti arasındaki fark nedir?",
+    answer:
+      "İhracat satış geliştirme, Türk üreticiler için yabancı alıcı bulma ve satış sürecini yönetmedir — birincil hizmetimizdir. Türkiye'den tedarik ise yabancı alıcılar veya yerli müşteriler için üretici bulma ve satınalma sürecini koordine etmemizdir — ikinci ana yetkinliğimizdir.",
+  },
+  {
     question: "Paketler arasında geçiş yapabilir miyiz?",
     answer:
       "Evet, ihtiyacınız değiştikçe paket kapsamı birlikte güncellenebilir.",
@@ -99,44 +167,124 @@ export default function HizmetlerPage() {
           <Reveal>
             <p className="eyebrow">Hizmetler</p>
             <h1 className="mt-4 max-w-2xl font-serif text-4xl md:text-5xl">
-              İhtiyacınıza Göre Esnek Satın Alma Kapasitesi
+              İhracat Uygunluk Analizinden Ticari Temsilciliğe
             </h1>
             <p className="mt-6 max-w-2xl text-lg text-white/75">
-              Şirketinizin büyüklüğüne ve RFQ yoğunluğuna uygun çalışma
-              modelini seçin; kontrol her modelde sizde kalır.
+              Türk üreticiler için ihracat satış geliştirme, yabancı alıcı
+              geliştirme ve ticari temsilcilik; yabancı alıcılar için
+              Türkiye&apos;den tedarik ve stratejik satınalma.
             </p>
             <TrackedCta
-              href="/iletisim"
-              label="hizmetler_hero_modelinizi_secelim"
+              href="/iletisim#uretici-basvurusu"
+              label="hizmetler_hero_urununuzu_degerlendirelim"
               location="hizmetler_hero"
               className="btn-primary mt-8 inline-block bg-gold hover:bg-[#8a6b2d]"
             >
-              Modelinizi Birlikte Seçelim
+              Ürününüzü Değerlendirelim
             </TrackedCta>
             <p className="mt-6 max-w-xl text-xs uppercase tracking-[0.15em] text-white/45">
-              Yazılı onaysız sipariş yok · Adil kullanım kapsamı net
-              tanımlanır · Nihai karar sizde kalır
+              Satış garantisi yok · Yazılı yetki olmadan temsilcilik iddiası
+              yok · Gizli komisyon yok
             </p>
           </Reveal>
         </div>
       </section>
 
+      {/* Birincil hizmetler — ihracat satış geliştirme */}
       <section className="bg-light-bg py-24">
         <div className="container-content">
           <Reveal>
-            <p className="eyebrow">Paketler</p>
+            <p className="eyebrow">Birincil Hizmet</p>
             <h2 className="mt-3 max-w-2xl font-serif text-3xl text-navy md:text-4xl">
-              Hizmet Paketlerimiz
+              İhracat Satış Geliştirme Hizmetlerimiz
             </h2>
             <p className="mt-4 max-w-2xl text-base leading-relaxed text-muted">
-              Her paket aynı onay disiplinini paylaşır; aradaki fark kapsam,
-              RFQ hacmi ve ekibinize sağlanan destek düzeyidir.
+              Her hizmet tek ürün grubu ve net hedef segmentle sınırlandırılır;
+              amaç doğrulanmış ticari ilgi geliştirmektir, satış garantisi
+              değil.
+            </p>
+          </Reveal>
+          <div className="mt-12 grid gap-8 md:grid-cols-2">
+            {exportServices.map((service, i) => (
+              <Reveal key={service.name} delay={i * 0.08}>
+                <div className="card-interactive flex h-full flex-col rounded-sm border border-navy/10 bg-white p-8 shadow-sm">
+                  <span className="h-1 w-10 rounded-full bg-gold" aria-hidden="true" />
+                  <p className="mt-5 text-xs font-semibold uppercase tracking-wide text-navy/40">
+                    {service.name}
+                  </p>
+                  <h3 className="mt-1 font-serif text-xl text-navy">
+                    {service.trName}
+                  </h3>
+                  <p className="mt-3 text-xs font-semibold uppercase tracking-wide text-navy/40">
+                    Kimler için
+                  </p>
+                  <p className="mt-1 text-sm leading-relaxed text-muted">
+                    {service.audience}
+                  </p>
+                  <div className="mt-6 border-t border-navy/10 pt-6">
+                    <p className="text-xs font-semibold uppercase tracking-wide text-navy/40">
+                      Kapsam
+                    </p>
+                    <p className="mt-1 text-sm leading-relaxed text-muted">
+                      {service.scope}
+                    </p>
+                  </div>
+                  <div className="mt-6">
+                    <p className="text-xs font-semibold uppercase tracking-wide text-navy/40">
+                      Gerekli bilgi
+                    </p>
+                    <p className="mt-1 text-sm leading-relaxed text-muted">
+                      {service.requiredInfo}
+                    </p>
+                  </div>
+                  <div className="mt-6">
+                    <p className="text-xs font-semibold uppercase tracking-wide text-navy/40">
+                      Çıktı
+                    </p>
+                    <p className="mt-1 text-sm leading-relaxed text-muted">
+                      {service.output}
+                    </p>
+                  </div>
+                  <p className="mt-6 text-xs font-semibold text-gold">
+                    {service.limits}
+                  </p>
+                  <div className="mt-8 border-t border-navy/10 pt-6">
+                    <TrackedCta
+                      href={service.ctaHref}
+                      label={`hizmet_${service.name.toLowerCase().replace(/\s+/g, "_")}`}
+                      location="hizmetler_export_card"
+                      className="btn-primary w-full justify-center sm:w-auto"
+                    >
+                      {service.ctaLabel}
+                    </TrackedCta>
+                  </div>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* İkincil hizmet — Stratejik Satınalma / Sourcing from Turkey */}
+      <section className="bg-white py-24">
+        <div className="container-content">
+          <Reveal>
+            <p className="eyebrow">İkincil Hizmet</p>
+            <h2 className="mt-3 max-w-2xl font-serif text-3xl text-navy md:text-4xl">
+              Stratejik Satınalma ve Sourcing from Turkey
+            </h2>
+            <p className="mt-4 max-w-2xl text-base leading-relaxed text-muted">
+              Yabancı alıcılar ve yerli işletmeler için Türkiye&apos;den
+              üretici bulma, teklif toplama, karşılaştırma ve tedarik
+              sürecini koordine ediyoruz — Teminor&apos;un ikinci ana
+              yetkinliği. Her paket aynı onay disiplinini paylaşır; aradaki
+              fark kapsam, RFQ hacmi ve sağlanan destek düzeyidir.
             </p>
           </Reveal>
           <div className="mt-12 grid gap-8 md:grid-cols-2">
             {tiers.map((tier, i) => (
               <Reveal key={tier.name} delay={i * 0.08}>
-                <div className="card-interactive flex h-full flex-col rounded-sm border border-navy/10 bg-white p-8 shadow-sm">
+                <div className="card-interactive flex h-full flex-col rounded-sm border border-navy/10 bg-light-bg p-8 shadow-sm">
                   <span className="h-1 w-10 rounded-full bg-gold" aria-hidden="true" />
                   <h3 className="mt-5 font-serif text-xl text-navy">
                     {tier.name}
@@ -171,7 +319,7 @@ export default function HizmetlerPage() {
                   </p>
                   <div className="mt-8 border-t border-navy/10 pt-6">
                     <TrackedCta
-                      href="/iletisim"
+                      href="/iletisim#alici-talebi"
                       label={`hizmet_teklif_${tier.tagline.toLowerCase()}`}
                       location="hizmetler_tier_card"
                       className="btn-primary w-full justify-center sm:w-auto"
@@ -201,7 +349,7 @@ export default function HizmetlerPage() {
         </div>
       </section>
 
-      <section className="bg-white py-24">
+      <section className="bg-light-bg py-24">
         <div className="container-content">
           <Reveal>
             <p className="eyebrow">Karşılaştırma</p>
@@ -217,10 +365,10 @@ export default function HizmetlerPage() {
 
       {/* Özel Proje ve Tek Seferlik Tedarikçi Araştırması — ana paket
           karşılaştırmasının ve paket bulucunun dışında tutulur. */}
-      <section className="bg-light-bg py-24">
+      <section className="bg-white py-24">
         <div className="container-content">
           <Reveal>
-            <div className="mx-auto max-w-2xl rounded-sm border border-navy/10 bg-white p-10 text-center shadow-sm">
+            <div className="mx-auto max-w-2xl rounded-sm border border-navy/10 bg-light-bg p-10 text-center shadow-sm">
               <p className="eyebrow">Özel Proje</p>
               <h2 className="mt-3 font-serif text-2xl text-navy md:text-3xl">
                 Özel Proje ve Tek Seferlik Tedarikçi Araştırması

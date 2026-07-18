@@ -1,8 +1,12 @@
 # Teminor — Repository Çalışma Kuralları
 
-Teminor, 15-100 çalışanlı KOBİ'ler için dış kaynaklı satın alma departmanı ve
-tedarik yönetimi hizmeti sunan bir şirkettir. Bu depo, teminor.com kurumsal
-web sitesinin kaynak kodunu içerir.
+Teminor; Türk üreticiler için ihracat satış geliştirme, yabancı alıcı
+geliştirme ve uluslararası ticari temsilcilik hizmeti sunan, yabancı
+alıcılar için ise Türkiye'den üretici bulma ve stratejik tedarik
+süreçlerini yöneten bağımsız bir B2B ticaret geliştirme şirketidir.
+Satınalma dış kaynak hizmeti (eski ana iş) kaldırılmamış, ikinci ana
+yetkinlik olarak korunmuştur (bkz. Şirket Anayasası v2.0, DEC-2026-0002).
+Bu depo, teminor.com kurumsal web sitesinin kaynak kodunu içerir.
 
 ## Strategic Sources
 
@@ -23,26 +27,46 @@ kaynaklar bu öncelik sırasıyla okunur:
     `SEO_SCORE.md`, `seo-backlog.md`, `SEO_SEARCH_MAP.md`,
     `SEO_GROWTH_PLAN.md`, `.claude/agents/seo-agent.md`)
 
-**Çelişki halinde:** Şirket Anayasası, en güncel Decision Log kaydı,
-ardından Master Strategy üstün kabul edilir.
+**Çelişki halinde:** Şirket Anayasası (v2.0), en güncel Decision Log
+kaydı, ardından Master Strategy üstün kabul edilir. 18 Temmuz 2026'da
+onaylanan Şirket Anayasası v2.0 ve DEC-2026-0002 ile Teminor'un ana
+konumlandırması ihracat satış geliştirme/ticari temsilciliğe çevrilmiştir
+— `docs/strategy/01-master-strategy.md`, `02-messaging-guide.md`,
+`03-website-blueprint.md`, `04-go-to-market.md` hâlâ geçerlidir ama
+artık yalnızca "Stratejik Satınalma / Sourcing from Turkey" ikincil
+hizmet hattı için (her belgenin başındaki "v2.0 Uyum Notu"na bakın).
+Eski v1.0 anayasa metni `docs/strategy/archive/
+00-company-constitution-v1.0.md`'de arşivlidir.
 
 ## Değişmez Kurallar
 
-- Teminor bir yazılım, pazar yeri, broker veya tedarikçi kataloğu değildir.
-- Teminor, 20–250 çalışanlı işletmeler için dış kaynak satın alma
-  departmanı/kapasitesidir.
-- Ana değer önerisi: "Satın alma iş yükünü biz üstleniyoruz. Kontrol ve
-  nihai karar sizde kalıyor."
-- Kurumsal hedef pazar Türkiye genelidir.
-- İlk 90 günlük satış odağı İzmir, Manisa, Aydın, Denizli ve Uşak'tır.
-- Müşterinin yazılı kurumsal e-posta onayı olmadan sipariş verilmez.
-- Kanıtlanamayan tasarruf, garanti, müşteri sayısı veya başarı iddiası
-  kullanılmaz.
-- Web sitesi çalışmaları bir yeniden tasarım değildir; görsel yapı korunur.
-- Tasarım değişikliği yalnızca açık kullanıcı onayıyla yapılır.
-- Operasyon dashboard'u yalnızca Teminor'un iç kullanımı içindir.
-- Kritik kayıtlar soft-delete veya arşivleme mantığıyla korunur.
+- Teminor bir yazılım, pazar yeri, broker, genel danışman, liste satıcısı
+  veya AI ajansı değildir.
+- Ana marka mesajı: **"Üretimden Küresel Talebe."** Değer önerisi: liste
+  değil, doğrulanmış ticari ilgi geliştirmek.
+- Teminor'un birincil hizmeti **ihracat satış geliştirme, yabancı alıcı
+  geliştirme ve ticari temsilciliktir.** Satınalma dış kaynak hizmeti
+  ("Stratejik Satınalma / Sourcing from Turkey") **ikincil ama korunan**
+  bir yetkinliktir — kaldırılmamıştır, ana navigasyonda ikincil konumda
+  görünür kalır.
+- Yetkili temsilcilik iddiası **yalnızca yazılı sözleşme** varsa
+  kullanılır; sistemde varsayılan olarak aktif gösterilmez.
+- Müşterinin/üreticinin yazılı kurumsal e-posta onayı olmadan sipariş
+  verilmez veya üretici adına bağlayıcı taahhüt oluşturulmaz.
+- Kanıtlanamayan tasarruf, garanti, satış/ihracat/alıcı garantisi,
+  müşteri sayısı veya başarı iddiası kullanılmaz.
+- Web sitesi çalışmaları bir yeniden tasarım değildir; görsel yapı ve
+  logo korunur. Tasarım değişikliği yalnızca açık kullanıcı onayıyla
+  yapılır.
+- Operasyon dashboard'u (`operasyon.teminor.com`) yalnızca Teminor'un iç
+  kullanımı içindir; bu depo kapsamında değildir.
+- Kritik kayıtlar (üretici, alıcı, fırsat, müşteri, tedarikçi, sipariş,
+  onay, temsilcilik sözleşmesi) soft-delete veya arşivleme mantığıyla
+  korunur.
 - Her önemli stratejik değişiklik Decision Log'a yazılır.
+- **Eski (satınalma-merkezli) içerik silinmez** — yeni stratejiyle
+  uyumlu hale getirilir veya açıkça arşivlenir (bkz.
+  `docs/strategy/archive/`).
 
 ## Teknik Özet (koddan doğrulanmıştır)
 
@@ -58,9 +82,14 @@ ardından Master Strategy üstün kabul edilir.
   Next.js metadata route konvansiyonuyla üretiliyor; JSON-LD `Organization` +
   `LocalBusiness` ana sayfada, `BlogPosting` blog detayında, `ContactPage`
   iletişim sayfasında.
-- **İletişim formu:** `functions/api/contact.ts` — Cloudflare Pages Function,
-  `RESEND_API_KEY` secret'ı ile Resend API üzerinden `info@teminor.com`'a
-  e-posta gönderir. Honeypot alanı ile spam koruması var.
+- **Formlar:** `functions/api/contact.ts` — tek Cloudflare Pages Function,
+  `formType` alanına göre 4 form tipini (`contact`, `rfq`, `manufacturer`,
+  `buyer`) ayrı ayrı doğrulayıp e-posta şablonuyla `RESEND_API_KEY`
+  secret'ı üzerinden Resend API ile `info@teminor.com`'a gönderir.
+  `ManufacturerApplicationForm.tsx` (`/iletisim#uretici-basvurusu`) ve
+  `BuyerRequestForm.tsx` (`/iletisim#alici-talebi`), Anayasa v2.0 §9/§10
+  alan listelerine dayanır. Her formda honeypot alanı ile spam koruması
+  var.
 - **Deploy:** GitHub reposu (`whoisami/teminor`, `main` branch) → Cloudflare
   Pages'e bağlı, her `main` push'unda otomatik build/deploy. GitHub Actions
   workflow yok — CI/CD tamamen Cloudflare Pages tarafında.
@@ -142,13 +171,17 @@ uygulanmaz:
 ## Ticari Hedef (Business Objective)
 
 Teminor'un amacı **trafik artırmak değildir.** Teminor'un amacı şunları
-üretmektir:
+üretmektir (öncelik sırasıyla, bkz. Anayasa v2.0 §17 "İlk Operasyon
+Önceliği"):
 
+- Nitelikli üretici başvurusu (ihracat uygunluk analizi/Buyer Validation
+  Sprint talebi)
+- Nitelikli yabancı alıcı talebi (Türkiye'den üretici/tedarik arayışı)
 - Nitelikli iletişim formu doldurma (qualified lead)
 - WhatsApp görüşmesi başlatma
 - Telefon görüşmesi başlatma
-- RFQ (satın alma talep formu) gönderimi
-- Satın alma danışmanlığı talebi
+- RFQ (satın alma talep formu) gönderimi — "Sourcing from Turkey" hizmet
+  hattı için
 
 SEO, yalnızca bu hedeflere hizmet ettiği ölçüde değerlidir. Sıralama,
 trafik veya "SEO puanı" artışı — dönüşüme katkısı olmadan — kendi
@@ -158,8 +191,20 @@ başına bir amaç değildir.
 
 seo-agent, içerik/metadata/internal-linking kararlarını verirken şu
 karar vericileri hedef alır — bir değişikliğin "kime hizmet ettiği"
-sorusu her zaman bu listeyle karşılaştırılır:
+sorusu her zaman bu listeyle karşılaştırılır. Anayasa v2.0 ile iki ayrı
+ICP eksenine ayrılmıştır:
 
+**Türk üretici tarafı (birincil hizmet):**
+- Üretici Firma Sahibi / Genel Müdür
+- İhracat Müdürü / İhracat Sorumlusu
+- Satış Müdürü (yurt dışı satış)
+
+**Yabancı alıcı tarafı (birincil hizmet):**
+- İthalatçı / Distribütör Karar Vericisi
+- Satınalma Müdürü (yabancı şirket, Türkiye'den tedarik arayan)
+- OEM/Private Label Karar Vericisi
+
+**Satınalma / Sourcing from Turkey tarafı (ikincil hizmet, v1.0 kökenli):**
 - Genel Müdür
 - Satın Alma Müdürü
 - Operasyon Müdürü

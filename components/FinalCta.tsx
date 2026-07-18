@@ -8,6 +8,7 @@ type FinalCtaProps = {
   ctaLabel: string;
   location: string;
   ctaTrackingLabel: string;
+  href?: string;
   showWhatsapp?: boolean;
 };
 
@@ -16,6 +17,7 @@ export default function FinalCta({
   ctaLabel,
   location,
   ctaTrackingLabel,
+  href = "/iletisim",
   showWhatsapp = true,
 }: FinalCtaProps) {
   return (
@@ -25,7 +27,7 @@ export default function FinalCta({
           <h2 className="font-serif text-3xl md:text-4xl">{heading}</h2>
           <div className="mt-8 flex flex-col gap-4 sm:flex-row">
             <TrackedCta
-              href="/iletisim"
+              href={href}
               label={ctaTrackingLabel}
               location={location}
               className="btn-primary bg-gold hover:bg-[#8a6b2d]"

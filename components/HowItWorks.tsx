@@ -5,47 +5,47 @@ import Reveal from "@/components/Reveal";
 
 const steps = [
   {
-    title: "RFQ formu size gönderilir",
+    title: "Ürününüz değerlendirilir",
     description:
-      "Teminor tarafından iletilen talep formunu doldurup e-posta ile geri gönderirsiniz; talebiniz sisteme kaydedilir.",
+      "İhracat uygunluğu; kapasite, MOQ, sertifika ve teknik dokümantasyon açısından değerlendirilir.",
   },
   {
-    title: "Tedarikçi araştırması yapılır",
+    title: "Hedef pazar belirlenir",
     description:
-      "Tercihli veya yasaklı tedarikçileriniz varsa bildirirsiniz; araştırmayı biz yürütürüz.",
+      "Ürün grubunuza uygun ülke ve alıcı segmenti (ithalatçı, distribütör, toptancı, OEM) netleştirilir.",
   },
   {
-    title: "Teklifler toplanır",
+    title: "Yabancı alıcı araştırılır",
     description:
-      "Gerekli teknik soruları siz yanıtlarsınız; teklif toplama sürecini biz yürütürüz.",
+      "Uygun alıcı adayları araştırılır; karar verici ve iletişim kanalı doğrulanır.",
   },
   {
-    title: "Karşılaştırma raporu hazırlanır",
+    title: "İlk temas kurulur",
     description:
-      "Fiyat, vade, termin, nakliye ve diğer ticari koşullar mümkün olduğu ölçüde normalize edilerek karşılaştırılır; öneriyi siz değerlendirirsiniz.",
+      "Doğrulanan karar vericilere yapılandırılmış bir ilk temas yapılır.",
   },
   {
-    title: "Onayınıza sunulur",
+    title: "Takip ve görüşme yönetilir",
     description:
-      "Yetkili kurumsal e-postanızdan açık onay verirsiniz; onay olmadan sipariş verilmez.",
+      "Yanıtlar takip edilir; toplantı ve RFQ süreci sizinle birlikte koordine edilir.",
+  },
+  {
+    title: "Numune ve teklif süreci yürütülür",
+    description:
+      "Numune, teknik şartlar ve teklif süreci sizinle birlikte yönetilir; nihai karar sizindir.",
+  },
+  {
+    title: "Ticari sinyal raporlanır",
+    description:
+      "Yapılan çalışma, temas ve doğrulanan sonuçlar raporlanır — satış veya alıcı garantisi verilmez.",
     stamped: true,
-  },
-  {
-    title: "Sipariş iletilir",
-    description:
-      "Alıcı ve ödeme borçlusu siz olursunuz; sipariş yalnızca onay kapsamıyla sınırlı iletilir.",
-  },
-  {
-    title: "Teslimat takip edilir",
-    description:
-      "Teslim ve kalite kontrolünü siz yaparsınız; termin ve sevkiyat sürecini biz takip ederiz.",
   },
 ];
 
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "HowTo",
-  name: "Teminor ile Satın Alma Süreci Nasıl İşler?",
+  name: "Teminor ile İhracat Satış Geliştirme Süreci Nasıl İşler?",
   step: steps.map((step, i) => ({
     "@type": "HowToStep",
     position: i + 1,

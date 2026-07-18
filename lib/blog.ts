@@ -81,6 +81,18 @@ const RELATED_SLUGS: Record<string, string[]> = {
     "tedarikci-dolandiriciligindan-korunma-yontemleri",
     "satin-alma-surecinin-ticari-degeri",
   ],
+  "yabanci-alici-nasil-bulunur": [
+    "alici-listesi-neden-tek-basina-satis-getirmez",
+    "bir-urun-ihracata-hazir-mi",
+  ],
+  "alici-listesi-neden-tek-basina-satis-getirmez": [
+    "yabanci-alici-nasil-bulunur",
+    "bir-urun-ihracata-hazir-mi",
+  ],
+  "bir-urun-ihracata-hazir-mi": [
+    "yabanci-alici-nasil-bulunur",
+    "alici-listesi-neden-tek-basina-satis-getirmez",
+  ],
 };
 
 export function getRelatedPosts(slug: string): PostSummary[] {
