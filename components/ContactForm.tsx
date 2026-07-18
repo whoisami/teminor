@@ -5,7 +5,7 @@ import { DEFAULT_WHATSAPP_MESSAGE, whatsappLink } from "@/lib/site";
 import TrackedAnchor from "@/components/analytics/TrackedAnchor";
 import { trackContactFormSubmit } from "@/lib/analytics/events";
 
-const SECTORS = [
+const SECTORS_TR = [
   "Catering",
   "Temizlik/Tesis Yönetimi",
   "Otel-Restoran",
@@ -14,11 +14,80 @@ const SECTORS = [
   "Diğer",
 ];
 
+const SECTORS_EN = [
+  "Catering",
+  "Cleaning/Facility Management",
+  "Hotel/Restaurant",
+  "SME Manufacturing",
+  "Fleet/Field Service",
+  "Other",
+];
+
+const COPY = {
+  tr: {
+    sectors: SECTORS_TR,
+    labels: {
+      name: "Ad Soyad",
+      company: "Şirket Adı",
+      email: "E-posta",
+      phone: "Telefon",
+      sector: "Sektör",
+      sectorPlaceholder: "Sektör seçin",
+      message: "Kısa İhtiyaç Açıklaması",
+    },
+    errors: {
+      name: "Ad Soyad zorunludur.",
+      company: "Şirket adı zorunludur.",
+      email: "Geçerli bir e-posta adresi girin.",
+      phone: "Telefon numarası zorunludur.",
+      sector: "Lütfen bir sektör seçin.",
+      message: "Kısa bir açıklama girin.",
+      generic: "Bir hata oluştu.",
+      submitFailed: "Talebiniz gönderilemedi, lütfen tekrar deneyin.",
+    },
+    submitting: "Gönderiliyor...",
+    submit: "Talebi Gönder",
+    successTitle: "Talebiniz alındı, 24 saat içinde dönüş yapılacaktır.",
+    whatsapp: "WhatsApp'tan Yaz",
+  },
+  en: {
+    sectors: SECTORS_EN,
+    labels: {
+      name: "Full Name",
+      company: "Company Name",
+      email: "Email",
+      phone: "Phone",
+      sector: "Sector",
+      sectorPlaceholder: "Select a sector",
+      message: "Brief Description of Your Need",
+    },
+    errors: {
+      name: "Full name is required.",
+      company: "Company name is required.",
+      email: "Please enter a valid email address.",
+      phone: "Phone number is required.",
+      sector: "Please select a sector.",
+      message: "Please enter a short description.",
+      generic: "Something went wrong.",
+      submitFailed: "Your request could not be sent, please try again.",
+    },
+    submitting: "Sending...",
+    submit: "Send Request",
+    successTitle: "Your request has been received — we'll get back to you within 24 hours.",
+    whatsapp: "Message on WhatsApp",
+  },
+} as const;
+
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 type Status = "idle" | "submitting" | "success" | "error";
 
-export default function ContactForm() {
+export default function ContactForm({
+  locale = "tr",
+}: {
+  locale?: "tr" | "en";
+}) {
+  const t = COPY[locale];
   const [status, setStatus] = useState<Status>("idle");
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [fieldErrors, setFieldErrors] = useState<Record<string, string>>({});
@@ -41,13 +110,13 @@ export default function ContactForm() {
     };
 
     const errors: Record<string, string> = {};
-    if (!payload.name) errors.name = "Ad Soyad zorunludur.";
-    if (!payload.company) errors.company = "Şirket adı zorunludur.";
+    if (!payload.name) errors.name = t.errors.name;
+    if (!payload.company) errors.company = t.errors.company;
     if (!payload.email || !EMAIL_RE.test(payload.email))
-      errors.email = "Geçerli bir e-posta adresi girin.";
-    if (!payload.phone) errors.phone = "Telefon numarası zorunludur.";
-    if (!payload.sector) errors.sector = "Lütfen bir sektör seçin.";
-    if (!payload.message) errors.message = "Kısa bir açıklama girin.";
+      errors.email = t.errors.email;
+    if (!payload.phone) errors.phone = t.errors.phone;
+    if (!payload.sector) errors.sector = t.errors.sector;
+    if (!payload.message) errors.message = t.errors.message;
 
     if (Object.keys(errors).length > 0) {
       setFieldErrors(errors);
@@ -67,7 +136,7 @@ export default function ContactForm() {
         const body = (await res.json().catch(() => null)) as
           | { message?: string }
           | null;
-        throw new Error(body?.message || "Bir hata oluştu.");
+        throw new Error(body?.message || t.errors.generic);
       }
 
       trackContactFormSubmit(payload.sector);
@@ -75,20 +144,14 @@ export default function ContactForm() {
       form.reset();
     } catch (err) {
       setStatus("error");
-      setErrorMessage(
-        err instanceof Error
-          ? err.message
-          : "Talebiniz gönderilemedi, lütfen tekrar deneyin."
-      );
+      setErrorMessage(err instanceof Error ? err.message : t.errors.submitFailed);
     }
   }
 
   if (status === "success") {
     return (
       <div className="rounded-sm border border-gold/40 bg-white p-8 text-center">
-        <p className="font-serif text-xl text-navy">
-          Talebiniz alındı, 24 saat içinde dönüş yapılacaktır.
-        </p>
+        <p className="font-serif text-xl text-navy">{t.successTitle}</p>
         <TrackedAnchor
           kind="whatsapp"
           location="contact_form_success"
@@ -97,7 +160,7 @@ export default function ContactForm() {
           rel="noopener noreferrer"
           className="btn-whatsapp mt-6 inline-flex"
         >
-          WhatsApp&apos;tan Yaz
+          {t.whatsapp}
         </TrackedAnchor>
       </div>
     );
@@ -118,7 +181,7 @@ export default function ContactForm() {
       </div>
 
       <div className="grid gap-5 sm:grid-cols-2">
-        <Field label="Ad Soyad" name="name" error={fieldErrors.name}>
+        <Field label={t.labels.name} name="name" error={fieldErrors.name}>
           <input
             id="name"
             name="name"
@@ -128,7 +191,7 @@ export default function ContactForm() {
             autoComplete="name"
           />
         </Field>
-        <Field label="Şirket Adı" name="company" error={fieldErrors.company}>
+        <Field label={t.labels.company} name="company" error={fieldErrors.company}>
           <input
             id="company"
             name="company"
@@ -138,7 +201,7 @@ export default function ContactForm() {
             autoComplete="organization"
           />
         </Field>
-        <Field label="E-posta" name="email" error={fieldErrors.email}>
+        <Field label={t.labels.email} name="email" error={fieldErrors.email}>
           <input
             id="email"
             name="email"
@@ -148,7 +211,7 @@ export default function ContactForm() {
             autoComplete="email"
           />
         </Field>
-        <Field label="Telefon" name="phone" error={fieldErrors.phone}>
+        <Field label={t.labels.phone} name="phone" error={fieldErrors.phone}>
           <input
             id="phone"
             name="phone"
@@ -160,12 +223,12 @@ export default function ContactForm() {
         </Field>
       </div>
 
-      <Field label="Sektör" name="sector" error={fieldErrors.sector}>
+      <Field label={t.labels.sector} name="sector" error={fieldErrors.sector}>
         <select id="sector" name="sector" required className="form-input" defaultValue="">
           <option value="" disabled>
-            Sektör seçin
+            {t.labels.sectorPlaceholder}
           </option>
-          {SECTORS.map((sector) => (
+          {t.sectors.map((sector) => (
             <option key={sector} value={sector}>
               {sector}
             </option>
@@ -174,7 +237,7 @@ export default function ContactForm() {
       </Field>
 
       <Field
-        label="Kısa İhtiyaç Açıklaması"
+        label={t.labels.message}
         name="message"
         error={fieldErrors.message}
       >
@@ -196,7 +259,7 @@ export default function ContactForm() {
         disabled={status === "submitting"}
         className="btn-primary w-full disabled:opacity-60 sm:w-auto"
       >
-        {status === "submitting" ? "Gönderiliyor..." : "Talebi Gönder"}
+        {status === "submitting" ? t.submitting : t.submit}
       </button>
     </form>
   );

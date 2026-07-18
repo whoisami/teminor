@@ -1,37 +1,38 @@
-import { Boxes, FileText, HardHat, Package, SprayCan } from "lucide-react";
+import { Building2, SprayCan, Truck, Utensils } from "lucide-react";
 import Reveal from "@/components/Reveal";
 import TrackedCta from "@/components/analytics/TrackedCta";
 
-const categories = [
+// Sektör/müşteri profili ekseni — /dis-satinalma-hizmeti sayfasındaki örnek
+// senaryolarla (Catering, Temizlik/Tesis Yönetimi, Otel/Restoran) ve gövde
+// metnindeki "filo/saha hizmeti" ifadesiyle tutarlı tutulur. Kategori
+// bilgisi (ambalaj, temizlik, kağıt, İSG, genel sarf) burada her sektörün
+// tipik ihtiyacını anlatan destekleyici detay olarak kullanılır, başlık
+// olarak değil (bkz. decisions/decision-log.md — bu bölüm önceden "ürün
+// kategorisi" ekseniyle kurulmuştu, sektör ekseniyle değiştirildi).
+const sectors = [
   {
-    icon: Package,
-    title: "Ambalaj ve Tek Kullanımlık",
-    examples: "yemek kabı, streç, folyo, koli, poşet, bant",
-    seoLine: "Ambalaj ve tek kullanımlık ürün kategorisinde tedarikçi araştırması ve karşılaştırmalı teklif desteği sağlıyoruz.",
+    icon: Utensils,
+    title: "Catering / Toplu Yemek",
+    description:
+      "Ambalaj ve tek kullanımlık ürün, kâğıt ürünleri ve hijyen sarflarında karşılaştırmalı teklif ile birim maliyetlerinizi netleştiriyoruz.",
   },
   {
     icon: SprayCan,
-    title: "Temizlik ve Hijyen",
-    examples: "kimyasallar, çöp torbası, eldiven, dezenfektan",
-    seoLine: "Temizlik ve hijyen ürünlerinde çoklu tedarikçi karşılaştırmasıyla maliyet avantajı sağlıyoruz.",
+    title: "Temizlik / Tesis Yönetimi",
+    description:
+      "Temizlik kimyasalları, İSG ekipmanı ve sarf malzemesinde çoklu tedarikçi karşılaştırmasıyla konsantrasyon ve kullanım maliyeti analizi yapıyoruz.",
   },
   {
-    icon: FileText,
-    title: "Kâğıt Ürünleri",
-    examples: "havlu, peçete, tuvalet kağıdı",
-    seoLine: "Kâğıt ürünleri kategorisinde kalite ve gramaj standardizasyonuyla tedarikçi karşılaştırması yapıyoruz.",
+    icon: Building2,
+    title: "Otel / Restoran",
+    description:
+      "Kâğıt ürünleri, ambalaj ve genel işletme sarflarında kalite/gramaj standardizasyonuyla tedarikçi karşılaştırması sağlıyoruz.",
   },
   {
-    icon: HardHat,
-    title: "İş Güvenliği ve Kıyafet (İSG)",
-    examples: "eldiven, maske, iş kıyafeti, ayakkabı",
-    seoLine: "İş güvenliği ve kıyafet (İSG) tedarikinde güvenilirliği doğrulanmış tedarikçi ağımızla çalışıyoruz.",
-  },
-  {
-    icon: Boxes,
-    title: "Genel İşletme Sarfları",
-    examples: "ofis, depo, bakım ve araç sarfları",
-    seoLine: "Ofis, depo ve araç sarfları dahil genel işletme sarfları kategorisinde Türkiye genelinde tedarik desteği veriyoruz.",
+    icon: Truck,
+    title: "Filo / Saha Hizmeti",
+    description:
+      "Genel işletme sarfları, İSG ve bakım kalemlerinde, birden fazla lokasyonu tek noktadan koordine ederek Türkiye genelinde tedarik desteği veriyoruz.",
   },
 ];
 
@@ -40,17 +41,17 @@ export default function CategoryGrid() {
     <section className="bg-white py-24">
       <div className="container-content">
         <Reveal>
-          <p className="eyebrow">Kategoriler</p>
+          <p className="eyebrow">Sektörler</p>
           <h2 className="mt-3 font-serif text-3xl text-navy md:text-4xl">
-            Odaklandığımız Kategoriler
+            Odaklandığımız Sektörler
           </h2>
         </Reveal>
 
-        <div className="mt-14 grid grid-cols-2 gap-6 lg:grid-cols-5">
-          {categories.map((category, i) => {
-            const Icon = category.icon;
+        <div className="mt-14 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          {sectors.map((sector, i) => {
+            const Icon = sector.icon;
             return (
-              <Reveal key={category.title} delay={i * 0.06}>
+              <Reveal key={sector.title} delay={i * 0.06}>
                 <div className="card-interactive group flex h-full flex-col rounded-sm border border-navy/10 bg-light-bg p-6">
                   <Icon
                     className="h-8 w-8 text-gold transition-transform duration-300 group-hover:scale-110"
@@ -58,13 +59,10 @@ export default function CategoryGrid() {
                     aria-hidden="true"
                   />
                   <h3 className="link-draw mt-4 self-start font-serif text-base text-navy">
-                    {category.title}
+                    {sector.title}
                   </h3>
-                  <p className="mt-1 text-xs text-muted">
-                    ({category.examples})
-                  </p>
                   <p className="mt-3 text-sm leading-relaxed text-muted">
-                    {category.seoLine}
+                    {sector.description}
                   </p>
                 </div>
               </Reveal>
@@ -72,14 +70,14 @@ export default function CategoryGrid() {
           })}
         </div>
 
-        <Reveal delay={categories.length * 0.06 + 0.1}>
+        <Reveal delay={sectors.length * 0.06 + 0.1}>
           <p className="mx-auto mt-10 max-w-2xl text-center text-sm leading-relaxed text-muted">
-            Yukarıdaki kategoriler şu an en yoğun çalıştığımız alanlar. Farklı
-            bir sektörden veya farklı bir ürün grubundan geliyorsanız da,
-            satın alma ihtiyacınızı değerlendirmekten memnuniyet duyarız —{" "}
+            Yukarıdaki sektörler şu an en yoğun çalıştığımız alanlar. Farklı
+            bir sektörden geliyorsanız da, satın alma ihtiyacınızı
+            değerlendirmekten memnuniyet duyarız —{" "}
             <TrackedCta
               href="/iletisim"
-              label="kategori_disi_iletisim"
+              label="sektor_disi_iletisim"
               location="home_category_grid"
               className="font-semibold text-navy underline decoration-gold decoration-2 underline-offset-4 hover:text-gold"
             >

@@ -2,7 +2,15 @@ import fs from "node:fs";
 import path from "node:path";
 import matter from "gray-matter";
 
-const BLOG_DIR = path.join(process.cwd(), "content", "blog");
+export type Locale = "tr" | "en";
+
+// EN posts live in their own directory rather than sharing slugs with TR
+// posts — avoids a slug-collision/lookup table and keeps `getAllSlugs`/
+// `generateStaticParams` trivial for each locale's blog routes.
+const BLOG_DIRS: Record<Locale, string> = {
+  tr: path.join(process.cwd(), "content", "blog"),
+  en: path.join(process.cwd(), "content", "blog-en"),
+};
 
 export type PostFrontmatter = {
   title: string;
@@ -17,25 +25,29 @@ export type PostSummary = PostFrontmatter & {
   content: string;
 };
 
-function readPostFile(slug: string): { data: PostFrontmatter; content: string } {
-  const filePath = path.join(BLOG_DIR, `${slug}.mdx`);
+function readPostFile(
+  slug: string,
+  locale: Locale = "tr"
+): { data: PostFrontmatter; content: string } {
+  const filePath = path.join(BLOG_DIRS[locale], `${slug}.mdx`);
   const raw = fs.readFileSync(filePath, "utf8");
   const { data, content } = matter(raw);
   return { data: data as PostFrontmatter, content };
 }
 
-export function getAllSlugs(): string[] {
-  if (!fs.existsSync(BLOG_DIR)) return [];
+export function getAllSlugs(locale: Locale = "tr"): string[] {
+  const dir = BLOG_DIRS[locale];
+  if (!fs.existsSync(dir)) return [];
   return fs
-    .readdirSync(BLOG_DIR)
+    .readdirSync(dir)
     .filter((file) => file.endsWith(".mdx"))
     .map((file) => file.replace(/\.mdx$/, ""));
 }
 
-export function getAllPosts(): PostSummary[] {
-  const slugs = getAllSlugs();
+export function getAllPosts(locale: Locale = "tr"): PostSummary[] {
+  const slugs = getAllSlugs(locale);
   const posts = slugs.map((slug) => {
-    const { data, content } = readPostFile(slug);
+    const { data, content } = readPostFile(slug, locale);
     return { ...data, content };
   });
   return posts.sort(
@@ -43,9 +55,12 @@ export function getAllPosts(): PostSummary[] {
   );
 }
 
-export function getPostBySlug(slug: string): PostSummary | null {
+export function getPostBySlug(
+  slug: string,
+  locale: Locale = "tr"
+): PostSummary | null {
   try {
-    const { data, content } = readPostFile(slug);
+    const { data, content } = readPostFile(slug, locale);
     return { ...data, content };
   } catch {
     return null;
@@ -103,10 +118,9 @@ export function getRelatedPosts(slug: string): PostSummary[] {
     .filter((post): post is PostSummary => Boolean(post));
 }
 
-export function formatPostDate(date: string): string {
-  return new Date(date).toLocaleDateString("tr-TR", {
-    year: "numeric",
-    month: "long",
-    day: "numeric",
-  });
+export function formatPostDate(date: string, locale: Locale = "tr"): string {
+  return new Date(date).toLocaleDateString(
+    locale === "en" ? "en-US" : "tr-TR",
+    { year: "numeric", month: "long", day: "numeric" }
+  );
 }

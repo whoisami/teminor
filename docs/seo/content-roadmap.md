@@ -76,19 +76,22 @@ değerlendirilebilir.
 | 6 | Yabancı Alıcıya İlk E-posta Nasıl Yazılır? | TR | Roadmap'te |
 | 7 | İhracatta RFQ Nedir? | TR | Roadmap'te |
 | 8 | Türkiye'den Güvenilir Üretici Nasıl Bulunur? | TR | Roadmap'te |
-| 9 | How to Find Qualified Turkish Manufacturers | EN | Roadmap'te |
-| 10 | Sourcing from Turkey: A Practical Guide | EN | Roadmap'te |
+| 9 | How to Find Qualified Turkish Manufacturers | EN | **Yazıldı** (Düzeltme Paketi, `content/blog-en/`) |
+| 10 | Sourcing from Turkey: A Practical Guide | EN | **Yazıldı** (Düzeltme Paketi, `content/blog-en/`) |
 | 11 | How Export Sales Representation Works | EN | Roadmap'te |
 | 12 | How to Evaluate a Turkish Supplier | EN | Roadmap'te |
 
-**Kapsam kararı (bu görev):** Talimat "ilk aşamada bunlarla sınırlı kal,
-yüzlerce yazı üretme" uyarısını içeriyor; bu görevde yukarıdaki 12
-konudan **3 TR yazısı** fiilen yazılmıştır (1, 2, 4 — sırasıyla alıcı
-bulma temel kavramı, en sık yanlış anlaşılan nokta, ve ihracat hazırlığı
-öz-değerlendirmesi). EN içerik ve kalan TR konular, **tam TR/EN i18n
-routing altyapısı kurulana kadar** roadmap'te bekletilir (bkz. final
-rapor "Yapılmayan İşlemler" — bu depoda henüz `/en` route yapısı yok,
-tek dilli içeriği iki dile bölmeden önce mimari karar gerekir).
+**Kapsam kararı (ilk görev — Anayasa v2.0 pivotu):** Talimat "ilk aşamada
+bunlarla sınırlı kal, yüzlerce yazı üretme" uyarısını içeriyor; o görevde
+yukarıdaki 12 konudan **3 TR yazısı** fiilen yazılmıştır (1, 2, 4).
+
+**Kapsam güncellemesi (Düzeltme Paketi, 18 Temmuz 2026):** `/en` route
+yapısı ve Cloudflare Pages middleware ile IP bazlı yönlendirme kuruldu
+(bkz. `decisions/decision-log.md` DEC-2026-0005). Bu kapsamda 9 ve 10
+numaralı EN konular `content/blog-en/` altında yazıldı ve
+`app/en/blog/[slug]` route'unda yayınlandı. 11 ve 12 numaralı EN konular
+ile 3, 5, 6, 7, 8 numaralı kalan TR konular hâlâ roadmap'te bekliyor —
+kapsam disiplinini korumak için tek seferde tamamlanmadı.
 
 ## Bu Roadmap ile Mevcut Blog İçeriği Arasındaki İlişki
 

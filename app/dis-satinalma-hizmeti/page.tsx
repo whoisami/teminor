@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import Reveal from "@/components/Reveal";
-import RoiCalculator from "@/components/RoiCalculator";
 import {
   DEFAULT_WHATSAPP_MESSAGE,
   MIN_SUPPLIER_COMPARISON,
@@ -59,38 +58,88 @@ const scenarioCards = [
 ];
 
 const description =
-  "Teminor'un dış kaynaklı satın alma modelinin temel ilkeleri: ortaklık yaklaşımı, onay mekanizması, esnek operasyon modeli ve şeffaf ücretlendirme.";
+  "Dış Satınalma Hizmeti: Türkiye'den tedarik ve stratejik satınalma. Ortaklık yaklaşımı, onay mekanizması, esnek operasyon modeli ve şeffaf ücretlendirme.";
 
 export const metadata: Metadata = {
-  title: { absolute: "Neden Teminor | Dış Kaynaklı Satın Alma Ortağınız" },
+  title: {
+    absolute: "Dış Satınalma Hizmeti | Türkiye'den Tedarik ve Stratejik Satınalma",
+  },
   description,
-  alternates: { canonical: "/neden-teminor" },
+  // No EN hreflang alternate — this is a TR-only page for domestic
+  // companies' purchasing departments; it has no EN equivalent (the
+  // buyer-facing /en/sourcing-from-turkey targets a different audience
+  // — bkz. decisions/decision-log.md TR/EN mesaj ayrışması kararı).
+  alternates: { canonical: "/dis-satinalma-hizmeti" },
   openGraph: {
-    title: "Neden Teminor | Dış Kaynaklı Satın Alma Ortağınız",
+    title: "Dış Satınalma Hizmeti | Teminor",
     description,
-    url: `${SITE_URL}/neden-teminor`,
+    url: `${SITE_URL}/dis-satinalma-hizmeti`,
     type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Dış Satınalma Hizmeti | Teminor",
+    description,
   },
 };
 
 export default function NedenTeminorPage() {
+  const breadcrumbJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Ana Sayfa", item: SITE_URL },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "Dış Satınalma Hizmeti",
+        item: `${SITE_URL}/dis-satinalma-hizmeti`,
+      },
+    ],
+  };
+
+  const serviceJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    serviceType: "Strategic Sourcing / Sourcing from Turkey",
+    name: "Dış Satınalma Hizmeti",
+    description,
+    provider: { "@type": "Organization", name: "Teminor", url: SITE_URL },
+    areaServed: "TR",
+  };
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceJsonLd) }}
+      />
       <section className="bg-navy py-24 text-white">
         <div className="container-content">
           <Reveal>
-            <p className="eyebrow">
-              Neden Teminor — Stratejik Satınalma ve Türkiye&apos;den Tedarik
-            </p>
+            <p className="eyebrow">Dış Satınalma Hizmeti</p>
             <h1 className="mt-4 max-w-2xl font-serif text-4xl md:text-5xl">
-              Satın alma sürecinizi devrederken kontrolü kaybetmezsiniz.
+              Türkiye&apos;den Tedarik: Sürece Siz Değil, Yükü Biz Taşırız
             </h1>
             <p className="mt-6 max-w-2xl text-lg text-white/75">
-              Teminor&apos;u farklı kılan, satın alma disiplinini şirketinizin
-              ihtiyaçlarına göre kurması ve her adımda kararı size bırakmasıdır.
-              Bu sayfa, Teminor&apos;un ikinci ana yetkinliği olan Stratejik
-              Satınalma / Türkiye&apos;den Tedarik hizmetini anlatır — birincil
-              hizmetimiz olan ihracat satış geliştirme için{" "}
+              Bu hizmet, yalnızca <strong className="text-white">yerli işletmenizin satın alma departmanı</strong>{" "}
+              için tasarlanmıştır — catering, temizlik/tesis yönetimi,
+              otel-restoran veya filo/saha hizmeti gibi düzenli tedarik
+              ihtiyacı olan Türkiye&apos;deki şirketler için satın alma
+              sürecini dışarıdan yönetiyoruz. (Yabancı bir alıcıysanız, bu
+              sayfa size uygun değildir — <em>sourcing from Turkey</em>{" "}
+              hizmetimiz için lütfen{" "}
+              <a href="https://teminor.com/en/sourcing-from-turkey" className="underline decoration-gold decoration-2 underline-offset-4 hover:text-gold">
+                İngilizce sitemize
+              </a>{" "}
+              bakın.)
+            </p>
+            <p className="mt-4 max-w-2xl text-base text-white/60">
+              Birincil hizmetimiz olan ihracat satış geliştirme için{" "}
               <Link href="/hizmetler" className="underline decoration-gold decoration-2 underline-offset-4 hover:text-gold">
                 Hizmetler
               </Link>{" "}
@@ -219,28 +268,7 @@ export default function NedenTeminorPage() {
         </div>
       </section>
 
-      <section className="bg-white py-24">
-        <div className="container-content max-w-4xl">
-          <Reveal>
-            <p className="eyebrow text-center">Operasyonel Yük</p>
-            <h2 className="mt-3 text-center font-serif text-3xl text-navy md:text-4xl">
-              Satın Alma Sürecinizin Bugünkü Maliyetini Hesaplayın
-            </h2>
-            <p className="mx-auto mt-4 max-w-2xl text-center leading-relaxed text-muted">
-              Tasarruf yüzdesi vaat etmiyoruz; bunun yerine ekibinizin satın
-              alma sürecine bugün ne kadar zaman ve maliyet ayırdığını kendi
-              rakamlarınızla görün.
-            </p>
-          </Reveal>
-          <Reveal delay={0.1}>
-            <div className="mt-10">
-              <RoiCalculator />
-            </div>
-          </Reveal>
-        </div>
-      </section>
-
-      <section className="bg-light-bg py-20">
+      <section className="bg-white py-20">
         <div className="container-content">
           <Reveal>
             <p className="eyebrow text-center">Örnek Senaryolar</p>
@@ -251,7 +279,7 @@ export default function NedenTeminorPage() {
           <div className="mt-10 grid gap-6 md:grid-cols-3">
             {scenarioCards.map((card, i) => (
               <Reveal key={card.title} delay={i * 0.08}>
-                <div className="card-interactive flex h-full flex-col rounded-sm border border-navy/10 bg-white p-8 shadow-sm">
+                <div className="card-interactive flex h-full flex-col rounded-sm border border-navy/10 bg-light-bg p-8 shadow-sm">
                   <p className="text-xs font-medium uppercase tracking-wide text-gold">
                     Örnek Senaryo
                   </p>
@@ -281,7 +309,7 @@ export default function NedenTeminorPage() {
         </div>
       </section>
 
-      <section className="bg-white py-20">
+      <section className="bg-light-bg py-20">
         <div className="container-content flex flex-col items-center gap-6 text-center">
           <Reveal>
             <h2 className="font-serif text-3xl text-navy md:text-4xl">

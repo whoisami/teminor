@@ -10,54 +10,32 @@ export default function Hero() {
       <div className="container-content relative grid gap-16 py-28 md:py-36 lg:grid-cols-[1.1fr_0.9fr] lg:items-center lg:gap-12">
         <div>
           <Reveal>
-            <p className="eyebrow">Üretimden Küresel Talebe</p>
+            <p className="eyebrow">İhracat Satış Geliştirme Ortağınız</p>
           </Reveal>
           <Reveal delay={0.1}>
             <h1 className="mt-6 max-w-2xl font-serif text-4xl leading-tight md:text-6xl">
-              Ürününüz İçin Doğru Yabancı Alıcıyı Buluyor,{" "}
-              <em className="text-gold">Satışı Ticari Görüşmeye Kadar Yönetiyoruz.</em>
+              Türk Üreticiler İçin{" "}
+              <em className="text-gold">Uluslararası Satış Kanalları Kurarız.</em>
             </h1>
           </Reveal>
           <Reveal delay={0.2}>
             <p className="mt-6 max-w-xl text-lg leading-relaxed text-white/75">
-              Teminor, Türk üreticilerin ürünleri için uygun yabancı alıcıları
-              araştırır, karar vericilere ulaşır ve ihracat satış sürecini
-              ticari görüşmeye kadar yönetir.
-            </p>
-            <p className="mt-3 max-w-xl text-sm leading-relaxed text-white/50">
-              Rapor veya liste satmayız; doğrulanmış ticari ilgi geliştiririz.
-              Satış garantisi vermeyiz.
+              Ürününüze uygun yabancı alıcıları buluruz, karar vericilere
+              ulaşırız ve ihracat satış sürecini ilk temastan ticari
+              görüşmeye kadar sizin için yönetiriz.
             </p>
           </Reveal>
           <Reveal delay={0.3}>
-            <div className="mt-10 flex flex-col gap-4 sm:flex-row">
+            <div className="mt-10">
               <TrackedCta
-                href="/iletisim#uretici-basvurusu"
+                href="/iletisim"
                 label="hero_urununuzu_degerlendirelim"
                 location="home_hero"
                 className="btn-primary bg-gold hover:bg-[#8a6b2d]"
               >
                 Ürününüzü Değerlendirelim
               </TrackedCta>
-              <TrackedCta
-                href="#nasil-calisir"
-                label="hero_nasil_calisiyoruz"
-                location="home_hero"
-                className="btn-primary bg-transparent border border-white/30 hover:bg-white/10"
-              >
-                Nasıl Çalışıyoruz?
-              </TrackedCta>
             </div>
-          </Reveal>
-          <Reveal delay={0.34}>
-            <TrackedCta
-              href="/iletisim#alici-talebi"
-              label="hero_turkiyeden_uretici_ariyorum"
-              location="home_hero"
-              className="mt-4 inline-block text-sm font-semibold text-white/70 underline decoration-white/30 decoration-2 underline-offset-4 hover:text-gold"
-            >
-              Yabancı bir alıcıysanız: Türkiye&apos;den Üretici Arıyorum →
-            </TrackedCta>
           </Reveal>
           <Reveal delay={0.38}>
             <p className="mt-6 max-w-xl text-xs uppercase tracking-[0.15em] text-white/45">

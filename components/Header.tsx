@@ -2,19 +2,72 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { useState } from "react";
 import TrackedCta from "@/components/analytics/TrackedCta";
-import { NAV_LINKS } from "@/lib/site";
+import {
+  LANG_COOKIE,
+  NAV_LINKS,
+  NAV_LINKS_EN,
+  isEnglishPath,
+  toggleLocalePath,
+} from "@/lib/site";
+
+function LanguageSwitcher({
+  pathname,
+  className = "",
+}: {
+  pathname: string;
+  className?: string;
+}) {
+  const router = useRouter();
+  const isEnglish = isEnglishPath(pathname);
+
+  function setLocale(locale: "tr" | "en") {
+    if ((locale === "en") === isEnglish) return;
+    document.cookie = `${LANG_COOKIE}=${locale}; path=/; max-age=31536000`;
+    router.push(toggleLocalePath(pathname));
+  }
+
+  return (
+    <div className={`flex items-center gap-1 text-xs font-semibold ${className}`}>
+      <button
+        type="button"
+        onClick={() => setLocale("tr")}
+        aria-current={!isEnglish}
+        className={`rounded-sm px-2 py-1 transition-colors ${
+          !isEnglish ? "bg-navy text-white" : "text-navy/50 hover:text-navy"
+        }`}
+      >
+        TR
+      </button>
+      <button
+        type="button"
+        onClick={() => setLocale("en")}
+        aria-current={isEnglish}
+        className={`rounded-sm px-2 py-1 transition-colors ${
+          isEnglish ? "bg-navy text-white" : "text-navy/50 hover:text-navy"
+        }`}
+      >
+        EN
+      </button>
+    </div>
+  );
+}
 
 export default function Header() {
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
+  const isEnglish = isEnglishPath(pathname);
+  const navLinks = isEnglish ? NAV_LINKS_EN : NAV_LINKS;
+  const ctaLabel = isEnglish ? "Contact Us" : "İletişime Geç";
+  const ctaHref = isEnglish ? "/en/contact" : "/iletisim";
+  const homeHref = isEnglish ? "/en" : "/";
 
   return (
     <header className="sticky top-0 z-40 border-b border-navy/10 bg-white/95 backdrop-blur">
       <div className="container-content flex h-20 items-center justify-between">
-        <Link href="/" className="flex items-center" onClick={() => setOpen(false)}>
+        <Link href={homeHref} className="flex items-center" onClick={() => setOpen(false)}>
           <Image
             src="/logo/teminor_lockup.png"
             alt="Teminor logo"
@@ -26,7 +79,7 @@ export default function Header() {
         </Link>
 
         <nav className="hidden items-center gap-8 md:flex">
-          {NAV_LINKS.map((link) => {
+          {navLinks.map((link) => {
             const active = pathname === link.href;
             return (
               <Link
@@ -42,14 +95,15 @@ export default function Header() {
           })}
         </nav>
 
-        <div className="hidden md:block">
+        <div className="hidden items-center gap-4 md:flex">
+          <LanguageSwitcher pathname={pathname} />
           <TrackedCta
-            href="/iletisim"
+            href={ctaHref}
             label="iletisime_gec"
             location="header"
             className="btn-primary"
           >
-            İletişime Geç
+            {ctaLabel}
           </TrackedCta>
         </div>
 
@@ -81,7 +135,7 @@ export default function Header() {
       {open && (
         <div className="border-t border-navy/10 bg-white md:hidden">
           <nav className="container-content flex flex-col gap-1 py-4">
-            {NAV_LINKS.map((link) => (
+            {navLinks.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
@@ -93,14 +147,15 @@ export default function Header() {
                 {link.label}
               </Link>
             ))}
+            <LanguageSwitcher pathname={pathname} className="mt-2 px-2" />
             <TrackedCta
-              href="/iletisim"
+              href={ctaHref}
               label="iletisime_gec_mobile"
               location="header"
               onClick={() => setOpen(false)}
               className="btn-primary mt-2 w-full"
             >
-              İletişime Geç
+              {ctaLabel}
             </TrackedCta>
           </nav>
         </div>

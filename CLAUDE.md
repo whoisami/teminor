@@ -73,15 +73,38 @@ Eski v1.0 anayasa metni `docs/strategy/archive/
 - **Framework:** Next.js 16 (App Router), statik export (`next.config.ts` →
   `output: "export"`). Build çıktısı `out/` (git tarafından ignore edilir).
 - **Stil:** Tailwind CSS v3 (`tailwind.config.ts`).
-- **Blog:** `content/blog/*.mdx`, `gray-matter` ile frontmatter parse edilir,
-  `next-mdx-remote` ile render edilir (`lib/blog.ts`).
-- **Route'lar:** `/`, `/neden-teminor`, `/hizmetler`, `/blog`, `/blog/[slug]`,
+- **Blog:** TR yazıları `content/blog/*.mdx`, EN yazıları
+  `content/blog-en/*.mdx` (ayrı dizin, ayrı slug alanı — bkz.
+  `lib/blog.ts`'teki `Locale` parametresi), `gray-matter` ile frontmatter
+  parse edilir, `next-mdx-remote` ile render edilir.
+- **Route'lar (TR):** `/`, `/neden-teminor` (Dış Satınalma Hizmeti —
+  yalnızca yerli işletmelerin satın alma departmanları için), `/hizmetler`
+  (ihracat satış geliştirme, birincil hizmet), `/blog`, `/blog/[slug]`,
   `/iletisim`, `/gizlilik`.
+- **Route'lar (EN):** `/en`, `/en/sourcing-from-turkey`, `/en/blog`,
+  `/en/blog/[slug]`, `/en/contact`. **TR slug'larını birebir yansıtmaz** —
+  TR ve EN artık farklı hikayeler anlatır (TR: Türk üretici için ihracat
+  satış geliştirme; EN: yabancı alıcı/distributor için Türkiye'den
+  tedarik). EN sitede ayrı bir "Dış Satınalma Hizmeti" sayfası **yoktur**
+  — `/en/hizmetler` ve `/en/neden-teminor` kaldırıldı, ikisinin
+  alıcı-perspektifli tek karşılığı `/en/sourcing-from-turkey`'dir; eski
+  URL'ler `public/_redirects` üzerinden 301 ile yönlendirilir (bkz.
+  `decisions/decision-log.md` — TR/EN mesaj ayrışması kararı).
+  `/gizlilik` için EN karşılığı yok.
+- **i18n yönlendirme:** `functions/_middleware.ts` — Cloudflare Pages
+  middleware (Next.js `middleware.ts` değil, statik export ile
+  çalışmadığı için — bkz. DEC-2026-0005), ziyaretçinin `request.cf.country`
+  değerine göre TR-dışı IP'leri EN karşılığına yönlendirir (path eşleme
+  tablosu ile — TR/EN slug'ları artık birebir aynı değil); `teminor_lang`
+  cookie (header'daki dil değiştiriciyle set edilir) bu tahmini ezer.
 - **SEO altyapısı:** her sayfada `generateMetadata`/`metadata` export +
-  `alternates.canonical` + Open Graph; `app/sitemap.ts` ve `app/robots.ts`
-  Next.js metadata route konvansiyonuyla üretiliyor; JSON-LD `Organization` +
-  `LocalBusiness` ana sayfada, `BlogPosting` blog detayında, `ContactPage`
-  iletişim sayfasında.
+  `alternates.canonical` + `alternates.languages` (TR/EN karşılıklı) +
+  Open Graph; `app/sitemap.ts` TR/EN route'ları hreflang alternates ile
+  birlikte üretir; `app/robots.ts` Next.js metadata route
+  konvansiyonuyla üretiliyor; JSON-LD `Organization` + `LocalBusiness`
+  ana sayfada, `Service` + `BreadcrumbList` hizmetler ve dış satınalma
+  sayfalarında, `BlogPosting` blog detayında, `ContactPage` iletişim
+  sayfasında.
 - **Formlar:** `functions/api/contact.ts` — tek Cloudflare Pages Function,
   `formType` alanına göre 4 form tipini (`contact`, `rfq`, `manufacturer`,
   `buyer`) ayrı ayrı doğrulayıp e-posta şablonuyla `RESEND_API_KEY`

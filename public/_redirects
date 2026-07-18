@@ -1,0 +1,13 @@
+# Cloudflare Pages static redirects — served from the deployed output
+# root. These cover EN URLs that existed briefly in a previous deploy and
+# are now restructured (bkz. decisions/decision-log.md — TR/EN mesaj
+# ayrışması kararı): "Dış Satınalma Hizmeti" is TR-only now, and the
+# former /en/hizmetler + /en/neden-teminor pages merged into a single
+# buyer-facing /en/sourcing-from-turkey page.
+/en/hizmetler       /en/sourcing-from-turkey   301
+/en/neden-teminor   /en/sourcing-from-turkey   301
+/en/iletisim        /en/contact                301
+
+# TR "Dış Satınalma Hizmeti" page moved to a slug that matches its own
+# content/nav label (bkz. decisions/decision-log.md — DEC-2026-0008).
+/neden-teminor      /dis-satinalma-hizmeti     301

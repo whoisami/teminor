@@ -12,29 +12,33 @@ import {
 } from "@/lib/site";
 
 const description =
-  "Teminor ile iletişime geçin. Formu doldurun; 24 saat içinde size dönüş yapalım.";
+  "Get in touch with Teminor. Fill out the form and we'll get back to you within 24 hours.";
 
 export const metadata: Metadata = {
-  title: "İletişim",
+  title: "Contact",
   description,
   alternates: {
-    canonical: "/iletisim",
-    languages: { "tr-TR": "/iletisim", "en-US": "/en/contact" },
+    canonical: `${SITE_URL}/en/contact`,
+    languages: {
+      "tr-TR": `${SITE_URL}/iletisim`,
+      "en-US": `${SITE_URL}/en/contact`,
+    },
   },
   openGraph: {
-    title: "İletişim | Teminor",
+    title: "Contact | Teminor",
     description,
-    url: `${SITE_URL}/iletisim`,
+    url: `${SITE_URL}/en/contact`,
     type: "website",
+    locale: "en_US",
   },
 };
 
-export default function IletisimPage() {
+export default function ContactPageEN() {
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "ContactPage",
-    name: "Teminor İletişim",
-    url: `${SITE_URL}/iletisim`,
+    name: "Teminor Contact",
+    url: `${SITE_URL}/en/contact`,
     about: {
       "@type": "Organization",
       name: "Teminor",
@@ -54,32 +58,33 @@ export default function IletisimPage() {
       <section className="py-24">
         <div className="container-content grid gap-16 md:grid-cols-2">
           <Reveal>
-            <p className="eyebrow">İletişim</p>
+            <p className="eyebrow">Contact</p>
             <h1 className="mt-4 font-serif text-4xl text-navy md:text-5xl">
-              Sizinle Nasıl Başlayalım?
+              How Should We Start?
             </h1>
             <p className="mt-6 max-w-md leading-relaxed text-muted">
-              Formu doldurun, 24 saat içinde size dönüş yapalım. Daha hızlı
-              bir yanıt için doğrudan WhatsApp&apos;tan da yazabilirsiniz.
+              Fill out the form and we&apos;ll get back to you within 24
+              hours. For a faster response, you can also message us
+              directly on WhatsApp.
             </p>
 
             <TrackedAnchor
               kind="whatsapp"
-              location="iletisim_page"
+              location="iletisim_page_en"
               href={whatsappLink(DEFAULT_WHATSAPP_MESSAGE)}
               target="_blank"
               rel="noopener noreferrer"
               className="btn-whatsapp mt-6 inline-flex"
             >
-              WhatsApp&apos;tan Yaz
+              Message on WhatsApp
             </TrackedAnchor>
 
             <div className="mt-12 space-y-2 text-sm text-muted">
               <p>
-                E-posta:{" "}
+                Email:{" "}
                 <TrackedAnchor
                   kind="email"
-                  location="iletisim_page"
+                  location="iletisim_page_en"
                   href={`mailto:${CONTACT_EMAIL}`}
                   className="text-navy hover:text-gold"
                 >
@@ -87,10 +92,10 @@ export default function IletisimPage() {
                 </TrackedAnchor>
               </p>
               <p>
-                Telefon:{" "}
+                Phone:{" "}
                 <TrackedAnchor
                   kind="phone"
-                  location="iletisim_page"
+                  location="iletisim_page_en"
                   href="tel:+905015350086"
                   className="text-navy hover:text-gold"
                 >
@@ -102,7 +107,7 @@ export default function IletisimPage() {
 
           <Reveal delay={0.1}>
             <div className="rounded-sm border border-navy/10 bg-white p-8">
-              <ContactForm />
+              <ContactForm locale="en" />
             </div>
           </Reveal>
         </div>
